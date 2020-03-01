@@ -51,7 +51,7 @@
     <script type="text/javascript">
         function addPaper() {
             var form = document.forms[0];
-            form.action = "<%=basePath %>paper/addPaper";
+            form.action = "<%=basePath %>/testExample/addPaper";
             form.method = "post";
             form.submit();
         }

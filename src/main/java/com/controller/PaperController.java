@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/paper")
+@RequestMapping("/testExample")
 public class PaperController {
     @Autowired
     private PaperService paperService;
@@ -21,30 +21,30 @@ public class PaperController {
     public String list(Model model) {
         List<Paper> list = paperService.queryAllPaper();
         model.addAttribute("list", list);
-        return "allPaper";
+        return "test/allPaper";
     }
 
     @RequestMapping("toAddPaper")
     public String toAddPaper() {
-        return "addPaper";
+        return "test/addPaper";
     }
 
     @RequestMapping("/addPaper")
     public String addPaper(Paper paper) {
         paperService.addPaper(paper);
-        return "redirect:/paper/allPaper";
+        return "redirect:/testExample/allPaper";
     }
 
     @RequestMapping("/del/{paperId}")
     public String deletePaper(@PathVariable("paperId") Long id) {
         paperService.deletePaperById(id);
-        return "redirect:/paper/allPaper";
+        return "redirect:/testExample/allPaper";
     }
 
     @RequestMapping("toUpdatePaper")
     public String toUpdatePaper(Model model, Long id) {
         model.addAttribute("paper", paperService.queryById(id));
-        return "updatePaper";
+        return "test/updatePaper";
     }
 
     @RequestMapping("/updatePaper")
@@ -52,7 +52,11 @@ public class PaperController {
         paperService.updatePaper(paper);
         paper = paperService.queryById(paper.getPaperId());
         model.addAttribute("paper", paper);
-        return "redirect:/paper/allPaper";
+        return "redirect:/testExample/allPaper";
+    }
+    @RequestMapping("/test")
+    public String test() {
+        return "test/test";
     }
 }
 

@@ -19,11 +19,19 @@
             <param-value>classpath:spring/spring-*.xml</param-value>
         </init-param>
     </servlet>
+
+    <!-- 默认匹配所有的请求 -->
+
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <!-- 默认匹配所有的请求 -->
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    <!--
+    <servlet-mapping>
+        <servlet-name>PaperController</servlet-name>
+        <url-pattern>/testExample/test</url-pattern>
+    </servlet-mapping>
+    -->
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>

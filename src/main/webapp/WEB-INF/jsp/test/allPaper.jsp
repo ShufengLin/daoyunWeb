@@ -38,7 +38,7 @@
     </div>
     <div class="row">
         <div class="col-md-4 column">
-            <a class="btn btn-primary" href="${path}/paper/toAddPaper">新增</a>
+            <a class="btn btn-primary" href="<%=appPath%>/testExample/toAddPaper">新增</a>
         </div>
     </div>
     <div class="row clearfix">
@@ -61,8 +61,8 @@
                         <td>${paper.paperNum}</td>
                         <td>${paper.paperDetail}</td>
                         <td>
-                            <a href="${path}/paper/toUpdatePaper?id=${paper.paperId}">更改</a> |
-                            <a href="<%=appPath%>/paper/del/${paper.paperId}">删除</a>
+                            <a href="<%=appPath%>/testExample/toUpdatePaper?id=${paper.paperId}">更改</a> |
+                            <a href="<%=appPath%>/testExample/del/${paper.paperId}">删除</a>
                         </td>
                     </tr>
                 </c:forEach>
