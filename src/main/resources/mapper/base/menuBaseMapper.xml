@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.base.menuBaseMapper">
+
+
+    <insert id="insertmenu"  useGeneratedKeys="true" keyProperty="MenuId">
+        INSERT INTO `menu`
+        (
+        <trim suffixOverrides=",">
+                    <if test="MenuId!=null">
+                        `MenuId`,
+                    </if>
+                    <if test="MenuName!=null">
+                        `MenuName`,
+                    </if>
+                    <if test="MenuURL!=null">
+                        `MenuURL`,
+                    </if>
+                    <if test="MenuIcon!=null">
+                        `MenuIcon`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="MenuId!=null">
+                    #{MenuId},
+                </if>
+                <if test="MenuName!=null">
+                    #{MenuName},
+                </if>
+                <if test="MenuURL!=null">
+                    #{MenuURL},
+                </if>
+                <if test="MenuIcon!=null">
+                    #{MenuIcon},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updatemenu">
+        UPDATE `menu`
+        SET
+        <trim suffixOverrides=",">
+            <if test="MenuName != null and MenuName!=''">
+                `MenuName` = #{MenuName},
+            </if>
+            <if test="MenuURL != null and MenuURL!=''">
+                `MenuURL` = #{MenuURL},
+            </if>
+            <if test="MenuIcon != null and MenuIcon!=''">
+                `MenuIcon` = #{MenuIcon},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `MenuId` = #{MenuId} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `menu`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.MenuName != null and set.MenuName!=''">
+            `MenuName` = #{set.MenuName},
+        </if>
+        <if test="set.MenuURL != null and set.MenuURL!=''">
+            `MenuURL` = #{set.MenuURL},
+        </if>
+        <if test="set.MenuIcon != null and set.MenuIcon!=''">
+            `MenuIcon` = #{set.MenuIcon},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.MenuIdList != null">
+                    `MenuId` in
+                    <foreach collection="where.MenuIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.MenuIdSt !=null">
+                `MenuId` >= #{where.MenuIdSt} and
+            </if>
+            <if test="where.MenuIdEd!=null">
+                `MenuId` &lt;= #{where.MenuIdEd} and
+            </if>
+                <if test="where.MenuNameList != null">
+                    `MenuName` in
+                    <foreach collection="where.MenuNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyMenuName!=null and where.fuzzyMenuName.size()>0">
+                (
+                <foreach collection="where.fuzzyMenuName"  separator="or" item="item">
+                    `MenuName` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyMenuName!=null and where.rightFuzzyMenuName.size()>0">
+                (
+                <foreach collection="where.rightFuzzyMenuName"  separator="or" item="item">
+                    `MenuName` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.MenuURLList != null">
+                    `MenuURL` in
+                    <foreach collection="where.MenuURLList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyMenuURL!=null and where.fuzzyMenuURL.size()>0">
+                (
+                <foreach collection="where.fuzzyMenuURL"  separator="or" item="item">
+                    `MenuURL` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyMenuURL!=null and where.rightFuzzyMenuURL.size()>0">
+                (
+                <foreach collection="where.rightFuzzyMenuURL"  separator="or" item="item">
+                    `MenuURL` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.MenuIconList != null">
+                    `MenuIcon` in
+                    <foreach collection="where.MenuIconList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyMenuIcon!=null and where.fuzzyMenuIcon.size()>0">
+                (
+                <foreach collection="where.fuzzyMenuIcon"  separator="or" item="item">
+                    `MenuIcon` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyMenuIcon!=null and where.rightFuzzyMenuIcon.size()>0">
+                (
+                <foreach collection="where.rightFuzzyMenuIcon"  separator="or" item="item">
+                    `MenuIcon` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="com.utils.menu" id="menuMap">
+        <result property="MenuId" column="MenuId"/>
+        <result property="MenuName" column="MenuName"/>
+        <result property="MenuURL" column="MenuURL"/>
+        <result property="MenuIcon" column="MenuIcon"/>
+    </resultMap>
+
+
+    <select id="querymenu" resultMap="menuMap">
+        select
+        <include refid="baseResult"></include>
+        from  `menu`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="MenuId != null">
+                `MenuId` = #{MenuId} and
+            </if>
+            <if test="MenuName != null and MenuName!=''">
+                `MenuName` = #{MenuName} and
+            </if>
+            <if test="MenuURL != null and MenuURL!=''">
+                `MenuURL` = #{MenuURL} and
+            </if>
+            <if test="MenuIcon != null and MenuIcon!=''">
+                `MenuIcon` = #{MenuIcon} and
+            </if>
+            <if test = "(_parameter instanceof com.utils.menu$QueryBuilder) == true">
+                <if test="MenuIdList != null">
+                    `MenuId` in
+                    <foreach collection="MenuIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="MenuIdSt !=null">
+                    `MenuId` >= #{MenuIdSt} and
+                </if>
+                <if test="MenuIdEd!=null">
+                    `MenuId` &lt;= #{MenuIdEd} and
+                </if>
+                <if test="MenuNameList != null">
+                    `MenuName` in
+                    <foreach collection="MenuNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyMenuName!=null and fuzzyMenuName.size()>0">
+                    (
+                    <foreach collection="fuzzyMenuName"  separator="or" item="item">
+                        `MenuName` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyMenuName!=null and rightFuzzyMenuName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyMenuName"  separator="or" item="item">
+                        `MenuName` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="MenuURLList != null">
+                    `MenuURL` in
+                    <foreach collection="MenuURLList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyMenuURL!=null and fuzzyMenuURL.size()>0">
+                    (
+                    <foreach collection="fuzzyMenuURL"  separator="or" item="item">
+                        `MenuURL` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyMenuURL!=null and rightFuzzyMenuURL.size()>0">
+                    (
+                    <foreach collection="rightFuzzyMenuURL"  separator="or" item="item">
+                        `MenuURL` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="MenuIconList != null">
+                    `MenuIcon` in
+                    <foreach collection="MenuIconList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyMenuIcon!=null and fuzzyMenuIcon.size()>0">
+                    (
+                    <foreach collection="fuzzyMenuIcon"  separator="or" item="item">
+                        `MenuIcon` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyMenuIcon!=null and rightFuzzyMenuIcon.size()>0">
+                    (
+                    <foreach collection="rightFuzzyMenuIcon"  separator="or" item="item">
+                        `MenuIcon` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="querymenuLimit1" resultMap="menuMap">
+        select
+        <include refid="baseResult"></include>
+        from  `menu`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="MenuId != null">
+                `MenuId` = #{MenuId} and
+            </if>
+            <if test="MenuName != null and MenuName!=''">
+                `MenuName` = #{MenuName} and
+            </if>
+            <if test="MenuURL != null and MenuURL!=''">
+                `MenuURL` = #{MenuURL} and
+            </if>
+            <if test="MenuIcon != null and MenuIcon!=''">
+                `MenuIcon` = #{MenuIcon} and
+            </if>
+            <if test = "(_parameter instanceof com.utils.menu$QueryBuilder) == true">
+                    <if test="MenuIdList != null">
+                        `MenuId` in
+                        <foreach collection="MenuIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="MenuIdSt !=null">
+                    `MenuId` >= #{MenuIdSt} and
+                </if>
+                <if test="MenuIdEd!=null">
+                    `MenuId` &lt;= #{MenuIdEd} and
+                </if>
+                    <if test="MenuNameList != null">
+                        `MenuName` in
+                        <foreach collection="MenuNameList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyMenuName!=null and fuzzyMenuName.size()>0">
+                    (
+                    <foreach collection="fuzzyMenuName"  separator="or" item="item">
+                        `MenuName` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyMenuName!=null and rightFuzzyMenuName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyMenuName"  separator="or" item="item">
+                        `MenuName` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="MenuURLList != null">
+                        `MenuURL` in
+                        <foreach collection="MenuURLList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyMenuURL!=null and fuzzyMenuURL.size()>0">
+                    (
+                    <foreach collection="fuzzyMenuURL"  separator="or" item="item">
+                        `MenuURL` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyMenuURL!=null and rightFuzzyMenuURL.size()>0">
+                    (
+                    <foreach collection="rightFuzzyMenuURL"  separator="or" item="item">
+                        `MenuURL` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="MenuIconList != null">
+                        `MenuIcon` in
+                        <foreach collection="MenuIconList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyMenuIcon!=null and fuzzyMenuIcon.size()>0">
+                    (
+                    <foreach collection="fuzzyMenuIcon"  separator="or" item="item">
+                        `MenuIcon` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyMenuIcon!=null and rightFuzzyMenuIcon.size()>0">
+                    (
+                    <foreach collection="rightFuzzyMenuIcon"  separator="or" item="item">
+                        `MenuIcon` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `MenuId`,
+        `MenuName`,
+        `MenuURL`,
+        `MenuIcon`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof com.utils.menu$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.MenuId==true">
+                        `MenuId`,
+                    </if>
+                    <if test="fetchFields.fetchFields.MenuName==true">
+                        `MenuName`,
+                    </if>
+                    <if test="fetchFields.fetchFields.MenuURL==true">
+                        `MenuURL`,
+                    </if>
+                    <if test="fetchFields.fetchFields.MenuIcon==true">
+                        `MenuIcon`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.MenuId==null">
+                        `MenuId`,
+                    </if>
+                    <if test="fetchFields.excludeFields.MenuName==null">
+                        `MenuName`,
+                    </if>
+                    <if test="fetchFields.excludeFields.MenuURL==null">
+                        `MenuURL`,
+                    </if>
+                    <if test="fetchFields.excludeFields.MenuIcon==null">
+                        `MenuIcon`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof com.utils.menu$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>

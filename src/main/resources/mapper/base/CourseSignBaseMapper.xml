@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.base.CourseSignBaseMapper">
+
+
+    <insert id="insertCourseSign"  useGeneratedKeys="true" keyProperty="SignId">
+        INSERT INTO `course_sign`
+        (
+        <trim suffixOverrides=",">
+                    <if test="SignId!=null">
+                        `SignId`,
+                    </if>
+                    <if test="CourseId!=null">
+                        `CourseId`,
+                    </if>
+                    <if test="StudentId!=null">
+                        `StudentId`,
+                    </if>
+                    <if test="SignPlace!=null">
+                        `SignPlace`,
+                    </if>
+                    <if test="SignTime!=null">
+                        `SignTime`,
+                    </if>
+                    <if test="SignStatus!=null">
+                        `SignStatus`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="SignId!=null">
+                    #{SignId},
+                </if>
+                <if test="CourseId!=null">
+                    #{CourseId},
+                </if>
+                <if test="StudentId!=null">
+                    #{StudentId},
+                </if>
+                <if test="SignPlace!=null">
+                    #{SignPlace},
+                </if>
+                <if test="SignTime!=null">
+                    #{SignTime},
+                </if>
+                <if test="SignStatus!=null">
+                    #{SignStatus},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updateCourseSign">
+        UPDATE `course_sign`
+        SET
+        <trim suffixOverrides=",">
+            <if test="CourseId != null">
+                `CourseId` = #{CourseId},
+            </if>
+            <if test="StudentId != null">
+                `StudentId` = #{StudentId},
+            </if>
+            <if test="SignPlace != null and SignPlace!=''">
+                `SignPlace` = #{SignPlace},
+            </if>
+            <if test="SignTime != null">
+                `SignTime` = #{SignTime},
+            </if>
+            <if test="SignStatus != null">
+                `SignStatus` = #{SignStatus},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `SignId` = #{SignId} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `course_sign`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.CourseId != null">
+            `CourseId` = #{set.CourseId},
+        </if>
+        <if test="set.StudentId != null">
+            `StudentId` = #{set.StudentId},
+        </if>
+        <if test="set.SignPlace != null and set.SignPlace!=''">
+            `SignPlace` = #{set.SignPlace},
+        </if>
+        <if test="set.SignTime != null">
+            `SignTime` = #{set.SignTime},
+        </if>
+        <if test="set.SignStatus != null">
+            `SignStatus` = #{set.SignStatus},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.SignIdList != null">
+                    `SignId` in
+                    <foreach collection="where.SignIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.SignIdSt !=null">
+                `SignId` >= #{where.SignIdSt} and
+            </if>
+            <if test="where.SignIdEd!=null">
+                `SignId` &lt;= #{where.SignIdEd} and
+            </if>
+                <if test="where.CourseIdList != null">
+                    `CourseId` in
+                    <foreach collection="where.CourseIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.CourseIdSt !=null">
+                `CourseId` >= #{where.CourseIdSt} and
+            </if>
+            <if test="where.CourseIdEd!=null">
+                `CourseId` &lt;= #{where.CourseIdEd} and
+            </if>
+                <if test="where.StudentIdList != null">
+                    `StudentId` in
+                    <foreach collection="where.StudentIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.StudentIdSt !=null">
+                `StudentId` >= #{where.StudentIdSt} and
+            </if>
+            <if test="where.StudentIdEd!=null">
+                `StudentId` &lt;= #{where.StudentIdEd} and
+            </if>
+                <if test="where.SignPlaceList != null">
+                    `SignPlace` in
+                    <foreach collection="where.SignPlaceList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzySignPlace!=null and where.fuzzySignPlace.size()>0">
+                (
+                <foreach collection="where.fuzzySignPlace"  separator="or" item="item">
+                    `SignPlace` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzySignPlace!=null and where.rightFuzzySignPlace.size()>0">
+                (
+                <foreach collection="where.rightFuzzySignPlace"  separator="or" item="item">
+                    `SignPlace` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.SignTimeList != null">
+                    `SignTime` in
+                    <foreach collection="where.SignTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.SignTimeSt !=null">
+                `SignTime` >= #{where.SignTimeSt} and
+            </if>
+            <if test="where.SignTimeEd!=null">
+                `SignTime` &lt;= #{where.SignTimeEd} and
+            </if>
+                <if test="where.SignStatusList != null">
+                    `SignStatus` in
+                    <foreach collection="where.SignStatusList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.SignStatusSt !=null">
+                `SignStatus` >= #{where.SignStatusSt} and
+            </if>
+            <if test="where.SignStatusEd!=null">
+                `SignStatus` &lt;= #{where.SignStatusEd} and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="com.utils.CourseSign" id="CourseSignMap">
+        <result property="SignId" column="SignId"/>
+        <result property="CourseId" column="CourseId"/>
+        <result property="StudentId" column="StudentId"/>
+        <result property="SignPlace" column="SignPlace"/>
+        <result property="SignTime" column="SignTime"/>
+        <result property="SignStatus" column="SignStatus"/>
+    </resultMap>
+
+
+    <select id="queryCourseSign" resultMap="CourseSignMap">
+        select
+        <include refid="baseResult"></include>
+        from  `course_sign`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="SignId != null">
+                `SignId` = #{SignId} and
+            </if>
+            <if test="CourseId != null">
+                `CourseId` = #{CourseId} and
+            </if>
+            <if test="StudentId != null">
+                `StudentId` = #{StudentId} and
+            </if>
+            <if test="SignPlace != null and SignPlace!=''">
+                `SignPlace` = #{SignPlace} and
+            </if>
+            <if test="SignTime != null">
+                `SignTime` = #{SignTime} and
+            </if>
+            <if test="SignStatus != null">
+                `SignStatus` = #{SignStatus} and
+            </if>
+            <if test = "(_parameter instanceof com.utils.CourseSign$QueryBuilder) == true">
+                <if test="SignIdList != null">
+                    `SignId` in
+                    <foreach collection="SignIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="SignIdSt !=null">
+                    `SignId` >= #{SignIdSt} and
+                </if>
+                <if test="SignIdEd!=null">
+                    `SignId` &lt;= #{SignIdEd} and
+                </if>
+                <if test="CourseIdList != null">
+                    `CourseId` in
+                    <foreach collection="CourseIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="CourseIdSt !=null">
+                    `CourseId` >= #{CourseIdSt} and
+                </if>
+                <if test="CourseIdEd!=null">
+                    `CourseId` &lt;= #{CourseIdEd} and
+                </if>
+                <if test="StudentIdList != null">
+                    `StudentId` in
+                    <foreach collection="StudentIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="StudentIdSt !=null">
+                    `StudentId` >= #{StudentIdSt} and
+                </if>
+                <if test="StudentIdEd!=null">
+                    `StudentId` &lt;= #{StudentIdEd} and
+                </if>
+                <if test="SignPlaceList != null">
+                    `SignPlace` in
+                    <foreach collection="SignPlaceList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzySignPlace!=null and fuzzySignPlace.size()>0">
+                    (
+                    <foreach collection="fuzzySignPlace"  separator="or" item="item">
+                        `SignPlace` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzySignPlace!=null and rightFuzzySignPlace.size()>0">
+                    (
+                    <foreach collection="rightFuzzySignPlace"  separator="or" item="item">
+                        `SignPlace` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="SignTimeList != null">
+                    `SignTime` in
+                    <foreach collection="SignTimeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="SignTimeSt !=null">
+                    `SignTime` >= #{SignTimeSt} and
+                </if>
+                <if test="SignTimeEd!=null">
+                    `SignTime` &lt;= #{SignTimeEd} and
+                </if>
+                <if test="SignStatusList != null">
+                    `SignStatus` in
+                    <foreach collection="SignStatusList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="SignStatusSt !=null">
+                    `SignStatus` >= #{SignStatusSt} and
+                </if>
+                <if test="SignStatusEd!=null">
+                    `SignStatus` &lt;= #{SignStatusEd} and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryCourseSignLimit1" resultMap="CourseSignMap">
+        select
+        <include refid="baseResult"></include>
+        from  `course_sign`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="SignId != null">
+                `SignId` = #{SignId} and
+            </if>
+            <if test="CourseId != null">
+                `CourseId` = #{CourseId} and
+            </if>
+            <if test="StudentId != null">
+                `StudentId` = #{StudentId} and
+            </if>
+            <if test="SignPlace != null and SignPlace!=''">
+                `SignPlace` = #{SignPlace} and
+            </if>
+            <if test="SignTime != null">
+                `SignTime` = #{SignTime} and
+            </if>
+            <if test="SignStatus != null">
+                `SignStatus` = #{SignStatus} and
+            </if>
+            <if test = "(_parameter instanceof com.utils.CourseSign$QueryBuilder) == true">
+                    <if test="SignIdList != null">
+                        `SignId` in
+                        <foreach collection="SignIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="SignIdSt !=null">
+                    `SignId` >= #{SignIdSt} and
+                </if>
+                <if test="SignIdEd!=null">
+                    `SignId` &lt;= #{SignIdEd} and
+                </if>
+                    <if test="CourseIdList != null">
+                        `CourseId` in
+                        <foreach collection="CourseIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="CourseIdSt !=null">
+                    `CourseId` >= #{CourseIdSt} and
+                </if>
+                <if test="CourseIdEd!=null">
+                    `CourseId` &lt;= #{CourseIdEd} and
+                </if>
+                    <if test="StudentIdList != null">
+                        `StudentId` in
+                        <foreach collection="StudentIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="StudentIdSt !=null">
+                    `StudentId` >= #{StudentIdSt} and
+                </if>
+                <if test="StudentIdEd!=null">
+                    `StudentId` &lt;= #{StudentIdEd} and
+                </if>
+                    <if test="SignPlaceList != null">
+                        `SignPlace` in
+                        <foreach collection="SignPlaceList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzySignPlace!=null and fuzzySignPlace.size()>0">
+                    (
+                    <foreach collection="fuzzySignPlace"  separator="or" item="item">
+                        `SignPlace` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzySignPlace!=null and rightFuzzySignPlace.size()>0">
+                    (
+                    <foreach collection="rightFuzzySignPlace"  separator="or" item="item">
+                        `SignPlace` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="SignTimeList != null">
+                        `SignTime` in
+                        <foreach collection="SignTimeList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="SignTimeSt !=null">
+                    `SignTime` >= #{SignTimeSt} and
+                </if>
+                <if test="SignTimeEd!=null">
+                    `SignTime` &lt;= #{SignTimeEd} and
+                </if>
+                    <if test="SignStatusList != null">
+                        `SignStatus` in
+                        <foreach collection="SignStatusList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="SignStatusSt !=null">
+                    `SignStatus` >= #{SignStatusSt} and
+                </if>
+                <if test="SignStatusEd!=null">
+                    `SignStatus` &lt;= #{SignStatusEd} and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `SignId`,
+        `CourseId`,
+        `StudentId`,
+        `SignPlace`,
+        `SignTime`,
+        `SignStatus`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof com.utils.CourseSign$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.SignId==true">
+                        `SignId`,
+                    </if>
+                    <if test="fetchFields.fetchFields.CourseId==true">
+                        `CourseId`,
+                    </if>
+                    <if test="fetchFields.fetchFields.StudentId==true">
+                        `StudentId`,
+                    </if>
+                    <if test="fetchFields.fetchFields.SignPlace==true">
+                        `SignPlace`,
+                    </if>
+                    <if test="fetchFields.fetchFields.SignTime==true">
+                        `SignTime`,
+                    </if>
+                    <if test="fetchFields.fetchFields.SignStatus==true">
+                        `SignStatus`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.SignId==null">
+                        `SignId`,
+                    </if>
+                    <if test="fetchFields.excludeFields.CourseId==null">
+                        `CourseId`,
+                    </if>
+                    <if test="fetchFields.excludeFields.StudentId==null">
+                        `StudentId`,
+                    </if>
+                    <if test="fetchFields.excludeFields.SignPlace==null">
+                        `SignPlace`,
+                    </if>
+                    <if test="fetchFields.excludeFields.SignTime==null">
+                        `SignTime`,
+                    </if>
+                    <if test="fetchFields.excludeFields.SignStatus==null">
+                        `SignStatus`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof com.utils.CourseSign$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>

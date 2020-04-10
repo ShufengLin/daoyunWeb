@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.base.permisionBaseMapper">
+
+
+    <insert id="insertpermision"  useGeneratedKeys="true" keyProperty="PermissionId">
+        INSERT INTO `permision`
+        (
+        <trim suffixOverrides=",">
+                    <if test="PermissionId!=null">
+                        `PermissionId`,
+                    </if>
+                    <if test="MenuId!=null">
+                        `MenuId`,
+                    </if>
+                    <if test="PermissionName!=null">
+                        `PermissionName`,
+                    </if>
+                    <if test="PermissionDescription!=null">
+                        `PermissionDescription`,
+                    </if>
+                    <if test="ParentId!=null">
+                        `ParentId`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="PermissionId!=null">
+                    #{PermissionId},
+                </if>
+                <if test="MenuId!=null">
+                    #{MenuId},
+                </if>
+                <if test="PermissionName!=null">
+                    #{PermissionName},
+                </if>
+                <if test="PermissionDescription!=null">
+                    #{PermissionDescription},
+                </if>
+                <if test="ParentId!=null">
+                    #{ParentId},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updatepermision">
+        UPDATE `permision`
+        SET
+        <trim suffixOverrides=",">
+            <if test="MenuId != null">
+                `MenuId` = #{MenuId},
+            </if>
+            <if test="PermissionName != null and PermissionName!=''">
+                `PermissionName` = #{PermissionName},
+            </if>
+            <if test="PermissionDescription != null and PermissionDescription!=''">
+                `PermissionDescription` = #{PermissionDescription},
+            </if>
+            <if test="ParentId != null">
+                `ParentId` = #{ParentId},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `PermissionId` = #{PermissionId} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `permision`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.MenuId != null">
+            `MenuId` = #{set.MenuId},
+        </if>
+        <if test="set.PermissionName != null and set.PermissionName!=''">
+            `PermissionName` = #{set.PermissionName},
+        </if>
+        <if test="set.PermissionDescription != null and set.PermissionDescription!=''">
+            `PermissionDescription` = #{set.PermissionDescription},
+        </if>
+        <if test="set.ParentId != null">
+            `ParentId` = #{set.ParentId},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.PermissionIdList != null">
+                    `PermissionId` in
+                    <foreach collection="where.PermissionIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.PermissionIdSt !=null">
+                `PermissionId` >= #{where.PermissionIdSt} and
+            </if>
+            <if test="where.PermissionIdEd!=null">
+                `PermissionId` &lt;= #{where.PermissionIdEd} and
+            </if>
+                <if test="where.MenuIdList != null">
+                    `MenuId` in
+                    <foreach collection="where.MenuIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.MenuIdSt !=null">
+                `MenuId` >= #{where.MenuIdSt} and
+            </if>
+            <if test="where.MenuIdEd!=null">
+                `MenuId` &lt;= #{where.MenuIdEd} and
+            </if>
+                <if test="where.PermissionNameList != null">
+                    `PermissionName` in
+                    <foreach collection="where.PermissionNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyPermissionName!=null and where.fuzzyPermissionName.size()>0">
+                (
+                <foreach collection="where.fuzzyPermissionName"  separator="or" item="item">
+                    `PermissionName` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyPermissionName!=null and where.rightFuzzyPermissionName.size()>0">
+                (
+                <foreach collection="where.rightFuzzyPermissionName"  separator="or" item="item">
+                    `PermissionName` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.PermissionDescriptionList != null">
+                    `PermissionDescription` in
+                    <foreach collection="where.PermissionDescriptionList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyPermissionDescription!=null and where.fuzzyPermissionDescription.size()>0">
+                (
+                <foreach collection="where.fuzzyPermissionDescription"  separator="or" item="item">
+                    `PermissionDescription` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyPermissionDescription!=null and where.rightFuzzyPermissionDescription.size()>0">
+                (
+                <foreach collection="where.rightFuzzyPermissionDescription"  separator="or" item="item">
+                    `PermissionDescription` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.ParentIdList != null">
+                    `ParentId` in
+                    <foreach collection="where.ParentIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.ParentIdSt !=null">
+                `ParentId` >= #{where.ParentIdSt} and
+            </if>
+            <if test="where.ParentIdEd!=null">
+                `ParentId` &lt;= #{where.ParentIdEd} and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="com.utils.permision" id="permisionMap">
+        <result property="PermissionId" column="PermissionId"/>
+        <result property="MenuId" column="MenuId"/>
+        <result property="PermissionName" column="PermissionName"/>
+        <result property="PermissionDescription" column="PermissionDescription"/>
+        <result property="ParentId" column="ParentId"/>
+    </resultMap>
+
+
+    <select id="querypermision" resultMap="permisionMap">
+        select
+        <include refid="baseResult"></include>
+        from  `permision`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="PermissionId != null">
+                `PermissionId` = #{PermissionId} and
+            </if>
+            <if test="MenuId != null">
+                `MenuId` = #{MenuId} and
+            </if>
+            <if test="PermissionName != null and PermissionName!=''">
+                `PermissionName` = #{PermissionName} and
+            </if>
+            <if test="PermissionDescription != null and PermissionDescription!=''">
+                `PermissionDescription` = #{PermissionDescription} and
+            </if>
+            <if test="ParentId != null">
+                `ParentId` = #{ParentId} and
+            </if>
+            <if test = "(_parameter instanceof com.utils.permision$QueryBuilder) == true">
+                <if test="PermissionIdList != null">
+                    `PermissionId` in
+                    <foreach collection="PermissionIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="PermissionIdSt !=null">
+                    `PermissionId` >= #{PermissionIdSt} and
+                </if>
+                <if test="PermissionIdEd!=null">
+                    `PermissionId` &lt;= #{PermissionIdEd} and
+                </if>
+                <if test="MenuIdList != null">
+                    `MenuId` in
+                    <foreach collection="MenuIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="MenuIdSt !=null">
+                    `MenuId` >= #{MenuIdSt} and
+                </if>
+                <if test="MenuIdEd!=null">
+                    `MenuId` &lt;= #{MenuIdEd} and
+                </if>
+                <if test="PermissionNameList != null">
+                    `PermissionName` in
+                    <foreach collection="PermissionNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyPermissionName!=null and fuzzyPermissionName.size()>0">
+                    (
+                    <foreach collection="fuzzyPermissionName"  separator="or" item="item">
+                        `PermissionName` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyPermissionName!=null and rightFuzzyPermissionName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyPermissionName"  separator="or" item="item">
+                        `PermissionName` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="PermissionDescriptionList != null">
+                    `PermissionDescription` in
+                    <foreach collection="PermissionDescriptionList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyPermissionDescription!=null and fuzzyPermissionDescription.size()>0">
+                    (
+                    <foreach collection="fuzzyPermissionDescription"  separator="or" item="item">
+                        `PermissionDescription` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyPermissionDescription!=null and rightFuzzyPermissionDescription.size()>0">
+                    (
+                    <foreach collection="rightFuzzyPermissionDescription"  separator="or" item="item">
+                        `PermissionDescription` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="ParentIdList != null">
+                    `ParentId` in
+                    <foreach collection="ParentIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="ParentIdSt !=null">
+                    `ParentId` >= #{ParentIdSt} and
+                </if>
+                <if test="ParentIdEd!=null">
+                    `ParentId` &lt;= #{ParentIdEd} and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="querypermisionLimit1" resultMap="permisionMap">
+        select
+        <include refid="baseResult"></include>
+        from  `permision`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="PermissionId != null">
+                `PermissionId` = #{PermissionId} and
+            </if>
+            <if test="MenuId != null">
+                `MenuId` = #{MenuId} and
+            </if>
+            <if test="PermissionName != null and PermissionName!=''">
+                `PermissionName` = #{PermissionName} and
+            </if>
+            <if test="PermissionDescription != null and PermissionDescription!=''">
+                `PermissionDescription` = #{PermissionDescription} and
+            </if>
+            <if test="ParentId != null">
+                `ParentId` = #{ParentId} and
+            </if>
+            <if test = "(_parameter instanceof com.utils.permision$QueryBuilder) == true">
+                    <if test="PermissionIdList != null">
+                        `PermissionId` in
+                        <foreach collection="PermissionIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="PermissionIdSt !=null">
+                    `PermissionId` >= #{PermissionIdSt} and
+                </if>
+                <if test="PermissionIdEd!=null">
+                    `PermissionId` &lt;= #{PermissionIdEd} and
+                </if>
+                    <if test="MenuIdList != null">
+                        `MenuId` in
+                        <foreach collection="MenuIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="MenuIdSt !=null">
+                    `MenuId` >= #{MenuIdSt} and
+                </if>
+                <if test="MenuIdEd!=null">
+                    `MenuId` &lt;= #{MenuIdEd} and
+                </if>
+                    <if test="PermissionNameList != null">
+                        `PermissionName` in
+                        <foreach collection="PermissionNameList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyPermissionName!=null and fuzzyPermissionName.size()>0">
+                    (
+                    <foreach collection="fuzzyPermissionName"  separator="or" item="item">
+                        `PermissionName` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyPermissionName!=null and rightFuzzyPermissionName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyPermissionName"  separator="or" item="item">
+                        `PermissionName` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="PermissionDescriptionList != null">
+                        `PermissionDescription` in
+                        <foreach collection="PermissionDescriptionList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyPermissionDescription!=null and fuzzyPermissionDescription.size()>0">
+                    (
+                    <foreach collection="fuzzyPermissionDescription"  separator="or" item="item">
+                        `PermissionDescription` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyPermissionDescription!=null and rightFuzzyPermissionDescription.size()>0">
+                    (
+                    <foreach collection="rightFuzzyPermissionDescription"  separator="or" item="item">
+                        `PermissionDescription` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="ParentIdList != null">
+                        `ParentId` in
+                        <foreach collection="ParentIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="ParentIdSt !=null">
+                    `ParentId` >= #{ParentIdSt} and
+                </if>
+                <if test="ParentIdEd!=null">
+                    `ParentId` &lt;= #{ParentIdEd} and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `PermissionId`,
+        `MenuId`,
+        `PermissionName`,
+        `PermissionDescription`,
+        `ParentId`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof com.utils.permision$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.PermissionId==true">
+                        `PermissionId`,
+                    </if>
+                    <if test="fetchFields.fetchFields.MenuId==true">
+                        `MenuId`,
+                    </if>
+                    <if test="fetchFields.fetchFields.PermissionName==true">
+                        `PermissionName`,
+                    </if>
+                    <if test="fetchFields.fetchFields.PermissionDescription==true">
+                        `PermissionDescription`,
+                    </if>
+                    <if test="fetchFields.fetchFields.ParentId==true">
+                        `ParentId`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.PermissionId==null">
+                        `PermissionId`,
+                    </if>
+                    <if test="fetchFields.excludeFields.MenuId==null">
+                        `MenuId`,
+                    </if>
+                    <if test="fetchFields.excludeFields.PermissionName==null">
+                        `PermissionName`,
+                    </if>
+                    <if test="fetchFields.excludeFields.PermissionDescription==null">
+                        `PermissionDescription`,
+                    </if>
+                    <if test="fetchFields.excludeFields.ParentId==null">
+                        `ParentId`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof com.utils.permision$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>

@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.base.roleBaseMapper">
+
+
+    <insert id="insertrole"  useGeneratedKeys="true" keyProperty="RoleId">
+        INSERT INTO `role`
+        (
+        <trim suffixOverrides=",">
+                    <if test="RoleId!=null">
+                        `RoleId`,
+                    </if>
+                    <if test="RoleName!=null">
+                        `RoleName`,
+                    </if>
+                    <if test="RoleDescription!=null">
+                        `RoleDescription`,
+                    </if>
+                    <if test="IsLock!=null">
+                        `IsLock`,
+                    </if>
+                    <if test="Creator!=null">
+                        `Creator`,
+                    </if>
+                    <if test="CreationDate!=null">
+                        `CreationDate`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="RoleId!=null">
+                    #{RoleId},
+                </if>
+                <if test="RoleName!=null">
+                    #{RoleName},
+                </if>
+                <if test="RoleDescription!=null">
+                    #{RoleDescription},
+                </if>
+                <if test="IsLock!=null">
+                    #{IsLock},
+                </if>
+                <if test="Creator!=null">
+                    #{Creator},
+                </if>
+                <if test="CreationDate!=null">
+                    #{CreationDate},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updaterole">
+        UPDATE `role`
+        SET
+        <trim suffixOverrides=",">
+            <if test="RoleName != null and RoleName!=''">
+                `RoleName` = #{RoleName},
+            </if>
+            <if test="RoleDescription != null and RoleDescription!=''">
+                `RoleDescription` = #{RoleDescription},
+            </if>
+            <if test="IsLock != null">
+                `IsLock` = #{IsLock},
+            </if>
+            <if test="Creator != null and Creator!=''">
+                `Creator` = #{Creator},
+            </if>
+            <if test="CreationDate != null">
+                `CreationDate` = #{CreationDate},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `RoleId` = #{RoleId} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `role`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.RoleName != null and set.RoleName!=''">
+            `RoleName` = #{set.RoleName},
+        </if>
+        <if test="set.RoleDescription != null and set.RoleDescription!=''">
+            `RoleDescription` = #{set.RoleDescription},
+        </if>
+        <if test="set.IsLock != null">
+            `IsLock` = #{set.IsLock},
+        </if>
+        <if test="set.Creator != null and set.Creator!=''">
+            `Creator` = #{set.Creator},
+        </if>
+        <if test="set.CreationDate != null">
+            `CreationDate` = #{set.CreationDate},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.RoleIdList != null">
+                    `RoleId` in
+                    <foreach collection="where.RoleIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.RoleIdSt !=null">
+                `RoleId` >= #{where.RoleIdSt} and
+            </if>
+            <if test="where.RoleIdEd!=null">
+                `RoleId` &lt;= #{where.RoleIdEd} and
+            </if>
+                <if test="where.RoleNameList != null">
+                    `RoleName` in
+                    <foreach collection="where.RoleNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyRoleName!=null and where.fuzzyRoleName.size()>0">
+                (
+                <foreach collection="where.fuzzyRoleName"  separator="or" item="item">
+                    `RoleName` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyRoleName!=null and where.rightFuzzyRoleName.size()>0">
+                (
+                <foreach collection="where.rightFuzzyRoleName"  separator="or" item="item">
+                    `RoleName` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.RoleDescriptionList != null">
+                    `RoleDescription` in
+                    <foreach collection="where.RoleDescriptionList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyRoleDescription!=null and where.fuzzyRoleDescription.size()>0">
+                (
+                <foreach collection="where.fuzzyRoleDescription"  separator="or" item="item">
+                    `RoleDescription` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyRoleDescription!=null and where.rightFuzzyRoleDescription.size()>0">
+                (
+                <foreach collection="where.rightFuzzyRoleDescription"  separator="or" item="item">
+                    `RoleDescription` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.IsLockList != null">
+                    `IsLock` in
+                    <foreach collection="where.IsLockList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.IsLockSt !=null">
+                `IsLock` >= #{where.IsLockSt} and
+            </if>
+            <if test="where.IsLockEd!=null">
+                `IsLock` &lt;= #{where.IsLockEd} and
+            </if>
+                <if test="where.CreatorList != null">
+                    `Creator` in
+                    <foreach collection="where.CreatorList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyCreator!=null and where.fuzzyCreator.size()>0">
+                (
+                <foreach collection="where.fuzzyCreator"  separator="or" item="item">
+                    `Creator` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyCreator!=null and where.rightFuzzyCreator.size()>0">
+                (
+                <foreach collection="where.rightFuzzyCreator"  separator="or" item="item">
+                    `Creator` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.CreationDateList != null">
+                    `CreationDate` in
+                    <foreach collection="where.CreationDateList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.CreationDateSt !=null">
+                `CreationDate` >= #{where.CreationDateSt} and
+            </if>
+            <if test="where.CreationDateEd!=null">
+                `CreationDate` &lt;= #{where.CreationDateEd} and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="com.utils.role" id="roleMap">
+        <result property="RoleId" column="RoleId"/>
+        <result property="RoleName" column="RoleName"/>
+        <result property="RoleDescription" column="RoleDescription"/>
+        <result property="IsLock" column="IsLock"/>
+        <result property="Creator" column="Creator"/>
+        <result property="CreationDate" column="CreationDate"/>
+    </resultMap>
+
+
+    <select id="queryrole" resultMap="roleMap">
+        select
+        <include refid="baseResult"></include>
+        from  `role`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="RoleId != null">
+                `RoleId` = #{RoleId} and
+            </if>
+            <if test="RoleName != null and RoleName!=''">
+                `RoleName` = #{RoleName} and
+            </if>
+            <if test="RoleDescription != null and RoleDescription!=''">
+                `RoleDescription` = #{RoleDescription} and
+            </if>
+            <if test="IsLock != null">
+                `IsLock` = #{IsLock} and
+            </if>
+            <if test="Creator != null and Creator!=''">
+                `Creator` = #{Creator} and
+            </if>
+            <if test="CreationDate != null">
+                `CreationDate` = #{CreationDate} and
+            </if>
+            <if test = "(_parameter instanceof com.utils.role$QueryBuilder) == true">
+                <if test="RoleIdList != null">
+                    `RoleId` in
+                    <foreach collection="RoleIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="RoleIdSt !=null">
+                    `RoleId` >= #{RoleIdSt} and
+                </if>
+                <if test="RoleIdEd!=null">
+                    `RoleId` &lt;= #{RoleIdEd} and
+                </if>
+                <if test="RoleNameList != null">
+                    `RoleName` in
+                    <foreach collection="RoleNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyRoleName!=null and fuzzyRoleName.size()>0">
+                    (
+                    <foreach collection="fuzzyRoleName"  separator="or" item="item">
+                        `RoleName` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRoleName!=null and rightFuzzyRoleName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRoleName"  separator="or" item="item">
+                        `RoleName` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="RoleDescriptionList != null">
+                    `RoleDescription` in
+                    <foreach collection="RoleDescriptionList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyRoleDescription!=null and fuzzyRoleDescription.size()>0">
+                    (
+                    <foreach collection="fuzzyRoleDescription"  separator="or" item="item">
+                        `RoleDescription` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRoleDescription!=null and rightFuzzyRoleDescription.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRoleDescription"  separator="or" item="item">
+                        `RoleDescription` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="IsLockList != null">
+                    `IsLock` in
+                    <foreach collection="IsLockList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="IsLockSt !=null">
+                    `IsLock` >= #{IsLockSt} and
+                </if>
+                <if test="IsLockEd!=null">
+                    `IsLock` &lt;= #{IsLockEd} and
+                </if>
+                <if test="CreatorList != null">
+                    `Creator` in
+                    <foreach collection="CreatorList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyCreator!=null and fuzzyCreator.size()>0">
+                    (
+                    <foreach collection="fuzzyCreator"  separator="or" item="item">
+                        `Creator` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyCreator!=null and rightFuzzyCreator.size()>0">
+                    (
+                    <foreach collection="rightFuzzyCreator"  separator="or" item="item">
+                        `Creator` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="CreationDateList != null">
+                    `CreationDate` in
+                    <foreach collection="CreationDateList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="CreationDateSt !=null">
+                    `CreationDate` >= #{CreationDateSt} and
+                </if>
+                <if test="CreationDateEd!=null">
+                    `CreationDate` &lt;= #{CreationDateEd} and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryroleLimit1" resultMap="roleMap">
+        select
+        <include refid="baseResult"></include>
+        from  `role`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="RoleId != null">
+                `RoleId` = #{RoleId} and
+            </if>
+            <if test="RoleName != null and RoleName!=''">
+                `RoleName` = #{RoleName} and
+            </if>
+            <if test="RoleDescription != null and RoleDescription!=''">
+                `RoleDescription` = #{RoleDescription} and
+            </if>
+            <if test="IsLock != null">
+                `IsLock` = #{IsLock} and
+            </if>
+            <if test="Creator != null and Creator!=''">
+                `Creator` = #{Creator} and
+            </if>
+            <if test="CreationDate != null">
+                `CreationDate` = #{CreationDate} and
+            </if>
+            <if test = "(_parameter instanceof com.utils.role$QueryBuilder) == true">
+                    <if test="RoleIdList != null">
+                        `RoleId` in
+                        <foreach collection="RoleIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="RoleIdSt !=null">
+                    `RoleId` >= #{RoleIdSt} and
+                </if>
+                <if test="RoleIdEd!=null">
+                    `RoleId` &lt;= #{RoleIdEd} and
+                </if>
+                    <if test="RoleNameList != null">
+                        `RoleName` in
+                        <foreach collection="RoleNameList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyRoleName!=null and fuzzyRoleName.size()>0">
+                    (
+                    <foreach collection="fuzzyRoleName"  separator="or" item="item">
+                        `RoleName` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRoleName!=null and rightFuzzyRoleName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRoleName"  separator="or" item="item">
+                        `RoleName` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="RoleDescriptionList != null">
+                        `RoleDescription` in
+                        <foreach collection="RoleDescriptionList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyRoleDescription!=null and fuzzyRoleDescription.size()>0">
+                    (
+                    <foreach collection="fuzzyRoleDescription"  separator="or" item="item">
+                        `RoleDescription` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyRoleDescription!=null and rightFuzzyRoleDescription.size()>0">
+                    (
+                    <foreach collection="rightFuzzyRoleDescription"  separator="or" item="item">
+                        `RoleDescription` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="IsLockList != null">
+                        `IsLock` in
+                        <foreach collection="IsLockList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="IsLockSt !=null">
+                    `IsLock` >= #{IsLockSt} and
+                </if>
+                <if test="IsLockEd!=null">
+                    `IsLock` &lt;= #{IsLockEd} and
+                </if>
+                    <if test="CreatorList != null">
+                        `Creator` in
+                        <foreach collection="CreatorList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyCreator!=null and fuzzyCreator.size()>0">
+                    (
+                    <foreach collection="fuzzyCreator"  separator="or" item="item">
+                        `Creator` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyCreator!=null and rightFuzzyCreator.size()>0">
+                    (
+                    <foreach collection="rightFuzzyCreator"  separator="or" item="item">
+                        `Creator` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="CreationDateList != null">
+                        `CreationDate` in
+                        <foreach collection="CreationDateList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="CreationDateSt !=null">
+                    `CreationDate` >= #{CreationDateSt} and
+                </if>
+                <if test="CreationDateEd!=null">
+                    `CreationDate` &lt;= #{CreationDateEd} and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `RoleId`,
+        `RoleName`,
+        `RoleDescription`,
+        `IsLock`,
+        `Creator`,
+        `CreationDate`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof com.utils.role$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.RoleId==true">
+                        `RoleId`,
+                    </if>
+                    <if test="fetchFields.fetchFields.RoleName==true">
+                        `RoleName`,
+                    </if>
+                    <if test="fetchFields.fetchFields.RoleDescription==true">
+                        `RoleDescription`,
+                    </if>
+                    <if test="fetchFields.fetchFields.IsLock==true">
+                        `IsLock`,
+                    </if>
+                    <if test="fetchFields.fetchFields.Creator==true">
+                        `Creator`,
+                    </if>
+                    <if test="fetchFields.fetchFields.CreationDate==true">
+                        `CreationDate`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.RoleId==null">
+                        `RoleId`,
+                    </if>
+                    <if test="fetchFields.excludeFields.RoleName==null">
+                        `RoleName`,
+                    </if>
+                    <if test="fetchFields.excludeFields.RoleDescription==null">
+                        `RoleDescription`,
+                    </if>
+                    <if test="fetchFields.excludeFields.IsLock==null">
+                        `IsLock`,
+                    </if>
+                    <if test="fetchFields.excludeFields.Creator==null">
+                        `Creator`,
+                    </if>
+                    <if test="fetchFields.excludeFields.CreationDate==null">
+                        `CreationDate`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof com.utils.role$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>
