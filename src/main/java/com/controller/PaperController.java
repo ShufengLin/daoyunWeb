@@ -24,6 +24,7 @@ public class PaperController {
         return "test/allPaper";
     }
 
+
     @RequestMapping("toAddPaper")
     public String toAddPaper() {
         return "test/addPaper";
@@ -59,5 +60,6 @@ public class PaperController {
         return "test/test";
     }
 }
+
 
 
