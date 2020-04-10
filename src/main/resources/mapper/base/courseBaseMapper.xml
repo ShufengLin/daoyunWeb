@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.base.courseBaseMapper">
+
+
+    <insert id="insertcourse"  useGeneratedKeys="true" keyProperty="CourseId">
+        INSERT INTO `course`
+        (
+        <trim suffixOverrides=",">
+                    <if test="CourseId!=null">
+                        `CourseId`,
+                    </if>
+                    <if test="CourseName!=null">
+                        `CourseName`,
+                    </if>
+                    <if test="CourseHour!=null">
+                        `CourseHour`,
+                    </if>
+                    <if test="TeachId!=null">
+                        `TeachId`,
+                    </if>
+                    <if test="CoursePlace!=null">
+                        `CoursePlace`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="CourseId!=null">
+                    #{CourseId},
+                </if>
+                <if test="CourseName!=null">
+                    #{CourseName},
+                </if>
+                <if test="CourseHour!=null">
+                    #{CourseHour},
+                </if>
+                <if test="TeachId!=null">
+                    #{TeachId},
+                </if>
+                <if test="CoursePlace!=null">
+                    #{CoursePlace},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updatecourse">
+        UPDATE `course`
+        SET
+        <trim suffixOverrides=",">
+            <if test="CourseName != null and CourseName!=''">
+                `CourseName` = #{CourseName},
+            </if>
+            <if test="CourseHour != null">
+                `CourseHour` = #{CourseHour},
+            </if>
+            <if test="TeachId != null">
+                `TeachId` = #{TeachId},
+            </if>
+            <if test="CoursePlace != null and CoursePlace!=''">
+                `CoursePlace` = #{CoursePlace},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `CourseId` = #{CourseId} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `course`
+        SET
+        <trim suffixOverrides=",">
+        <if test="set.CourseName != null and set.CourseName!=''">
+            `CourseName` = #{set.CourseName},
+        </if>
+        <if test="set.CourseHour != null">
+            `CourseHour` = #{set.CourseHour},
+        </if>
+        <if test="set.TeachId != null">
+            `TeachId` = #{set.TeachId},
+        </if>
+        <if test="set.CoursePlace != null and set.CoursePlace!=''">
+            `CoursePlace` = #{set.CoursePlace},
+        </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+                <if test="where.CourseIdList != null">
+                    `CourseId` in
+                    <foreach collection="where.CourseIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.CourseIdSt !=null">
+                `CourseId` >= #{where.CourseIdSt} and
+            </if>
+            <if test="where.CourseIdEd!=null">
+                `CourseId` &lt;= #{where.CourseIdEd} and
+            </if>
+                <if test="where.CourseNameList != null">
+                    `CourseName` in
+                    <foreach collection="where.CourseNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyCourseName!=null and where.fuzzyCourseName.size()>0">
+                (
+                <foreach collection="where.fuzzyCourseName"  separator="or" item="item">
+                    `CourseName` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyCourseName!=null and where.rightFuzzyCourseName.size()>0">
+                (
+                <foreach collection="where.rightFuzzyCourseName"  separator="or" item="item">
+                    `CourseName` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+                <if test="where.CourseHourList != null">
+                    `CourseHour` in
+                    <foreach collection="where.CourseHourList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.CourseHourSt !=null">
+                `CourseHour` >= #{where.CourseHourSt} and
+            </if>
+            <if test="where.CourseHourEd!=null">
+                `CourseHour` &lt;= #{where.CourseHourEd} and
+            </if>
+                <if test="where.TeachIdList != null">
+                    `TeachId` in
+                    <foreach collection="where.TeachIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test="where.TeachIdSt !=null">
+                `TeachId` >= #{where.TeachIdSt} and
+            </if>
+            <if test="where.TeachIdEd!=null">
+                `TeachId` &lt;= #{where.TeachIdEd} and
+            </if>
+                <if test="where.CoursePlaceList != null">
+                    `CoursePlace` in
+                    <foreach collection="where.CoursePlaceList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+            <if test ="where.fuzzyCoursePlace!=null and where.fuzzyCoursePlace.size()>0">
+                (
+                <foreach collection="where.fuzzyCoursePlace"  separator="or" item="item">
+                    `CoursePlace` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyCoursePlace!=null and where.rightFuzzyCoursePlace.size()>0">
+                (
+                <foreach collection="where.rightFuzzyCoursePlace"  separator="or" item="item">
+                    `CoursePlace` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="com.utils.course" id="courseMap">
+        <result property="CourseId" column="CourseId"/>
+        <result property="CourseName" column="CourseName"/>
+        <result property="CourseHour" column="CourseHour"/>
+        <result property="TeachId" column="TeachId"/>
+        <result property="CoursePlace" column="CoursePlace"/>
+    </resultMap>
+
+
+    <select id="querycourse" resultMap="courseMap">
+        select
+        <include refid="baseResult"></include>
+        from  `course`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="CourseId != null">
+                `CourseId` = #{CourseId} and
+            </if>
+            <if test="CourseName != null and CourseName!=''">
+                `CourseName` = #{CourseName} and
+            </if>
+            <if test="CourseHour != null">
+                `CourseHour` = #{CourseHour} and
+            </if>
+            <if test="TeachId != null">
+                `TeachId` = #{TeachId} and
+            </if>
+            <if test="CoursePlace != null and CoursePlace!=''">
+                `CoursePlace` = #{CoursePlace} and
+            </if>
+            <if test = "(_parameter instanceof com.utils.course$QueryBuilder) == true">
+                <if test="CourseIdList != null">
+                    `CourseId` in
+                    <foreach collection="CourseIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="CourseIdSt !=null">
+                    `CourseId` >= #{CourseIdSt} and
+                </if>
+                <if test="CourseIdEd!=null">
+                    `CourseId` &lt;= #{CourseIdEd} and
+                </if>
+                <if test="CourseNameList != null">
+                    `CourseName` in
+                    <foreach collection="CourseNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyCourseName!=null and fuzzyCourseName.size()>0">
+                    (
+                    <foreach collection="fuzzyCourseName"  separator="or" item="item">
+                        `CourseName` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyCourseName!=null and rightFuzzyCourseName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyCourseName"  separator="or" item="item">
+                        `CourseName` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="CourseHourList != null">
+                    `CourseHour` in
+                    <foreach collection="CourseHourList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="CourseHourSt !=null">
+                    `CourseHour` >= #{CourseHourSt} and
+                </if>
+                <if test="CourseHourEd!=null">
+                    `CourseHour` &lt;= #{CourseHourEd} and
+                </if>
+                <if test="TeachIdList != null">
+                    `TeachId` in
+                    <foreach collection="TeachIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="TeachIdSt !=null">
+                    `TeachId` >= #{TeachIdSt} and
+                </if>
+                <if test="TeachIdEd!=null">
+                    `TeachId` &lt;= #{TeachIdEd} and
+                </if>
+                <if test="CoursePlaceList != null">
+                    `CoursePlace` in
+                    <foreach collection="CoursePlaceList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyCoursePlace!=null and fuzzyCoursePlace.size()>0">
+                    (
+                    <foreach collection="fuzzyCoursePlace"  separator="or" item="item">
+                        `CoursePlace` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyCoursePlace!=null and rightFuzzyCoursePlace.size()>0">
+                    (
+                    <foreach collection="rightFuzzyCoursePlace"  separator="or" item="item">
+                        `CoursePlace` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="querycourseLimit1" resultMap="courseMap">
+        select
+        <include refid="baseResult"></include>
+        from  `course`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="CourseId != null">
+                `CourseId` = #{CourseId} and
+            </if>
+            <if test="CourseName != null and CourseName!=''">
+                `CourseName` = #{CourseName} and
+            </if>
+            <if test="CourseHour != null">
+                `CourseHour` = #{CourseHour} and
+            </if>
+            <if test="TeachId != null">
+                `TeachId` = #{TeachId} and
+            </if>
+            <if test="CoursePlace != null and CoursePlace!=''">
+                `CoursePlace` = #{CoursePlace} and
+            </if>
+            <if test = "(_parameter instanceof com.utils.course$QueryBuilder) == true">
+                    <if test="CourseIdList != null">
+                        `CourseId` in
+                        <foreach collection="CourseIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="CourseIdSt !=null">
+                    `CourseId` >= #{CourseIdSt} and
+                </if>
+                <if test="CourseIdEd!=null">
+                    `CourseId` &lt;= #{CourseIdEd} and
+                </if>
+                    <if test="CourseNameList != null">
+                        `CourseName` in
+                        <foreach collection="CourseNameList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyCourseName!=null and fuzzyCourseName.size()>0">
+                    (
+                    <foreach collection="fuzzyCourseName"  separator="or" item="item">
+                        `CourseName` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyCourseName!=null and rightFuzzyCourseName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyCourseName"  separator="or" item="item">
+                        `CourseName` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="CourseHourList != null">
+                        `CourseHour` in
+                        <foreach collection="CourseHourList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="CourseHourSt !=null">
+                    `CourseHour` >= #{CourseHourSt} and
+                </if>
+                <if test="CourseHourEd!=null">
+                    `CourseHour` &lt;= #{CourseHourEd} and
+                </if>
+                    <if test="TeachIdList != null">
+                        `TeachId` in
+                        <foreach collection="TeachIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="TeachIdSt !=null">
+                    `TeachId` >= #{TeachIdSt} and
+                </if>
+                <if test="TeachIdEd!=null">
+                    `TeachId` &lt;= #{TeachIdEd} and
+                </if>
+                    <if test="CoursePlaceList != null">
+                        `CoursePlace` in
+                        <foreach collection="CoursePlaceList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyCoursePlace!=null and fuzzyCoursePlace.size()>0">
+                    (
+                    <foreach collection="fuzzyCoursePlace"  separator="or" item="item">
+                        `CoursePlace` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyCoursePlace!=null and rightFuzzyCoursePlace.size()>0">
+                    (
+                    <foreach collection="rightFuzzyCoursePlace"  separator="or" item="item">
+                        `CoursePlace` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `CourseId`,
+        `CourseName`,
+        `CourseHour`,
+        `TeachId`,
+        `CoursePlace`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof com.utils.course$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.CourseId==true">
+                        `CourseId`,
+                    </if>
+                    <if test="fetchFields.fetchFields.CourseName==true">
+                        `CourseName`,
+                    </if>
+                    <if test="fetchFields.fetchFields.CourseHour==true">
+                        `CourseHour`,
+                    </if>
+                    <if test="fetchFields.fetchFields.TeachId==true">
+                        `TeachId`,
+                    </if>
+                    <if test="fetchFields.fetchFields.CoursePlace==true">
+                        `CoursePlace`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.CourseId==null">
+                        `CourseId`,
+                    </if>
+                    <if test="fetchFields.excludeFields.CourseName==null">
+                        `CourseName`,
+                    </if>
+                    <if test="fetchFields.excludeFields.CourseHour==null">
+                        `CourseHour`,
+                    </if>
+                    <if test="fetchFields.excludeFields.TeachId==null">
+                        `TeachId`,
+                    </if>
+                    <if test="fetchFields.excludeFields.CoursePlace==null">
+                        `CoursePlace`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof com.utils.course$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>
