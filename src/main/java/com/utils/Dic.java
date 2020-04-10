@@ -1,9 +1,18 @@
 package com.utils;
 
+
+import javax.validation.constraints.NotBlank;
+
+
 public class Dic {
     private long dicId;
+
+    @NotBlank(message = "字典名称不能为空")
     private String dicName;
+
     private String dicDetail;
+
+    @NotBlank(message = "字典码不能为空")
     private String dicCode;
 
     public long getDicId() {
@@ -35,6 +44,13 @@ public class Dic {
     }
 
     public void setDicCode(String dicCode) {
+        this.dicCode = dicCode;
+    }
+
+    public Dic(long dicId, String dicName, String dicDetail, String dicCode) {
+        this.dicId = dicId;
+        this.dicName = dicName;
+        this.dicDetail = dicDetail;
         this.dicCode = dicCode;
     }
 }
