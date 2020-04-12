@@ -14,12 +14,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController
+@Controller
 @RequestMapping("/testExample")
 public class PaperController {
     @Autowired
     private PaperService paperService;
 
+    @ResponseBody
     @GetMapping("/getAllPaper")
     public ServerResponse getAllPaper(){
         List<Paper> paperList = paperService.queryAllPaper();
