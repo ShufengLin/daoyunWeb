@@ -4,18 +4,27 @@ import com.utils.Paper;
 import com.service.PaperService;
 
 import java.util.List;
+import java.util.Map;
 
+import com.utils.ServerResponse;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@Controller
+@RestController
 @RequestMapping("/testExample")
 public class PaperController {
     @Autowired
     private PaperService paperService;
+
+    @GetMapping("/getAllPaper")
+    public ServerResponse getAllPaper(){
+        List<Paper> paperList = paperService.queryAllPaper();
+        return new ServerResponse(0, paperList,"返回论文列表成功");
+    }
 
     @RequestMapping("/allPaper")
     public String list(Model model) {
