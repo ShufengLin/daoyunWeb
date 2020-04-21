@@ -4,7 +4,10 @@ import com.utils.Paper;
 import com.service.PaperService;
 
 import java.util.List;
+import java.util.Map;
 
+import com.utils.ServerResponse;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +19,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PaperController {
     @Autowired
     private PaperService paperService;
+
+    //这里要注意一下@Controller,@RestController,@ResponseBody的用法
+    //之前这个服务端的示例，因为是前后端统一，交互数据用的是model，现在前后端分离，不能像以前一样返回数据
+
+    @ResponseBody
+    @GetMapping("/getAllPaper")
+    public ServerResponse getAllPaper(){
+        List<Paper> paperList = paperService.queryAllPaper();
+        return new ServerResponse(0, paperList,"返回论文列表成功");
+    }
 
     @RequestMapping("/allPaper")
     public String list(Model model) {
