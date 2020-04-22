@@ -25,7 +25,7 @@ public class PaperController {
     //之前这个服务端的示例，因为是前后端统一，交互数据用的是model，现在前后端分离，不能像以前一样返回数据
 
     @ResponseBody
-    @GetMapping("/getPaperByPage")
+    @PostMapping("/getPaperByPage")
     public Map<String, Object> getPaperByPage(@RequestBody PaperPage paperPage){
         Map<String, Object> map= paperService.getPaperByPage(paperPage);
         map.put("code",0);
