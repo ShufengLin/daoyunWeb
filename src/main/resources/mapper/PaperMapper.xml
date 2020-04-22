@@ -16,6 +16,11 @@
         limit #{beginPage},#{pageSize}
     </select>
 
+    <select id="getPaperCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM paper
+    </select>
+
     <insert id="addPaper" parameterType="Paper">
         INSERT INTO paper(paper_id,name,number,detail) VALUE (#{paperId},#{paperName}, #{paperNum}, #{paperDetail})
     </insert>

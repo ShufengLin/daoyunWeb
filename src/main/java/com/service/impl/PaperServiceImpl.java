@@ -39,6 +39,9 @@ public class PaperServiceImpl implements PaperService {
          return map;
      }
 
+     @Override
+     public int getPaperCount(){return paperDao.getPaperCount();}
+
     @Override
     public int addPaper(Paper paper) {
         return paperDao.addPaper(paper);

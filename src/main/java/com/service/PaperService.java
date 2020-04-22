@@ -10,6 +10,8 @@ public interface PaperService {
 
     Map<String, Object> getPaperByPage(PaperPage paperPage);
 
+    int getPaperCount();
+
     int addPaper(Paper paper);
 
     int deletePaperById(long id);
