@@ -145,6 +145,17 @@
             <artifactId>java-property-utils</artifactId>
             <version>1.9</version>
         </dependency>
+        <!--LocalDateTime-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-typehandlers-jsr310</artifactId>
+            <version>1.0.2</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>first</finalName>
