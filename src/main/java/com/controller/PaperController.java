@@ -47,6 +47,13 @@ public class PaperController {
         return new ServerResponse(0, paperList,"返回论文列表成功");
     }
 
+    @ResponseBody
+    @PostMapping("/updatePaperJson")
+    public ServerResponse updatePaperJson(@RequestBody Paper paper) {
+        paperService.updatePaper(paper);
+        return new ServerResponse(0,"修改成功");
+    }
+
     @RequestMapping("/allPaper")
     public String list(Model model) {
         List<Paper> list = paperService.queryAllPaper();
