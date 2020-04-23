@@ -37,4 +37,5 @@ public class DicdServiceImpl implements DicdService {
     public List<Dicd> queryAllDicd() {
         return dicdDao.queryAllDicd();
     }
+
 }

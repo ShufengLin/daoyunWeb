@@ -1,4 +1,9 @@
 package com.utils;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.utils.json.PaperDeserializer;
+
+@JsonDeserialize(using = PaperDeserializer.class)
 
 public class Paper {
     private long paperId;
