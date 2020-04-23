@@ -56,13 +56,13 @@
                 <tbody>
                 <c:forEach var="dic" items="${requestScope.get('list')}" varStatus="status">
                     <tr>
-                        <td>${dic.dicId}</td>
-                        <td>${dic.dicName}</td>
-                        <td>${dic.dicCode}</td>
-                        <td>${dic.dicDetail}</td>
+                        <td>${dic.DicId}</td>
+                        <td>${dic.DicName}</td>
+                        <td>${dic.Code}</td>
+                        <td>${dic.DicDescription}</td>
                         <td>
-                            <a href="<%=appPath%>/testExample1/toUpdateDic?id=${dic.dicId}">更改</a> |
-                            <a href="<%=appPath%>/testExample1/del/${dic.dicId}">删除</a>
+                            <a href="<%=appPath%>/testExample1/toUpdateDic?id=${dic.DicId}">更改</a> |
+                            <a href="<%=appPath%>/testExample1/del/${dic.DicId}">删除</a>
                         </td>
                     </tr>
                 </c:forEach>
