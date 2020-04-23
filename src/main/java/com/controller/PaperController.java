@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.sun.security.ntlm.Server;
 import com.utils.Paper;
 import com.service.PaperService;
 
@@ -59,6 +60,13 @@ public class PaperController {
     public ServerResponse addPaperJson(@RequestBody Paper paper) {
         paperService.addPaper(paper);
         return new ServerResponse(0,"新增成功");
+    }
+
+    @ResponseBody
+    @RequestMapping("/deletePaperJson/{paperId}")
+    public ServerResponse deletePaperJson(@PathVariable("paperId") Long id) {
+        paperService.deletePaperById(id);
+        return new ServerResponse(0,"删除成功");
     }
 
     @RequestMapping("/allPaper")
