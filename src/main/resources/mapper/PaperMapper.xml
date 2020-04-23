@@ -9,6 +9,18 @@
         <result property="paperNum" column="number"/>
         <result property="paperDetail" column="detail"/>
     </resultMap>
+
+    <select id="getPaperByPage" resultMap="paperResultMap" parameterType="paperPage">
+        SELECT paper_id,name,number,detail
+        FROM paper
+        limit #{beginPage},#{pageSize}
+    </select>
+
+    <select id="getPaperCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM paper
+    </select>
+
     <insert id="addPaper" parameterType="Paper">
         INSERT INTO paper(paper_id,name,number,detail) VALUE (#{paperId},#{paperName}, #{paperNum}, #{paperDetail})
     </insert>

@@ -1,6 +1,7 @@
 HELP.md
 /target/
 /out/
+/sql/
 
 ### STS ###
 .apt_generated
