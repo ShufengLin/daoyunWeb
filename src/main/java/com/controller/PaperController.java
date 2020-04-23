@@ -54,6 +54,13 @@ public class PaperController {
         return new ServerResponse(0,"修改成功");
     }
 
+    @ResponseBody
+    @PostMapping("/addPaperJson")
+    public ServerResponse addPaperJson(@RequestBody Paper paper) {
+        paperService.addPaper(paper);
+        return new ServerResponse(0,"新增成功");
+    }
+
     @RequestMapping("/allPaper")
     public String list(Model model) {
         List<Paper> list = paperService.queryAllPaper();
