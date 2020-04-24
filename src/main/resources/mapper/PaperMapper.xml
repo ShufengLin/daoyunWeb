@@ -33,7 +33,7 @@
     </insert>
 
     <delete id="deletePaperById" parameterType="long">
-        DELETE FROM paper WHERE paper_id=#{paperID}
+        DELETE FROM paper WHERE paper_id=#{paperId}
     </delete>
 
     <delete id="deletePaperBatchById" parameterType="java.util.List">

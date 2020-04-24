@@ -40,4 +40,8 @@
         DELETE FROM paperdetailtest WHERE Id=#{id}
     </delete>
 
+    <delete id="deletePaperDetailByPaperId" parameterType="long">
+        DELETE FROM paperdetailtest WHERE PaperId=#{paperId}
+    </delete>
+
 </mapper>

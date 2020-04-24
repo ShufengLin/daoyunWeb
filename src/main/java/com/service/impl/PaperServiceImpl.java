@@ -4,6 +4,7 @@ import com.exception.CustomizedException;
 import com.utils.Paper;
 import com.dao.PaperDao;
 import com.service.PaperService;
+import com.dao.PaperDetailDao;
 
 import com.utils.PaperPage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import java.util.Map;
 public class PaperServiceImpl implements PaperService {
     @Autowired
     private PaperDao paperDao;
+    @Autowired
+    private PaperDetailDao paperDetailDao;
 
      @Override
      public Map<String, Object> getPaperByPage(PaperPage paperPage) {
@@ -62,7 +65,9 @@ public class PaperServiceImpl implements PaperService {
 
     @Override
     public int deletePaperById(long id) {
-        return paperDao.deletePaperById(id);
+         paperDao.deletePaperById(id);
+        paperDetailDao.deletePaperDetailByPaperId(id);
+        return 0;
     }
 
     @Override
