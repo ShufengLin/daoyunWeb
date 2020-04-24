@@ -16,6 +16,7 @@
         <if test="paperName!=null">
             WHERE name=#{paperName}
         </if>
+        ORDER BY paper_id DESC
         limit #{beginPage},#{pageSize}
     </select>
 
