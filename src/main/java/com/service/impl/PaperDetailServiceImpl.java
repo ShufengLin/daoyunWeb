@@ -28,6 +28,10 @@ public class PaperDetailServiceImpl implements PaperDetailService {
             //beginPage = 0;
             throw new CustomizedException("页码不符合规范");
         }
+        if(paperPage.getPaperId() == 0)
+        {
+            throw new CustomizedException("id不能为空");
+        }
         paperPage.setBeginPage(beginPage);
         List<PaperDetail> paperDetailList = paperDetailDao.getPaperDetailByPage(paperPage);
         //int count = paperDao.getPaperBySelectCount(paperPage);

@@ -10,6 +10,10 @@ public class PaperPage {
     private int page;//页码
     private int beginPage;//根据页码换算得出的条目起始个数
 
+    private long paperId;
+    private String paperName;
+
+
     public PaperPage(){
 
     }
@@ -41,4 +45,12 @@ public class PaperPage {
     public void setBeginPage(int beginPage) {
         this.beginPage = beginPage;
     }
+
+    public long getPaperId() { return paperId; }
+
+    public void setPaperId(long paperId) { this.paperId = paperId; }
+
+    public String getPaperName() { return paperName; }
+
+    public void setPaperName(String paperName) { this.paperName = paperName; }
 }
