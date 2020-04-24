@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dao.roledescriptionMapper">
-
+<mapper namespace="com.dao.roledescriptionDao">
+    <resultMap type="com.utils.roledescription" id="roledescriptionMap">
+        <result property="RolePermisionId" column="RolePermisionId"/>
+        <result property="RoleId" column="RoleId"/>
+        <result property="RightId" column="RightId"/>
+    </resultMap>
 
 </mapper>
