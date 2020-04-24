@@ -31,4 +31,11 @@ public class PaperDetailController {
         map.put("msg","分页查询成功");
         return map;
     }
+
+    @ResponseBody
+    @PostMapping("/getPaperDetailCount/{paperId}")
+    public ServerResponse getPaperDetailCount(@PathVariable("paperId") Long paperId){
+        int paperDetailCount= paperDetailService.getPaperDetailCount(paperId);
+        return new ServerResponse(0, paperDetailCount,"返回字典数量成功");
+    }
 }

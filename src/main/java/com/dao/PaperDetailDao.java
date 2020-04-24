@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface PaperDetailDao {
     List<PaperDetail> getPaperDetailByPage(PaperPage paperPage);
+
+    int getPaperDetailCount(long paperId);
 }

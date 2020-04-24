@@ -19,4 +19,10 @@
         limit #{beginPage},#{pageSize}
     </select>
 
+    <select id="getPaperDetailCount" resultType="java.lang.Integer" parameterType="long">
+        SELECT count(*)
+        FROM paperdetailtest
+        WHERE PaperId=#{paperId}
+    </select>
+
 </mapper>

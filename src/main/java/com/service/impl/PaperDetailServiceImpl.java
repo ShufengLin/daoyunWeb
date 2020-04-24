@@ -40,5 +40,7 @@ public class PaperDetailServiceImpl implements PaperDetailService {
         //map.put("total", count);
         return map;
     }
+    @Override
+    public int getPaperDetailCount(long paperId){return paperDetailDao.getPaperDetailCount(paperId);}
 
 }
