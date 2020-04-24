@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.service.PaperService;
+import com.utils.Paper;
 import com.utils.PaperDetail;
 import com.service.PaperDetailService;
 
@@ -25,7 +26,7 @@ public class PaperDetailController {
 
     @ResponseBody
     @PostMapping("/getPaperDetailByPage")
-    public Map<String, Object> getPaperByPage(@RequestBody PaperPage paperPage){
+    public Map<String, Object> getPaperDetailByPage(@RequestBody PaperPage paperPage){
         Map<String, Object> map= paperDetailService.getPaperDetailByPage(paperPage);
         map.put("code",0);
         map.put("msg","分页查询成功");
@@ -37,5 +38,12 @@ public class PaperDetailController {
     public ServerResponse getPaperDetailCount(@PathVariable("paperId") Long paperId){
         int paperDetailCount= paperDetailService.getPaperDetailCount(paperId);
         return new ServerResponse(0, paperDetailCount,"返回字典数量成功");
+    }
+
+    @ResponseBody
+    @PostMapping("/addPaperDetailJson")
+    public ServerResponse addPaperDetailJson(@RequestBody PaperDetail paperDetail) {
+        paperDetailService.addPaperDetail(paperDetail);
+        return new ServerResponse(0,"新增成功");
     }
 }

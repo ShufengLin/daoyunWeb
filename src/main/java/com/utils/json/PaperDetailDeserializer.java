@@ -15,7 +15,24 @@ public class PaperDetailDeserializer extends JsonDeserializer<PaperDetail> {
     public PaperDetail deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);
         PaperDetail detail = new PaperDetail();
-
+        if(node.get("id")!=null) {
+            detail.setId((Integer) node.get("id").numberValue());
+        }
+        if(node.get("paperId")!=null) {
+            detail.setPaperId((Integer) node.get("paperId").numberValue());
+        }
+        if(node.get("itemKey")!=null) {
+            detail.setItemKey((Integer) node.get("itemKey").numberValue());
+        }
+        if (node.get("itemValue") != null) {
+            detail.setItemValue(node.get("itemValue").asText());
+        }
+        if(node.get("isDefault")!=null) {
+            detail.setIsDefault((Integer) node.get("isDefault").numberValue());
+        }
+        if (node.get("code") != null) {
+            detail.setCode(node.get("code").asText());
+        }
         return detail;
     }
 }

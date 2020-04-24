@@ -3,6 +3,7 @@ package com.service.impl;
 import com.dao.PaperDetailDao;
 import com.exception.CustomizedException;
 import com.service.PaperDetailService;
+import com.utils.Paper;
 import com.utils.PaperDetail;
 import com.utils.PaperPage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,10 @@ public class PaperDetailServiceImpl implements PaperDetailService {
     }
     @Override
     public int getPaperDetailCount(long paperId){return paperDetailDao.getPaperDetailCount(paperId);}
+
+    @Override
+    public int addPaperDetail(PaperDetail paperDetail) {
+        return paperDetailDao.addPaperDetail(paperDetail);
+    }
 
 }
