@@ -21,6 +21,9 @@ public class PaperServiceImpl implements PaperService {
 
      @Override
      public Map<String, Object> getPaperByPage(PaperPage paperPage) {
+         if(paperPage.getPaperName().equals("")) {
+             paperPage.setPaperName(null);
+         }
          int pageSize = paperPage.getPageSize();
          if (pageSize == 0) {
              pageSize = 10;
@@ -40,7 +43,12 @@ public class PaperServiceImpl implements PaperService {
      }
 
      @Override
-     public int getPaperCount(){return paperDao.getPaperCount();}
+     public int getPaperCount(PaperPage paperPage){
+         if(paperPage.getPaperName().equals("")) {
+             paperPage.setPaperName(null);
+         }
+         return paperDao.getPaperCount(paperPage);
+     }
 
     @Override
     public int addPaper(Paper paper) {

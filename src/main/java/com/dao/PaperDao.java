@@ -8,7 +8,7 @@ import java.util.List;
 public interface PaperDao {
     List<Paper> getPaperByPage(PaperPage paperPage);
 
-    int getPaperCount();
+    int getPaperCount(PaperPage paperPage);
 
     int addPaper(Paper paper);
 

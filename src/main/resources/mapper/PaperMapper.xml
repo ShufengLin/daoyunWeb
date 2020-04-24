@@ -13,12 +13,18 @@
     <select id="getPaperByPage" resultMap="paperResultMap" parameterType="PaperPage">
         SELECT paper_id,name,number,detail
         FROM paper
+        <if test="paperName!=null">
+            WHERE name=#{paperName}
+        </if>
         limit #{beginPage},#{pageSize}
     </select>
 
     <select id="getPaperCount" resultType="java.lang.Integer">
         SELECT count(*)
         FROM paper
+        <if test="paperName!=null">
+            WHERE name=#{paperName}
+        </if>
     </select>
 
     <insert id="addPaper" parameterType="Paper">

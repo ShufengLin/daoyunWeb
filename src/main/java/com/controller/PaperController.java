@@ -36,8 +36,8 @@ public class PaperController {
 
     @ResponseBody
     @PostMapping("/getPaperCount")
-    public ServerResponse getPaperCount(){
-        int paperCount= paperService.getPaperCount();
+    public ServerResponse getPaperCount(@RequestBody PaperPage paperPage){
+        int paperCount= paperService.getPaperCount(paperPage);
         return new ServerResponse(0, paperCount,"返回论文数量成功");
     }
 
