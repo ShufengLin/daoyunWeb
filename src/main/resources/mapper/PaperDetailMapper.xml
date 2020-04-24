@@ -44,4 +44,11 @@
         DELETE FROM paperdetailtest WHERE PaperId=#{paperId}
     </delete>
 
+    <delete id="deletePaperDetailBatchByPaperId" parameterType="java.util.List">
+        DELETE FROM paperdetailtest WHERE PaperId IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
 </mapper>

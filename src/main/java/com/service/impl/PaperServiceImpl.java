@@ -55,7 +55,9 @@ public class PaperServiceImpl implements PaperService {
 
      @Override
      public int deletePaperBatchById(List<Long> paperIdList){
-         return paperDao.deletePaperBatchById(paperIdList);
+         paperDao.deletePaperBatchById(paperIdList);
+         paperDetailDao.deletePaperDetailBatchByPaperId(paperIdList);
+         return 0;
      }
 
     @Override
