@@ -10,7 +10,7 @@
         <result property="paperDetail" column="detail"/>
     </resultMap>
 
-    <select id="getPaperByPage" resultMap="paperResultMap" parameterType="paperPage">
+    <select id="getPaperByPage" resultMap="paperResultMap" parameterType="PaperPage">
         SELECT paper_id,name,number,detail
         FROM paper
         limit #{beginPage},#{pageSize}
