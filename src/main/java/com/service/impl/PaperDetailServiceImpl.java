@@ -54,4 +54,9 @@ public class PaperDetailServiceImpl implements PaperDetailService {
         return paperDetailDao.updateDetailPaper(paperDetail);
     }
 
+    @Override
+    public int deletePaperDetailById(long id) {
+        return paperDetailDao.deletePaperDetailById(id);
+    }
+
 }

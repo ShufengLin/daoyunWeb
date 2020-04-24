@@ -14,4 +14,6 @@ public interface PaperDetailDao {
     int addPaperDetail(PaperDetail paperDetail);
 
     int updateDetailPaper(PaperDetail paperDetail);
+
+    int deletePaperDetailById(long id);
 }

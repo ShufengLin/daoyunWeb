@@ -54,4 +54,11 @@ public class PaperDetailController {
         return new ServerResponse(0,"修改成功");
     }
 
+    @ResponseBody
+    @RequestMapping("/deletePaperDetailJson/{id}")
+    public ServerResponse deletePaperDetailJson(@PathVariable("id") Long id) {
+        paperDetailService.deletePaperDetailById(id);
+        return new ServerResponse(0,"删除成功");
+    }
+
 }

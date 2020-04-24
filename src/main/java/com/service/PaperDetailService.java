@@ -15,4 +15,6 @@ public interface PaperDetailService {
 
     int updateDetailPaper(PaperDetail paperDetail);
 
+    int deletePaperDetailById(long id);
+
 }
