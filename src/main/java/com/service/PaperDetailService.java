@@ -13,4 +13,6 @@ public interface PaperDetailService {
 
     int addPaperDetail(PaperDetail paperDetail);
 
+    int updateDetailPaper(PaperDetail paperDetail);
+
 }

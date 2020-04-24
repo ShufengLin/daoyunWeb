@@ -12,4 +12,6 @@ public interface PaperDetailDao {
     int getPaperDetailCount(long paperId);
 
     int addPaperDetail(PaperDetail paperDetail);
+
+    int updateDetailPaper(PaperDetail paperDetail);
 }

@@ -46,4 +46,12 @@ public class PaperDetailController {
         paperDetailService.addPaperDetail(paperDetail);
         return new ServerResponse(0,"新增成功");
     }
+
+    @ResponseBody
+    @PostMapping("/updatePaperDetailJson")
+    public ServerResponse updatePaperDetailJson(@RequestBody PaperDetail paperDetail) {
+        paperDetailService.updateDetailPaper(paperDetail);
+        return new ServerResponse(0,"修改成功");
+    }
+
 }

@@ -25,8 +25,14 @@
         WHERE PaperId=#{paperId}
     </select>
 
-    <insert id="addPaperDetail" parameterType="paperDetail">
+    <insert id="addPaperDetail" parameterType="PaperDetail">
         INSERT INTO paperdetailtest(Id,PaperId,ItemKey,ItemValue,IsDefault,Code) VALUE (#{id},#{paperId}, #{itemKey}, #{itemValue},#{isDefault},#{code})
     </insert>
+
+    <update id="updateDetailPaper" parameterType="PaperDetail">
+        UPDATE paperdetailtest
+        SET ItemKey = #{itemKey},ItemValue = #{itemValue},IsDefault = #{isDefault},Code = #{code}
+        WHERE  Id = #{id}
+    </update>
 
 </mapper>
