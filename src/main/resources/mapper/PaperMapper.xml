@@ -35,6 +35,13 @@
         DELETE FROM paper WHERE paper_id=#{paperID}
     </delete>
 
+    <delete id="deletePaperBatchById" parameterType="java.util.List">
+        DELETE FROM Paper WHERE paper_id IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
     <update id="updatePaper" parameterType="Paper">
         UPDATE paper
         SET NAME = #{paperName},NUMBER = #{paperNum},detail = #{paperDetail}

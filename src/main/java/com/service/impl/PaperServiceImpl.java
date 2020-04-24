@@ -50,6 +50,11 @@ public class PaperServiceImpl implements PaperService {
          return paperDao.getPaperCount(paperPage);
      }
 
+     @Override
+     public int deletePaperBatchById(List<Long> paperIdList){
+         return paperDao.deletePaperBatchById(paperIdList);
+     }
+
     @Override
     public int addPaper(Paper paper) {
         return paperDao.addPaper(paper);

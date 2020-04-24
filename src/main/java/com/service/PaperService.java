@@ -12,6 +12,8 @@ public interface PaperService {
 
     int getPaperCount(PaperPage paperPage);
 
+    int deletePaperBatchById(List<Long> paperIdList);
+
     int addPaper(Paper paper);
 
     int deletePaperById(long id);

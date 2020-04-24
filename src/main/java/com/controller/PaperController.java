@@ -69,6 +69,13 @@ public class PaperController {
         return new ServerResponse(0,"删除成功");
     }
 
+    @ResponseBody
+    @RequestMapping("/deletePaperBatchJson")
+    public ServerResponse deletePaperBatchJson(@RequestBody List<Long> paperIdList) {
+        paperService.deletePaperBatchById(paperIdList);
+        return new ServerResponse(0,"删除成功");
+    }
+
     @RequestMapping("/allPaper")
     public String list(Model model) {
         List<Paper> list = paperService.queryAllPaper();
