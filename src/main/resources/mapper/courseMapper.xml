@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dao.courseMapper">
-
-
+<mapper namespace="com.dao.courseDao">
+    <resultMap type="com.utils.course" id="courseMap">
+        <result property="CourseId" column="CourseId"/>
+        <result property="CourseName" column="CourseName"/>
+        <result property="CourseHour" column="CourseHour"/>
+        <result property="TeachId" column="TeachId"/>
+        <result property="CoursePlace" column="CoursePlace"/>
+    </resultMap>
 </mapper>

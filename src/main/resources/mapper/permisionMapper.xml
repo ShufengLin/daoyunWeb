@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dao.permisionMapper">
-
+<mapper namespace="com.dao.permisionDao">
+    <resultMap type="com.utils.permision" id="permisionMap">
+        <result property="PermissionId" column="PermissionId"/>
+        <result property="MenuId" column="MenuId"/>
+        <result property="PermissionName" column="PermissionName"/>
+        <result property="PermissionDescription" column="PermissionDescription"/>
+        <result property="ParentId" column="ParentId"/>
+    </resultMap>
 
 </mapper>
