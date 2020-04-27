@@ -46,6 +46,7 @@
             <table class="table table-hover table-striped">
                 <thead>
                 <tr>
+                    <th>编号</th>
                     <th>字典编号</th>
                     <th>字典ItemKey</th>
                     <th>字典ItemValue</th>
@@ -57,14 +58,15 @@
                 <tbody>
                 <c:forEach var="dicd" items="${requestScope.get('list')}" varStatus="status">
                     <tr>
+                        <td>${dicd.id}</td>
                         <td>${dicd.dicId}</td>
-                        <td>${dicd.dicItemKey}</td>
-                        <td>${dicd.dicItemValue}</td>
-                        <td>${dicd.dicStatus}</td>
-                        <td>${dicd.dicCode}</td>
+                        <td>${dicd.itemKey}</td>
+                        <td>${dicd.itemValue}</td>
+                        <td>${dicd.isDefault}</td>
+                        <td>${dicd.code}</td>
                         <td>
-                            <a href="<%=appPath%>/testExample2/toUpdateDicd?id=${dicd.dicId}">更改</a> |
-                            <a href="<%=appPath%>/testExample2/del/${dicd.dicId}">删除</a>
+                            <a href="<%=appPath%>/testExample2/toUpdateDicd?id=${dicd.id}">更改</a> |
+                            <a href="<%=appPath%>/testExample2/del/${dicd.id}">删除</a>
                         </td>
                     </tr>
                 </c:forEach>

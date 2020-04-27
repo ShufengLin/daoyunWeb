@@ -39,7 +39,7 @@
         <input type="hidden" name="dicId" value="${dic.dicId}"/>
         字典名称：<input type="text" name="dicName" value="${dic.dicName}"/>
         字典Code：<input type="text" name="dicCode" value="${dic.dicCode}"/>
-        字典详情：<input type="text" name="dicDetail" value="${dic.dicDetail }"/>
+        字典详情：<input type="text" name="dicDescription" value="${dic.dicDescription }"/>
         <input type="button" value="提交" onclick="updateDic()"/>
     </form>
     <script type="text/javascript">

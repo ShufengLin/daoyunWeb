@@ -42,10 +42,11 @@
         </div>
     </div>
     <form action="" name="userForm">
-        字典ItemKey：<input type="text" name="dicItemKey"><br><br><br>
-        字典ItemValue：<input type="text" name="dicItemValue"><br><br><br>
-        字典Status：<input type="text" name="dicStatus"><br><br><br>
-        字典码：<input type="text" name="dicCode"><br><br><br>
+        字典编码：<input type="text" name="dicId"><br><br><br>
+        字典ItemKey：<input type="text" name="itemKey"><br><br><br>
+        字典ItemValue：<input type="text" name="itemValue"><br><br><br>
+        字典Status：<input type="text" name="isDefault"><br><br><br>
+        字典码：<input type="text" name="code"><br><br><br>
         <input type="button" value="添加" onclick="addDicd()">
     </form>
 

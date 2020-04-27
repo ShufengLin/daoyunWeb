@@ -4,11 +4,35 @@
 <mapper namespace="com.dao.dictionarydetailDao">
 
     <resultMap type="com.utils.dictionarydetail" id="dictionarydetailMap">
-        <result property="Id" column="Id"/>
-        <result property="DicId" column="DicId"/>
-        <result property="ItemKey" column="ItemKey"/>
-        <result property="ItemValue" column="ItemValue"/>
-        <result property="IsDefault" column="IsDefault"/>
-        <result property="Code" column="Code"/>
+        <result property="id" column="Id"/>
+        <result property="dicId" column="DicId"/>
+        <result property="itemKey" column="ItemKey"/>
+        <result property="itemValue" column="ItemValue"/>
+        <result property="isDefault" column="IsDefault"/>
+        <result property="code" column="Code"/>
     </resultMap>
+    <insert id="addDicd" parameterType="dictionarydetail">
+        INSERT INTO dictionarydetail(DicId,ItemKey,ItemValue,IsDefault,Code) VALUE (#{dicId},#{itemKey}, #{itemValue}, #{isDefault},#{code})
+    </insert>
+
+    <delete id="deleteDicdById" parameterType="Integer">
+        DELETE FROM dictionarydetail WHERE Id=#{id}
+    </delete>
+
+    <update id="updateDicd" parameterType="dictionarydetail">
+        UPDATE dictionarydetail
+        SET DicId=#{dicId},ItemKey = #{itemKey},ItemValue = #{itemValue},IsDefault = #{isDefault},Code = #{code}
+        WHERE  Id = #{id}
+    </update>
+
+    <select id="queryById" resultMap="dictionarydetailMap" parameterType="Integer">
+        SELECT Id,DicId,ItemKey,ItemValue,IsDefault,Code
+        FROM dictionarydetail
+        WHERE Id=#{id}
+    </select>
+    <select id="queryAllDicd" resultMap="dictionarydetailMap">
+        SELECT Id,DicId,ItemKey,ItemValue,IsDefault,Code
+        FROM dictionarydetail
+    </select>
+
 </mapper>
