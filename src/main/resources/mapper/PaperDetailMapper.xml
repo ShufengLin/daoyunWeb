@@ -16,6 +16,7 @@
         SELECT Id,PaperId,ItemKey,ItemValue,IsDefault,Code
         FROM paperdetailtest
         WHERE PaperId=#{paperId}
+        ORDER BY Id DESC
         limit #{beginPage},#{pageSize}
     </select>
 
@@ -25,8 +26,29 @@
         WHERE PaperId=#{paperId}
     </select>
 
-    <insert id="addPaperDetail" parameterType="paperDetail">
+    <insert id="addPaperDetail" parameterType="PaperDetail">
         INSERT INTO paperdetailtest(Id,PaperId,ItemKey,ItemValue,IsDefault,Code) VALUE (#{id},#{paperId}, #{itemKey}, #{itemValue},#{isDefault},#{code})
     </insert>
+
+    <update id="updateDetailPaper" parameterType="PaperDetail">
+        UPDATE paperdetailtest
+        SET ItemKey = #{itemKey},ItemValue = #{itemValue},IsDefault = #{isDefault},Code = #{code}
+        WHERE  Id = #{id}
+    </update>
+
+    <delete id="deletePaperDetailById" parameterType="long">
+        DELETE FROM paperdetailtest WHERE Id=#{id}
+    </delete>
+
+    <delete id="deletePaperDetailByPaperId" parameterType="long">
+        DELETE FROM paperdetailtest WHERE PaperId=#{paperId}
+    </delete>
+
+    <delete id="deletePaperDetailBatchByPaperId" parameterType="java.util.List">
+        DELETE FROM paperdetailtest WHERE PaperId IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
 
 </mapper>

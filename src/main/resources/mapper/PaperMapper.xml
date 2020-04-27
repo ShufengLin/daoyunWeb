@@ -13,12 +13,19 @@
     <select id="getPaperByPage" resultMap="paperResultMap" parameterType="PaperPage">
         SELECT paper_id,name,number,detail
         FROM paper
+        <if test="paperName!=null">
+            WHERE name=#{paperName}
+        </if>
+        ORDER BY paper_id DESC
         limit #{beginPage},#{pageSize}
     </select>
 
     <select id="getPaperCount" resultType="java.lang.Integer">
         SELECT count(*)
         FROM paper
+        <if test="paperName!=null">
+            WHERE name=#{paperName}
+        </if>
     </select>
 
     <insert id="addPaper" parameterType="Paper">
@@ -26,7 +33,14 @@
     </insert>
 
     <delete id="deletePaperById" parameterType="long">
-        DELETE FROM paper WHERE paper_id=#{paperID}
+        DELETE FROM paper WHERE paper_id=#{paperId}
+    </delete>
+
+    <delete id="deletePaperBatchById" parameterType="java.util.List">
+        DELETE FROM Paper WHERE paper_id IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
     </delete>
 
     <update id="updatePaper" parameterType="Paper">

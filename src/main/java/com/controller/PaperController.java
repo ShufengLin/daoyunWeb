@@ -36,8 +36,8 @@ public class PaperController {
 
     @ResponseBody
     @PostMapping("/getPaperCount")
-    public ServerResponse getPaperCount(){
-        int paperCount= paperService.getPaperCount();
+    public ServerResponse getPaperCount(@RequestBody PaperPage paperPage){
+        int paperCount= paperService.getPaperCount(paperPage);
         return new ServerResponse(0, paperCount,"返回论文数量成功");
     }
 
@@ -66,6 +66,13 @@ public class PaperController {
     @RequestMapping("/deletePaperJson/{paperId}")
     public ServerResponse deletePaperJson(@PathVariable("paperId") Long id) {
         paperService.deletePaperById(id);
+        return new ServerResponse(0,"删除成功");
+    }
+
+    @ResponseBody
+    @RequestMapping("/deletePaperBatchJson")
+    public ServerResponse deletePaperBatchJson(@RequestBody List<Long> paperIdList) {
+        paperService.deletePaperBatchById(paperIdList);
         return new ServerResponse(0,"删除成功");
     }
 
