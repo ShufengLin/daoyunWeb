@@ -18,61 +18,83 @@ public class dictionarydetail implements Serializable {
     * 
     * isNullAble:0
     */
-    private Integer Id;
+    private Integer id;
 
     /**
     * 
     * isNullAble:1
     */
-    private Integer DicId;
+    private Integer dicId;
 
     /**
     * 
     * isNullAble:1
     */
-    private Integer ItemKey;
+    private Integer itemKey;
 
     /**
     * 
     * isNullAble:1
     */
-    private String ItemValue;
+    private String itemValue;
 
     /**
     * 
     * isNullAble:1
     */
-    private Integer IsDefault;
+    private Integer isDefault;
 
     /**
     * 
     * isNullAble:1
     */
-    private String Code;
+    private String code;
 
+    public Integer getId() {
+        return id;
+    }
 
-    public void setId(Integer Id){this.Id = Id;}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-    public Integer getId(){return this.Id;}
+    public Integer getDicId() {
+        return dicId;
+    }
 
-    public void setDicId(Integer DicId){this.DicId = DicId;}
+    public void setDicId(Integer dicId) {
+        this.dicId = dicId;
+    }
 
-    public Integer getDicId(){return this.DicId;}
+    public Integer getItemKey() {
+        return itemKey;
+    }
 
-    public void setItemKey(Integer ItemKey){this.ItemKey = ItemKey;}
+    public void setItemKey(Integer itemKey) {
+        this.itemKey = itemKey;
+    }
 
-    public Integer getItemKey(){return this.ItemKey;}
+    public String getItemValue() {
+        return itemValue;
+    }
 
-    public void setItemValue(String ItemValue){this.ItemValue = ItemValue;}
+    public void setItemValue(String itemValue) {
+        this.itemValue = itemValue;
+    }
 
-    public String getItemValue(){return this.ItemValue;}
+    public Integer getIsDefault() {
+        return isDefault;
+    }
 
-    public void setIsDefault(Integer IsDefault){this.IsDefault = IsDefault;}
+    public void setIsDefault(Integer isDefault) {
+        this.isDefault = isDefault;
+    }
 
-    public Integer getIsDefault(){return this.IsDefault;}
+    public String getCode() {
+        return code;
+    }
 
-    public void setCode(String Code){this.Code = Code;}
-
-    public String getCode(){return this.Code;}
-
+    public void setCode(String code) {
+        this.code = code;
+    }
 }

@@ -3,10 +3,33 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.dictionaryDao">
     <resultMap type="com.utils.dictionary" id="dictionaryMap">
-        <result property="DicId" column="DicId"/>
-        <result property="DicName" column="DicName"/>
-        <result property="DicDescription" column="DicDescription"/>
-        <result property="Code" column="Code"/>
+        <result property="dicId" column="DicId"/>
+        <result property="dicName" column="DicName"/>
+        <result property="dicDescription" column="DicDescription"/>
+        <result property="dicCode" column="Code"/>
     </resultMap>
+    <insert id="addDic" parameterType="dictionary">
+        INSERT INTO dictionary(DicId,DicName,Code,DicDescription) VALUE (#{dicId},#{dicName}, #{dicCode}, #{dicDescription})
+    </insert>
+
+    <delete id="deleteDicById" parameterType="Integer">
+        DELETE FROM dictionary WHERE DicId=#{dicId}
+    </delete>
+
+    <update id="updateDic" parameterType="dictionary">
+        UPDATE dictionary
+        SET DicName = #{dicName},Code = #{dicCode},DicDescription = #{dicDescription}
+        WHERE  DicId = #{dicId}
+    </update>
+
+    <select id="queryById" resultMap="dictionaryMap" parameterType="Integer">
+        SELECT DicId,DicName,Code,DicDescription
+        FROM dictionary
+        WHERE DicId=#{dicId}
+    </select>
+    <select id="queryAllDic" resultMap="dictionaryMap">
+        SELECT DicId,DicName,Code,DicDescription
+        FROM dictionary
+    </select>
 
 </mapper>

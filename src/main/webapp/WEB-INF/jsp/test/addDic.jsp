@@ -42,9 +42,10 @@
         </div>
     </div>
     <form action="" name="userForm">
+        字典编号：<input type="text" name="dicId"><br><br><br>
         字典名称：<input type="text" name="dicName"><br><br><br>
         字典Code：<input type="text" name="dicCode"><br><br><br>
-        字典详情：<input type="text" name="dicDetail"><br><br><br>
+        字典详情：<input type="text" name="dicDescription"><br><br><br>
         <input type="button" value="添加" onclick="addDic()">
     </form>
 

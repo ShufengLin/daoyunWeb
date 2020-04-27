@@ -1,20 +1,20 @@
 package com.service;
 
-import com.utils.Dic;
 import com.utils.dictionary;
 
 import java.util.List;
 
 public interface DicService {
 
-    int insertdictionary(dictionary object);
+    int addDic(dictionary dic);
 
-    int updatedictionary(dictionary object);
+    int deleteDicById(Integer id);
 
-    int update(dictionary.UpdateBuilder object);
+    int updateDic(dictionary dic);
 
-    List<dictionary> querydictionary(dictionary object);
+    dictionary queryById(Integer id);
 
-    dictionary querydictionaryLimit1(dictionary object);
+    List<dictionary> queryAllDic();
+
 
 }
