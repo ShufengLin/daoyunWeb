@@ -1,10 +1,10 @@
 package com.service;
 
-import com.utils.user;
+import com.utils.User;
 
 import java.util.List;
 import java.util.Map;
 
 public interface UserService {
-    user checkUser(user loginUser);
+    User checkUser(User loginUser);
 }

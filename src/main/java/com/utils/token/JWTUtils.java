@@ -5,7 +5,7 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.utils.user;
+import com.utils.User;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -19,7 +19,7 @@ public class JWTUtils {
      * 公钥
      */
     private static String SECRET = "czl";  //此处随便设置一个自己的加密符号
-    public static String createToken(user userDetail) throws Exception {
+    public static String createToken(User userDetail) throws Exception {
         // 签发时间
         Date iatDate = new Date();
 

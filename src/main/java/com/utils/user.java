@@ -4,68 +4,36 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
-/**
-*
-*  @author author
-*/
-public class user implements Serializable {
+
+
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1586522786098L;
 
+    private long userId;
 
-    /**
-    * 主键
-    * 
-    * isNullAble:0
-    */
-    private Integer userId;
-
-    /**
-    * 
-    * isNullAble:1
-    */
     private String userName;
 
-    /**
-    * 
-    * isNullAble:1
-    */
     private String userEducation;
 
-    /**
-    * 
-    * isNullAble:1
-    */
+
     private String phoneNumber;
 
-    /**
-    * 
-    * isNullAble:1
-    */
+
     private String password;
 
-    /**
-    * 
-    * isNullAble:1
-    */
+
     private String school;
 
-    /**
-    * 
-    * isNullAble:1
-    */
     private String academy;
 
-    /**
-    * 
-    * isNullAble:1
-    */
+
     private String major;
 
 
-    public void setUserId(Integer userId){this.userId = userId;}
+    public void setUserId(long userId){this.userId = userId;}
 
-    public Integer getUserId(){return this.userId;}
+    public long getUserId(){return this.userId;}
 
     public void setUserName(String userName){this.userName = userName;}
 

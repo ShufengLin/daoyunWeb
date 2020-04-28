@@ -4,7 +4,7 @@ package com.controller;
 import com.exception.CustomizedException;
 import com.service.UserService;
 import com.utils.ServerResponse;
-import com.utils.user;
+import com.utils.User;
 import com.utils.token.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,10 +23,10 @@ public class LoginController {
 
     @ResponseBody
     @PostMapping("/checkLogin")
-    public ServerResponse checkLogin(@RequestBody user loginUser)
+    public ServerResponse checkLogin(@RequestBody User loginUser)
     {
         String token;
-        user userDetail = userService.checkUser(loginUser);
+        User userDetail = userService.checkUser(loginUser);
         try{
             token = JWTUtils.createToken(userDetail);
         }

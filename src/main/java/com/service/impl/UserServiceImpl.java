@@ -1,19 +1,19 @@
 package com.service.impl;
 
-import com.dao.userDao;
+import com.dao.UserDao;
 import com.exception.CustomizedException;
 import com.service.UserService;
-import com.utils.user;
+import com.utils.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    private userDao userServiceDao;
+    private UserDao userServiceDao;
 
     @Override
-    public user checkUser (user loginUser){
+    public User checkUser (User loginUser){
         if(loginUser.getUserName() == null || loginUser.getUserName().equals(""))
         {
             throw new CustomizedException("用户名不能为空");
@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
             throw new CustomizedException("密码不能为空");
         }
 
-        user userDetail = userServiceDao.checkUser(loginUser);
+        User userDetail = userServiceDao.checkUser(loginUser);
         if(userDetail == null)
         {
             throw new CustomizedException("用户名或密码错误");
