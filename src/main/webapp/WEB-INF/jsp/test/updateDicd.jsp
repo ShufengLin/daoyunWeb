@@ -36,11 +36,12 @@
     </div>
 
     <form action="" name="userForm">
-        <input type="hidden" name="dicId" value="${dicd.dicId}"/>
-        字典ItemKey：<input type="text" name="dicItemKey" value="${dicd.dicItemKey}"/>
-        字典ItemValue：<input type="text" name="dicItemValue" value="${dicd.dicItemValue}"/>
-        字典Status：<input type="text" name="dicStatus" value="${dicd.dicStatus }"/>
-        字典码：<input type="text" name="dicCode" value="${dicd.dicCode }"/>
+        <input type="hidden" name="id" value="${dicd.id}"/>
+        字典编号：<input type="text" name="dicId" value="${dicd.dicId}"/>
+        字典ItemKey：<input type="text" name="itemKey" value="${dicd.itemKey}"/>
+        字典ItemValue：<input type="text" name="itemValue" value="${dicd.itemValue}"/>
+        字典Status：<input type="text" name="isDefault" value="${dicd.isDefault }"/>
+        字典码：<input type="text" name="code" value="${dicd.code }"/>
         <input type="button" value="提交" onclick="updateDicd()"/>
     </form>
     <script type="text/javascript">

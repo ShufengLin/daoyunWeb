@@ -1,17 +1,18 @@
 package com.service;
 
-import com.utils.Dicd;
+import com.utils.dictionarydetail;
 
 import java.util.List;
 
 public interface DicdService {
-    int addDicd(Dicd dicd);
 
-    int deleteDicdById(long id);
+    int addDicd(dictionarydetail dicd);
 
-    int updateDicd(Dicd dicd);
+    int deleteDicdById(Integer id);
 
-    Dicd queryById(long id);
+    int updateDicd(dictionarydetail dicd);
 
-    List<Dicd> queryAllDicd();
+    dictionarydetail queryById(Integer id);
+
+    List<dictionarydetail> queryAllDicd();
 }

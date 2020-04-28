@@ -1,58 +1,47 @@
 package com.utils;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
-/**
-*
-*  @author author
-*/
-public class CourseStudent implements Serializable {
-
-    private static final long serialVersionUID = 1586522773785L;
 
 
-    /**
-    * 主键
-    * 
-    * isNullAble:0
-    */
-    private Integer Id;
+public class CourseStudent {
 
-    /**
-    * 
-    * isNullAble:1
-    */
-    private Integer CourseId;
-
-    /**
-    * 
-    * isNullAble:1
-    */
-    private Integer StudentId;
-
-    /**
-    * 
-    * isNullAble:1
-    */
-    private Integer StudentEXP;
+  private long id;
+  private long courseId;
+  private long studentId;
+  private long studentExp;
 
 
-    public void setId(Integer Id){this.Id = Id;}
+  public long getId() {
+    return id;
+  }
 
-    public Integer getId(){return this.Id;}
+  public void setId(long id) {
+    this.id = id;
+  }
 
-    public void setCourseId(Integer CourseId){this.CourseId = CourseId;}
 
-    public Integer getCourseId(){return this.CourseId;}
+  public long getCourseId() {
+    return courseId;
+  }
 
-    public void setStudentId(Integer StudentId){this.StudentId = StudentId;}
+  public void setCourseId(long courseId) {
+    this.courseId = courseId;
+  }
 
-    public Integer getStudentId(){return this.StudentId;}
 
-    public void setStudentEXP(Integer StudentEXP){this.StudentEXP = StudentEXP;}
+  public long getStudentId() {
+    return studentId;
+  }
 
-    public Integer getStudentEXP(){return this.StudentEXP;}
+  public void setStudentId(long studentId) {
+    this.studentId = studentId;
+  }
+
+
+  public long getStudentExp() {
+    return studentExp;
+  }
+
+  public void setStudentExp(long studentExp) {
+    this.studentExp = studentExp;
+  }
 
 }

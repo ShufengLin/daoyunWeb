@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dao.teachersignDao">
-    <resultMap type="com.utils.teachersign" id="teachersign">
-        <result property="TeacherSignId" column="TeacherSignId"/>
-        <result property="TeacherId" column="TeacherId"/>
-        <result property="CourseId" column="CourseId"/>
-        <result property="Date" column="Date"/>
+<mapper namespace="com.dao.TeacherSignDao">
+    <resultMap type="com.utils.Teachersign" id="teachersign">
+        <result property="teacherSignId" column="TeacherSignId"/>
+        <result property="teacherId" column="TeacherId"/>
+        <result property="courseId" column="CourseId"/>
+        <result property="date" column="Date"/>
     </resultMap>
 
 </mapper>

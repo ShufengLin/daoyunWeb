@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dao.roleDao">
-    <resultMap type="com.utils.role" id="roleMap">
-        <result property="RoleId" column="RoleId"/>
-        <result property="RoleName" column="RoleName"/>
-        <result property="RoleDescription" column="RoleDescription"/>
-        <result property="IsLock" column="IsLock"/>
-        <result property="Creator" column="Creator"/>
-        <result property="CreationDate" column="CreationDate"/>
+<mapper namespace="com.dao.RoleDao">
+    <resultMap type="com.utils.Role" id="roleMap">
+        <result property="roleId" column="RoleId"/>
+        <result property="roleName" column="RoleName"/>
+        <result property="roleDescription" column="RoleDescription"/>
+        <result property="isLock" column="IsLock"/>
+        <result property="creator" column="Creator"/>
+        <result property="creationDate" column="CreationDate"/>
     </resultMap>
 
 </mapper>

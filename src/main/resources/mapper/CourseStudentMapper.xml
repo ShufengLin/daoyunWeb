@@ -3,9 +3,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.CourseStudentDao">
     <resultMap type="com.utils.CourseStudent" id="CourseStudentMap">
-        <result property="Id" column="Id"/>
-        <result property="CourseId" column="CourseId"/>
-        <result property="StudentId" column="StudentId"/>
-        <result property="StudentEXP" column="StudentEXP"/>
+        <result property="id" column="Id"/>
+        <result property="courseId" column="CourseId"/>
+        <result property="studentId" column="StudentId"/>
+        <result property="studentEXP" column="StudentEXP"/>
     </resultMap>
 </mapper>
