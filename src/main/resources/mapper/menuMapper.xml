@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dao.menuDao">
-    <resultMap type="com.utils.menu" id="menuMap">
-        <result property="MenuId" column="MenuId"/>
-        <result property="MenuName" column="MenuName"/>
-        <result property="MenuURL" column="MenuURL"/>
-        <result property="MenuIcon" column="MenuIcon"/>
+<mapper namespace="com.dao.MenuDao">
+    <resultMap type="com.utils.Menu" id="menuMap">
+        <result property="menuId" column="MenuId"/>
+        <result property="menuName" column="MenuName"/>
+        <result property="menuURL" column="MenuURL"/>
+        <result property="menuIcon" column="MenuIcon"/>
     </resultMap>
 
 </mapper>
