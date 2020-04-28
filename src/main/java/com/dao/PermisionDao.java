@@ -3,7 +3,7 @@ package com.dao;
 /**
 *  @author author
 */
-public interface UserRoleDao {
+public interface PermisionDao {
 
 
 }

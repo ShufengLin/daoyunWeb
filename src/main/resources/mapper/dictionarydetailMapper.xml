@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dao.dictionarydetailDao">
+<mapper namespace="com.dao.DictionaryDetailDao">
 
-    <resultMap type="com.utils.dictionarydetail" id="dictionarydetailMap">
-        <result property="Id" column="Id"/>
-        <result property="DicId" column="DicId"/>
-        <result property="ItemKey" column="ItemKey"/>
-        <result property="ItemValue" column="ItemValue"/>
-        <result property="IsDefault" column="IsDefault"/>
-        <result property="Code" column="Code"/>
+    <resultMap type="com.utils.DictionaryDetail" id="dictionarydetailMap">
+        <result property="id" column="Id"/>
+        <result property="dicId" column="DicId"/>
+        <result property="itemKey" column="ItemKey"/>
+        <result property="itemValue" column="ItemValue"/>
+        <result property="isDefault" column="IsDefault"/>
+        <result property="code" column="Code"/>
     </resultMap>
 </mapper>
