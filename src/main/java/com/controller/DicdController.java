@@ -2,7 +2,7 @@ package com.controller;
 
 import com.service.DicdService;
 
-import com.utils.Dicd;
+import com.utils.dictionarydetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ public class DicdController {
     private DicdService dicdService;
     @RequestMapping("/allDicd")
     public String list(Model model) {
-        List<Dicd> list = dicdService.queryAllDicd();
+        List<dictionarydetail> list = dicdService.queryAllDicd();
         model.addAttribute("list", list);
         return "test/allDicd";
     }
@@ -30,27 +30,27 @@ public class DicdController {
     }
 
     @RequestMapping("/addDicd")
-    public String addDicd(Dicd dicd) {
+    public String addDicd(dictionarydetail dicd) {
         dicdService.addDicd(dicd);
         return "redirect:/testExample2/allDicd";
     }
 
-    @RequestMapping("/del/{dicId}")
-    public String deleteDicd(@PathVariable("dicId") Long id) {
+    @RequestMapping("/del/{id}")
+    public String deleteDicd(@PathVariable("id") Integer id) {
         dicdService.deleteDicdById(id);
         return "redirect:/testExample2/allDicd";
     }
 
     @RequestMapping("toUpdateDicd")
-    public String toUpdateDicd(Model model, Long id) {
+    public String toUpdateDicd(Model model, Integer id) {
         model.addAttribute("dicd", dicdService.queryById(id));
         return "test/updateDicd";
     }
 
     @RequestMapping("/updateDicd")
-    public String updateDicd(Model model, Dicd dicd) {
+    public String updateDicd(Model model, dictionarydetail dicd) {
         dicdService.updateDicd(dicd);
-        dicd = dicdService.queryById(dicd.getDicId());
+        dicd = dicdService.queryById(dicd.getId());
         model.addAttribute("dicd", dicd);
         return "redirect:/testExample2/allDicd";
     }

@@ -59,7 +59,7 @@
                         <td>${dic.dicId}</td>
                         <td>${dic.dicName}</td>
                         <td>${dic.dicCode}</td>
-                        <td>${dic.dicDetail}</td>
+                        <td>${dic.dicDescription}</td>
                         <td>
                             <a href="<%=appPath%>/testExample1/toUpdateDic?id=${dic.dicId}">更改</a> |
                             <a href="<%=appPath%>/testExample1/del/${dic.dicId}">删除</a>
