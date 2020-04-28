@@ -7,6 +7,6 @@ import com.utils.user;
 *  @author author
 */
 public interface userDao {
-
+    user checkUser(user loginUser);
 
 }

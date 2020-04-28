@@ -18,81 +18,81 @@ public class user implements Serializable {
     * 
     * isNullAble:0
     */
-    private Integer UserId;
+    private Integer userId;
 
     /**
     * 
     * isNullAble:1
     */
-    private String UserName;
+    private String userName;
 
     /**
     * 
     * isNullAble:1
     */
-    private String UserEducation;
+    private String userEducation;
 
     /**
     * 
     * isNullAble:1
     */
-    private String PhoneNumber;
+    private String phoneNumber;
 
     /**
     * 
     * isNullAble:1
     */
-    private String Password;
+    private String password;
 
     /**
     * 
     * isNullAble:1
     */
-    private String School;
+    private String school;
 
     /**
     * 
     * isNullAble:1
     */
-    private String Academy;
+    private String academy;
 
     /**
     * 
     * isNullAble:1
     */
-    private String Major;
+    private String major;
 
 
-    public void setUserId(Integer UserId){this.UserId = UserId;}
+    public void setUserId(Integer userId){this.userId = userId;}
 
-    public Integer getUserId(){return this.UserId;}
+    public Integer getUserId(){return this.userId;}
 
-    public void setUserName(String UserName){this.UserName = UserName;}
+    public void setUserName(String userName){this.userName = userName;}
 
-    public String getUserName(){return this.UserName;}
+    public String getUserName(){return this.userName;}
 
-    public void setUserEducation(String UserEducation){this.UserEducation = UserEducation;}
+    public void setUserEducation(String userEducation){this.userEducation = userEducation;}
 
-    public String getUserEducation(){return this.UserEducation;}
+    public String getUserEducation(){return this.userEducation;}
 
-    public void setPhoneNumber(String PhoneNumber){this.PhoneNumber = PhoneNumber;}
+    public void setPhoneNumber(String phoneNumber){this.phoneNumber = phoneNumber;}
 
-    public String getPhoneNumber(){return this.PhoneNumber;}
+    public String getPhoneNumber(){return this.phoneNumber;}
 
-    public void setPassword(String Password){this.Password = Password;}
+    public void setPassword(String password){this.password = password;}
 
-    public String getPassword(){return this.Password;}
+    public String getPassword(){return this.password;}
 
-    public void setSchool(String School){this.School = School;}
+    public void setSchool(String school){this.school = school;}
 
-    public String getSchool(){return this.School;}
+    public String getSchool(){return this.school;}
 
-    public void setAcademy(String Academy){this.Academy = Academy;}
+    public void setAcademy(String academy){this.academy = academy;}
 
-    public String getAcademy(){return this.Academy;}
+    public String getAcademy(){return this.academy;}
 
-    public void setMajor(String Major){this.Major = Major;}
+    public void setMajor(String major){this.major = major;}
 
-    public String getMajor(){return this.Major;}
+    public String getMajor(){return this.major;}
    
 }
