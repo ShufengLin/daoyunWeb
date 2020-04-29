@@ -1,86 +1,66 @@
 package com.utils;
-
-public class User {
-
-  private long userId;
-  private String userName;
-  private String userEducation;
-  private String phoneNumber;
-  private String password;
-  private String school;
-  private String academy;
-  private String major;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
 
 
-  public long getUserId() {
-    return userId;
-  }
+public class User implements Serializable {
 
-  public void setUserId(long userId) {
-    this.userId = userId;
-  }
+    private static final long serialVersionUID = 1586522786098L;
 
+    private long userId;
 
-  public String getUserName() {
-    return userName;
-  }
+    private String userName;
 
-  public void setUserName(String userName) {
-    this.userName = userName;
-  }
+    private String userEducation;
 
 
-  public String getUserEducation() {
-    return userEducation;
-  }
-
-  public void setUserEducation(String userEducation) {
-    this.userEducation = userEducation;
-  }
+    private String phoneNumber;
 
 
-  public String getPhoneNumber() {
-    return phoneNumber;
-  }
-
-  public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
-  }
+    private String password;
 
 
-  public String getPassword() {
-    return password;
-  }
+    private String school;
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    private String academy;
 
 
-  public String getSchool() {
-    return school;
-  }
-
-  public void setSchool(String school) {
-    this.school = school;
-  }
+    private String major;
 
 
-  public String getAcademy() {
-    return academy;
-  }
+    public void setUserId(long userId){this.userId = userId;}
 
-  public void setAcademy(String academy) {
-    this.academy = academy;
-  }
+    public long getUserId(){return this.userId;}
 
+    public void setUserName(String userName){this.userName = userName;}
 
-  public String getMajor() {
-    return major;
-  }
+    public String getUserName(){return this.userName;}
 
-  public void setMajor(String major) {
-    this.major = major;
-  }
+    public void setUserEducation(String userEducation){this.userEducation = userEducation;}
 
+    public String getUserEducation(){return this.userEducation;}
+
+    public void setPhoneNumber(String phoneNumber){this.phoneNumber = phoneNumber;}
+
+    public String getPhoneNumber(){return this.phoneNumber;}
+
+    public void setPassword(String password){this.password = password;}
+
+    public String getPassword(){return this.password;}
+
+    public void setSchool(String school){this.school = school;}
+
+    public String getSchool(){return this.school;}
+
+    public void setAcademy(String academy){this.academy = academy;}
+
+    public String getAcademy(){return this.academy;}
+
+    public void setMajor(String major){this.major = major;}
+
+    public String getMajor(){return this.major;}
+   
 }

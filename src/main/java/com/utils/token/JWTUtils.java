@@ -18,7 +18,7 @@ public class JWTUtils {
     /**
      * 公钥
      */
-    private static String SECRET = "czl";  //此处随便设置一个自己的加密符号
+    private static String SECRET = "czl";
     public static String createToken(User userDetail) throws Exception {
         // 签发时间
         Date iatDate = new Date();
