@@ -1,79 +1,66 @@
 package com.utils;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
-/**
-*
-*  @author author
-*/
-public class CourseSign implements Serializable {
 
-    private static final long serialVersionUID = 1586522771224L;
+public class CourseSign {
+
+  private long signId;
+  private long courseId;
+  private long studentId;
+  private String signPlace;
+  private java.sql.Timestamp signTime;
+  private long signStatus;
 
 
-    /**
-    * 主键
-    * 
-    * isNullAble:0
-    */
-    private Integer SignId;
+  public long getSignId() {
+    return signId;
+  }
 
-    /**
-    * 
-    * isNullAble:1
-    */
-    private Integer CourseId;
-
-    /**
-    * 
-    * isNullAble:1
-    */
-    private Integer StudentId;
-
-    /**
-    * 
-    * isNullAble:1
-    */
-    private String SignPlace;
-
-    /**
-    * 
-    * isNullAble:1
-    */
-    private java.time.LocalDateTime SignTime;
-
-    /**
-    * 
-    * isNullAble:1
-    */
-    private Integer SignStatus;
+  public void setSignId(long signId) {
+    this.signId = signId;
+  }
 
 
-    public void setSignId(Integer SignId){this.SignId = SignId;}
+  public long getCourseId() {
+    return courseId;
+  }
 
-    public Integer getSignId(){return this.SignId;}
+  public void setCourseId(long courseId) {
+    this.courseId = courseId;
+  }
 
-    public void setCourseId(Integer CourseId){this.CourseId = CourseId;}
 
-    public Integer getCourseId(){return this.CourseId;}
+  public long getStudentId() {
+    return studentId;
+  }
 
-    public void setStudentId(Integer StudentId){this.StudentId = StudentId;}
+  public void setStudentId(long studentId) {
+    this.studentId = studentId;
+  }
 
-    public Integer getStudentId(){return this.StudentId;}
 
-    public void setSignPlace(String SignPlace){this.SignPlace = SignPlace;}
+  public String getSignPlace() {
+    return signPlace;
+  }
 
-    public String getSignPlace(){return this.SignPlace;}
+  public void setSignPlace(String signPlace) {
+    this.signPlace = signPlace;
+  }
 
-    public void setSignTime(java.time.LocalDateTime SignTime){this.SignTime = SignTime;}
 
-    public java.time.LocalDateTime getSignTime(){return this.SignTime;}
+  public java.sql.Timestamp getSignTime() {
+    return signTime;
+  }
 
-    public void setSignStatus(Integer SignStatus){this.SignStatus = SignStatus;}
+  public void setSignTime(java.sql.Timestamp signTime) {
+    this.signTime = signTime;
+  }
 
-    public Integer getSignStatus(){return this.SignStatus;}
 
+  public long getSignStatus() {
+    return signStatus;
+  }
+
+  public void setSignStatus(long signStatus) {
+    this.signStatus = signStatus;
+  }
 
 }

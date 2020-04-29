@@ -2,11 +2,11 @@ package com.dao;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import com.utils.user;
+import com.utils.User;
 /**
 *  @author author
 */
-public interface userDao {
-
+public interface UserDao {
+    User checkUser(User loginUser);
 
 }

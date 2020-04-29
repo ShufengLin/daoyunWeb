@@ -9,6 +9,8 @@ public class ServerResponse<T> {
     //数据
     private T data;
     //信息
+    private T dataPlus;
+
     private String msg;
 
     public ServerResponse() {
@@ -27,6 +29,13 @@ public class ServerResponse<T> {
         this.data = data;
         this.msg = msg;
     }
+    public ServerResponse(int code, T data, T dataPlus, String msg) {
+        super();
+        this.code = code;
+        this.data = data;
+        this.dataPlus = dataPlus;
+        this.msg = msg;
+    }
 
     public int getCode() {
         return code;
@@ -43,6 +52,10 @@ public class ServerResponse<T> {
     public void setData(T data) {
         this.data = data;
     }
+
+    public T getDataPlus() { return dataPlus; }
+
+    public void setDataPlus(T dataPlus) { this.dataPlus = dataPlus;}
 
     public String getMsg() {
         return msg;

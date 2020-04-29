@@ -1,8 +1,8 @@
 package com.service.impl;
 
-import com.dao.dictionarydetailDao;
+import com.dao.DictionaryDetailDao;
 import com.service.DicdService;
-import com.utils.dictionarydetail;
+import com.utils.DictionaryDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,29 +11,29 @@ import java.util.List;
 @Service
 public class DicdServiceImpl implements DicdService {
     @Autowired
-    private dictionarydetailDao dicdDao;
+    private DictionaryDetailDao dicdDao;
     @Override
-    public int addDicd(dictionarydetail dicd) {
+    public int addDicd(DictionaryDetail dicd) {
         return dicdDao.addDicd(dicd);
     }
 
     @Override
-    public int deleteDicdById(Integer id) {
+    public int deleteDicdById(long id) {
         return dicdDao.deleteDicdById(id);
     }
 
     @Override
-    public int updateDicd(dictionarydetail dicd) {
+    public int updateDicd(DictionaryDetail dicd) {
         return dicdDao.updateDicd(dicd);
     }
 
     @Override
-    public dictionarydetail queryById(Integer id) {
+    public DictionaryDetail queryById(long id) {
         return dicdDao.queryById(id);
     }
 
     @Override
-    public List<dictionarydetail> queryAllDicd() {
+    public List<DictionaryDetail> queryAllDicd() {
         return dicdDao.queryAllDicd();
     }
 

@@ -1,50 +1,37 @@
 package com.utils;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
-/**
-*
-*  @author author
-*/
-public class UserRole implements Serializable {
-
-    private static final long serialVersionUID = 1586522787826L;
 
 
-    /**
-    * 主键
-    * 
-    * isNullAble:0
-    */
-    private Integer Id;
+public class UserRole {
 
-    /**
-    * 
-    * isNullAble:1
-    */
-    private Integer UserId;
-
-    /**
-    * 
-    * isNullAble:1
-    */
-    private Integer RoleId;
+  private long id;
+  private long userId;
+  private long roleId;
 
 
-    public void setId(Integer Id){this.Id = Id;}
+  public long getId() {
+    return id;
+  }
 
-    public Integer getId(){return this.Id;}
-
-    public void setUserId(Integer UserId){this.UserId = UserId;}
-
-    public Integer getUserId(){return this.UserId;}
-
-    public void setRoleId(Integer RoleId){this.RoleId = RoleId;}
-
-    public Integer getRoleId(){return this.RoleId;}
+  public void setId(long id) {
+    this.id = id;
+  }
 
 
+  public long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(long userId) {
+    this.userId = userId;
+  }
+
+
+  public long getRoleId() {
+    return roleId;
+  }
+
+  public void setRoleId(long roleId) {
+    this.roleId = roleId;
+  }
 
 }

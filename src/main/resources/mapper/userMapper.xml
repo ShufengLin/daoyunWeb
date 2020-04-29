@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dao.userDao">
-    <resultMap type="com.utils.user" id="userMap">
-        <result property="UserId" column="UserId"/>
-        <result property="UserName" column="UserName"/>
-        <result property="UserEducation" column="UserEducation"/>
-        <result property="PhoneNumber" column="PhoneNumber"/>
-        <result property="Password" column="Password"/>
-        <result property="School" column="School"/>
-        <result property="Academy" column="Academy"/>
-        <result property="Major" column="Major"/>
+<mapper namespace="com.dao.UserDao">
+    <resultMap type="com.utils.User" id="UserMap">
+        <result property="userId" column="UserId"/>
+        <result property="userName" column="UserName"/>
+        <result property="userEducation" column="UserEducation"/>
+        <result property="phoneNumber" column="PhoneNumber"/>
+        <result property="password" column="Password"/>
+        <result property="school" column="School"/>
+        <result property="academy" column="Academy"/>
+        <result property="major" column="Major"/>
     </resultMap>
 
+    <select id="checkUser" resultMap="UserMap" parameterType="User">
+        SELECT *
+        FROM user
+            WHERE UserName=#{userName} and Password=#{password}
+    </select>
 </mapper>

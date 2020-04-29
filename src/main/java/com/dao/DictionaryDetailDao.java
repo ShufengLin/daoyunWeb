@@ -1,11 +1,13 @@
-package com.service;
+package com.dao;
 
 import com.utils.DictionaryDetail;
 
 import java.util.List;
 
-public interface DicdService {
-
+/**
+*  @author author
+*/
+public interface DictionaryDetailDao {
     int addDicd(DictionaryDetail dicd);
 
     int deleteDicdById(long id);
