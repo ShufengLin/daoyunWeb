@@ -1,15 +1,23 @@
 package com.config;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
+
+import com.alibaba.fastjson.JSONObject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.exception.CustomizedException;
 import com.utils.ServerResponse;
 import com.utils.token.Decrypt;
 import com.utils.token.JedisUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import redis.clients.jedis.Jedis;
@@ -29,6 +37,7 @@ public class JWTInterceptor implements HandlerInterceptor {
         // TODO Auto-generated method stub
 
     }
+
 
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws IOException {
         String token = request.getHeader("token");
@@ -54,8 +63,24 @@ public class JWTInterceptor implements HandlerInterceptor {
         }
     }
 
-    private ServerResponse returnErrorResponse(HttpServletResponse response,int code, String result) {
-        return new ServerResponse(code, result);
+    private void returnErrorResponse(HttpServletResponse response,int code, String result) throws IOException {
+        OutputStream out = null;
+        try{
+            response.setCharacterEncoding("utf-8");
+            response.setContentType("text/json");
+            Map<String, Object> map = new HashMap<>();
+            map.put("code",code);
+            map.put("errorResponse",result);
+            out = response.getOutputStream();
+            out.write(JSONObject.toJSONString(map, SerializerFeature.WriteMapNullValue).getBytes("utf-8"));
+            out.flush();
+        }
+        finally{
+            if(out != null){
+                out.close();
+            }
+        }
+
     }
 
 
