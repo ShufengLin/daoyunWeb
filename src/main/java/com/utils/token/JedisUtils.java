@@ -22,4 +22,9 @@ public class JedisUtils {
         String token = jedis.get(String.valueOf(id));  //获取token
         return token;
     }
+
+    public static void deleteToken(String id) {
+        JedisUtils.init();
+        jedis.del(String.valueOf(id));
+    }
 }

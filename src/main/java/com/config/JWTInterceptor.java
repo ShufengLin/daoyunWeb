@@ -47,6 +47,10 @@ public class JWTInterceptor implements HandlerInterceptor {
         }
         Decrypt decrypt = new Decrypt();
         DecodedJWT decodedJWT = decrypt.deToken(token);//token解密id
+        if(decodedJWT == null){
+            returnErrorResponse(response,-1,"无效的身份令牌");
+            return false;
+        }
         String userId = decodedJWT.getClaim("userId").asString();
         String localToken = JedisUtils.getToken(userId);
         /** 您的处理逻辑 */
