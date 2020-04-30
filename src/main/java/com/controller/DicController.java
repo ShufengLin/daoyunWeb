@@ -2,7 +2,7 @@ package com.controller;
 
 
 import com.service.DicService;
-import com.utils.dictionary;
+import com.utils.Dictionary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ public class DicController {
     private DicService dicService;
     @RequestMapping("/allDic")
     public String list(Model model) {
-        List<dictionary> list = dicService.queryAllDic();
+        List<Dictionary> list = dicService.queryAllDic();
         model.addAttribute("list", list);
         return "test/allDic";
     }
@@ -30,25 +30,25 @@ public class DicController {
     }
 
     @RequestMapping("/addDic")
-    public String addDic(dictionary dic) {
+    public String addDic(Dictionary dic) {
         dicService.addDic(dic);
         return "redirect:/testExample1/allDic";
     }
 
     @RequestMapping("/del/{dicId}")
-    public String deleteDic(@PathVariable("dicId") Integer id) {
+    public String deleteDic(@PathVariable("dicId") long id) {
         dicService.deleteDicById(id);
         return "redirect:/testExample1/allDic";
     }
 
     @RequestMapping("toUpdateDic")
-    public String toUpdateDic(Model model, Integer id) {
+    public String toUpdateDic(Model model, long id) {
         model.addAttribute("dic", dicService.queryById(id));
         return "test/updateDic";
     }
 
     @RequestMapping("/updateDic")
-    public String updateDic(Model model, dictionary dic) {
+    public String updateDic(Model model, Dictionary dic) {
         dicService.updateDic(dic);
         dic = dicService.queryById(dic.getDicId());
         model.addAttribute("dic", dic);

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.UserDao">
-    <resultMap type="com.utils.User" id="userMap">
+    <resultMap type="com.utils.User" id="UserMap">
         <result property="userId" column="UserId"/>
         <result property="userName" column="UserName"/>
         <result property="userEducation" column="UserEducation"/>
@@ -13,4 +13,9 @@
         <result property="major" column="Major"/>
     </resultMap>
 
+    <select id="checkUser" resultMap="UserMap" parameterType="User">
+        SELECT *
+        FROM user
+            WHERE UserName=#{userName} and Password=#{password}
+    </select>
 </mapper>
