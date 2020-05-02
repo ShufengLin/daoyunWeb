@@ -11,17 +11,43 @@
         <result property="isDefault" column="IsDefault"/>
         <result property="code" column="Code"/>
     </resultMap>
+
+    <select id="getDicdByPage" resultMap="DictionaryDetailMap" parameterType="DicPage">
+        SELECT Id,DicId,ItemKey,ItemValue,IsDefault,Code
+        FROM dictionarydetail
+        WHERE DicId=#{dicId}
+        ORDER BY Id DESC
+        limit #{beginPage},#{pageSize}
+    </select>
+
+    <select id="getDicdCount" resultType="java.lang.Integer" parameterType="long">
+        SELECT count(*)
+        FROM dictionarydetail
+        WHERE DicId=#{dicId}
+    </select>
+
     <insert id="addDicd" parameterType="DictionaryDetail">
-        INSERT INTO dictionarydetail(DicId,ItemKey,ItemValue,IsDefault,Code) VALUE (#{dicId},#{itemKey}, #{itemValue}, #{isDefault},#{code})
+        INSERT INTO dictionarydetail(Id,DicId,ItemKey,ItemValue,IsDefault,Code) VALUE (#{id},#{dicId},#{itemKey}, #{itemValue}, #{isDefault},#{code})
     </insert>
 
     <delete id="deleteDicdById" parameterType="long">
         DELETE FROM dictionarydetail WHERE Id=#{id}
     </delete>
 
+    <delete id="deleteDicdByDicId" parameterType="long">
+        DELETE FROM dictionarydetail WHERE DicId=#{dicId}
+    </delete>
+
+    <delete id="deleteDicdBatchByDicId" parameterType="java.util.List">
+        DELETE FROM dictionarydetail WHERE DicId IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
     <update id="updateDicd" parameterType="DictionaryDetail">
         UPDATE dictionarydetail
-        SET DicId=#{dicId},ItemKey = #{itemKey},ItemValue = #{itemValue},IsDefault = #{isDefault},Code = #{code}
+        SET ItemKey = #{itemKey},ItemValue = #{itemValue},IsDefault = #{isDefault},Code = #{code}
         WHERE  Id = #{id}
     </update>
 

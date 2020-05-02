@@ -1,6 +1,9 @@
 package com.utils;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.utils.json.DictionaryDetailDeserializer;
 
+@JsonDeserialize(using = DictionaryDetailDeserializer.class)
 public class DictionaryDetail {
 
   private long id;

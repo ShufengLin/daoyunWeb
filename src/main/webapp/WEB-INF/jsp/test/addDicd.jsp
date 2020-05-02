@@ -53,7 +53,7 @@
     <script type="text/javascript">
         function addDicd() {
             var form = document.forms[0];
-            form.action = "<%=basePath %>/testExample2/addDicd";
+            form.action = "<%=basePath %>/DictionaryDetail/addDicd";
             form.method = "post";
             form.submit();
         }

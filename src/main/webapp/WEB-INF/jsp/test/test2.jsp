@@ -36,7 +36,7 @@
 </div>
 <br><br>
 <h3>
-    <a href="${path }/testExample2/allDicd">点击进入字典明细管理页面</a>
+    <a href="${path }/DictionaryDetail/allDicd">点击进入字典明细管理页面</a>
 </h3>
 </body>
 </html>

@@ -47,7 +47,7 @@
     <script type="text/javascript">
         function updateDicd() {
             var form = document.forms[0];
-            form.action = "<%=basePath %>testExample2/updateDicd";
+            form.action = "<%=basePath %>DictionaryDetail/updateDicd";
             form.method = "post";
             form.submit();
         }
