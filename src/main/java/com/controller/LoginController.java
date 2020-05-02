@@ -29,13 +29,8 @@ public class LoginController {
         String token;
         User userDetail = userService.checkUser(loginUser);
         try{
-//            if(JedisUtils.getToken(String.valueOf(userDetail.getUserId())) != null || !JedisUtils.getToken(String.valueOf(userDetail.getUserId())).equals(""))
-//            {
-//                JedisUtils.deleteToken(String.valueOf(userDetail.getUserId()));//如果是重新登录则删除令牌以更新有效期
-//            }
-            //JedisUtils.deleteToken("1");
             token = JWTUtils.createToken(userDetail);
-            //JedisUtils.setToken(String.valueOf(userDetail.getUserId()),token,7);
+            JedisUtils.setToken(String.valueOf(userDetail.getUserId()),token,7);
         }
         catch(Exception e){
             throw new CustomizedException("生成令牌失败");
