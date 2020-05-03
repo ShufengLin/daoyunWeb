@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ServerResponse<T> {
-    //0表示成功，-1表示失败
+    //0表示成功，-1表示逻辑处理失败，-2表示身份验证失败
     private int code;
     //数据
     private T data;

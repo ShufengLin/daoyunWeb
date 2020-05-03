@@ -46,33 +46,34 @@ public class JWTInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object arg2) throws IOException {
         String token = request.getHeader("token");
         if (token == null || token.equals("")) {
-            returnErrorResponse(response, -1, "没有身份令牌，请重新登录");
+            returnResponse(response, -2, "没有身份令牌，请重新登录");
             return false;
         }
         try {
             Map<String, Claim> map = JWTUtils.verifyToken(token);
             if (map == null) {
-                returnErrorResponse(response, -1, "无效的身份令牌");
+                returnResponse(response, -2, "无效的身份令牌");
                 return false;
             }
             String localToken = JedisUtils.getToken(map.get("userId").asInt().toString());//userId的类型 jwt的claim是int，jedis是string
             /** 您的处理逻辑 */
             if (localToken == null || localToken.equals("")) {
-                returnErrorResponse(response, -1, "身份令牌已失效，请重新登录");
+                returnResponse(response, -2, "身份令牌已失效，请重新登录");
                 return false;
             } else if (!token.equals(localToken)) {
-                returnErrorResponse(response, -1, "身份令牌不符");
+                returnResponse(response, -2, "身份令牌不符");
                 return false;
             } else {
+                //returnResponse(response, 0, "验证成功");
                 return true;
             }
         } catch (Exception e) {
-            returnErrorResponse(response, -1, "无效的身份令牌");
+            returnResponse(response, -2, "无效的身份令牌");
             return false;
         }
     }
 
-    private void returnErrorResponse(HttpServletResponse response, int code, String result) throws IOException {
+    private void returnResponse(HttpServletResponse response, int code, String result) throws IOException {
         OutputStream out = null;
         try {
             response.setCharacterEncoding("utf-8");
