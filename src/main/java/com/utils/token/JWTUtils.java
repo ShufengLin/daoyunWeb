@@ -34,9 +34,10 @@ public class JWTUtils {
         String token = JWT.create()
                 .withHeader(map)
                 .withClaim("userName", userDetail.getUserName())
-                .withClaim("id", userDetail.getUserId())
+                .withClaim("userId", userDetail.getUserId()) // 存入claim的userId字段是int类型，而稍后要存入jedis的是String类型，解密后处理不当可能导致null
                 .withExpiresAt(expiresDate) // 设置过期的日期
                 .withIssuedAt(iatDate) // 签发时间
+                .withIssuer("auth0")
                 .sign(Algorithm.HMAC256(SECRET)); // 加密
         return token;
     }
@@ -45,7 +46,7 @@ public class JWTUtils {
      * 解密
      */
 
-    public static Map<String, Claim> verifyToken(String token) throws Exception {
+    public static Map<String, Claim> verifyToken(String token) throws Exception {//验证成功就解密 这个函数相当于一个解密类
         JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SECRET)).build();
         DecodedJWT jwt = null;
         try {
