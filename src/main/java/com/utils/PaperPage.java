@@ -13,6 +13,8 @@ public class PaperPage {
     private long paperId;
     private String paperName;
 
+    private long courseId;
+    private String courseName;
 
     public PaperPage(){
 
@@ -53,4 +55,21 @@ public class PaperPage {
     public String getPaperName() { return paperName; }
 
     public void setPaperName(String paperName) { this.paperName = paperName; }
+
+
+    public long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(long courseId) {
+        this.courseId = courseId;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
 }
