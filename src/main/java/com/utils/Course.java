@@ -7,6 +7,8 @@ public class Course {
   private String courseName;
   private long courseHour;
   private long teachId;
+  private String userName;
+  private String startTime;
   private String coursePlace;
 
 
@@ -45,6 +47,21 @@ public class Course {
     this.teachId = teachId;
   }
 
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+  public String getStartTime() {
+    return startTime;
+  }
+
+  public void setStartTime(String startTime) {
+    this.startTime = startTime;
+  }
 
   public String getCoursePlace() {
     return coursePlace;
