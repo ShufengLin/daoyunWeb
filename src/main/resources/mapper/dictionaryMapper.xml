@@ -6,19 +6,42 @@
         <id property="dicId" column="DicId"/>
         <result property="dicName" column="DicName"/>
         <result property="dicDescription" column="DicDescription"/>
-        <result property="dicCode" column="Code"/>
+        <result property="code" column="Code"/>
     </resultMap>
+    <select id="getDicByPage" resultMap="DictionaryMap" parameterType="DicPage">
+        SELECT DicId,DicName,Code,DicDescription
+        FROM dictionary
+        <if test="dicName!=null">
+            WHERE DicName=#{dicName}
+        </if>
+        ORDER BY DicId DESC
+        limit #{beginPage},#{pageSize}
+    </select>
+    <select id="getDicCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM dictionary
+        <if test="dicName!=null">
+            WHERE DicName=#{dicName}
+        </if>
+    </select>
     <insert id="addDic" parameterType="Dictionary">
-        INSERT INTO dictionary(DicId,DicName,Code,DicDescription) VALUE (#{dicId},#{dicName}, #{dicCode}, #{dicDescription})
+        INSERT INTO dictionary(DicId,DicName,Code,DicDescription) VALUE (#{dicId},#{dicName}, #{code}, #{dicDescription})
     </insert>
 
     <delete id="deleteDicById" parameterType="long">
         DELETE FROM dictionary WHERE DicId=#{dicId}
     </delete>
 
+    <delete id="deleteDicBatchById" parameterType="java.util.List">
+        DELETE FROM dictionary WHERE dicId IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
     <update id="updateDic" parameterType="Dictionary">
         UPDATE dictionary
-        SET DicName = #{dicName},Code = #{dicCode},DicDescription = #{dicDescription}
+        SET DicName = #{dicName},Code = #{code},DicDescription = #{dicDescription}
         WHERE  DicId = #{dicId}
     </update>
 
