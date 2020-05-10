@@ -38,7 +38,7 @@
     </div>
     <div class="row">
         <div class="col-md-4 column">
-            <a class="btn btn-primary" href="<%=appPath%>/testExample1/toAddDic">新增</a>
+            <a class="btn btn-primary" href="<%=appPath%>/Dictionary/toAddDic">新增</a>
         </div>
     </div>
     <div class="row clearfix">
@@ -58,11 +58,11 @@
                     <tr>
                         <td>${dic.dicId}</td>
                         <td>${dic.dicName}</td>
-                        <td>${dic.dicCode}</td>
+                        <td>${dic.code}</td>
                         <td>${dic.dicDescription}</td>
                         <td>
-                            <a href="<%=appPath%>/testExample1/toUpdateDic?id=${dic.dicId}">更改</a> |
-                            <a href="<%=appPath%>/testExample1/del/${dic.dicId}">删除</a>
+                            <a href="<%=appPath%>/Dictionary/toUpdateDic?id=${dic.dicId}">更改</a> |
+                            <a href="<%=appPath%>/Dictionary/del/${dic.dicId}">删除</a>
                         </td>
                     </tr>
                 </c:forEach>

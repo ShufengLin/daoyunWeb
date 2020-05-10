@@ -16,10 +16,10 @@
     <a href="${path }/testExample/test">测试页面</a>
 </h3>
 <h3>
-    <a href="${path }/testExample1/test1">字典测试页面</a>
+    <a href="${path }/Dictionary/test1">字典测试页面</a>
 </h3>
 <h3>
-    <a href="${path }/testExample2/test2">字典明细测试页面</a>
+    <a href="${path }/DictionaryDetail/test2">字典明细测试页面</a>
 </h3>
 </body>
 </html>
