@@ -1,6 +1,8 @@
 package com.dao;
 
 import java.util.List;
+
+import com.utils.PaperPage;
 import org.apache.ibatis.annotations.Param;
 import com.utils.User;
 /**
@@ -9,4 +11,13 @@ import com.utils.User;
 public interface UserDao {
     User checkUser(User loginUser);
 
+    List<User> getTeacherByPage(PaperPage paperPage);
+
+    List<User> getStudentByPage(PaperPage paperPage);
+
+    int getTeacherCount(PaperPage paperPage);
+
+    int getStudentCount(PaperPage paperPage);
+
+    int updateUser(User user);
 }

@@ -33,6 +33,12 @@ public class PaperPageDeserializer extends JsonDeserializer<PaperPage> {
         if (node.get("courseName") != null) {
             paperPage.setCourseName(node.get("courseName").asText());
         }
+        if(node.get("userId")!=null) {
+            paperPage.setUserId((Integer) node.get("userId").numberValue());
+        }
+        if (node.get("userName") != null) {
+            paperPage.setUserName(node.get("userName").asText());
+        }
         return paperPage;
     }
 
