@@ -18,4 +18,58 @@
         FROM user
             WHERE UserName=#{userName} and Password=#{password}
     </select>
+
+    <select id="getTeacherByPage" resultMap="UserMap" parameterType="PaperPage">
+        SELECT u.UserId,UserName,PhoneNumber,Password,School,Academy,Major
+        FROM user as u, user_role as ur
+        <if test="userName == null">
+            WHERE ur.RoleId=2 and u.UserId=ur.UserId
+        </if>
+        <if test="userName!=null">
+            WHERE u.UserName like concat('%',#{userName},'%') and ur.RoleId=2 and u.UserId=ur.UserId
+        </if>
+        ORDER BY UserId ASC
+        limit #{beginPage},#{pageSize}
+    </select>
+
+    <select id="getStudentByPage" resultMap="UserMap" parameterType="PaperPage">
+        SELECT u.UserId,UserName,PhoneNumber,Password,School,Academy,Major
+        FROM user as u, user_role as ur
+        <if test="userName == null">
+            WHERE ur.RoleId=3 and u.UserId=ur.UserId
+        </if>
+        <if test="userName!=null">
+            WHERE u.UserName like concat('%',#{userName},'%') and ur.RoleId=3 and u.UserId=ur.UserId
+        </if>
+        ORDER BY UserId ASC
+        limit #{beginPage},#{pageSize}
+    </select>
+
+    <select id="getTeacherCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM user as u, user_role as ur
+        <if test="userName == null">
+            WHERE ur.RoleId=2 and u.UserId=ur.UserId
+        </if>
+        <if test="userName!=null">
+            WHERE UserName=#{userName} and  ur.RoleId=2 and u.UserId=ur.UserId
+        </if>
+    </select>
+
+    <select id="getStudentCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM user as u, user_role as ur
+        <if test="userName == null">
+            WHERE ur.RoleId=3 and u.UserId=ur.UserId
+        </if>
+        <if test="userName!=null">
+            WHERE UserName=#{userName} and  ur.RoleId=3 and u.UserId=ur.UserId
+        </if>
+    </select>
+
+    <update id="updateUser" parameterType="User">
+        UPDATE user
+        SET UserName = #{userName}, PhoneNumber = #{phoneNumber}, Password = #{password}, School = #{school}, Academy = #{academy}, Major = #{major}
+        where UserId = #{userId}
+    </update>
 </mapper>
