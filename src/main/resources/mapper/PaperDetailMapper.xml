@@ -59,4 +59,10 @@
         WHERE ParentId=#{id}
     </select>
 
+    <select id="getAllPaperDetailRoot" resultMap="paperDetailResultMap" parameterType="long">
+        SELECT Id,PaperId,ItemKey,ItemValue,IsDefault,Code
+        FROM paperdetailtest
+        WHERE ParentId=0 AND PaperId=#{paperId}
+    </select>
+
 </mapper>

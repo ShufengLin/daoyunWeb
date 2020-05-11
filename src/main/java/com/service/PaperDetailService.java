@@ -19,4 +19,6 @@ public interface PaperDetailService {
 
     Map<String,Object> getChildrenPaperDetail(long id);
 
+    Map<String,Object> getAllPaperDetailRoot(long paperId);
+
 }
