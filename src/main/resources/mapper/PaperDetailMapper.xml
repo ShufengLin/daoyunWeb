@@ -16,6 +16,7 @@
         SELECT Id,PaperId,ItemKey,ItemValue,IsDefault,Code
         FROM paperdetailtest
         WHERE PaperId=#{paperId}
+        AND ParentId=0
         ORDER BY Id DESC
         limit #{beginPage},#{pageSize}
     </select>
@@ -24,6 +25,7 @@
         SELECT count(*)
         FROM paperdetailtest
         WHERE PaperId=#{paperId}
+        AND ParentId=0
     </select>
 
     <insert id="addPaperDetail" parameterType="PaperDetail">
@@ -50,5 +52,11 @@
             #{item}
         </foreach>
     </delete>
+
+    <select id="isChildrenDetailExist" resultMap="paperDetailResultMap" parameterType="long">
+        SELECT Id,PaperId,ItemKey,ItemValue,IsDefault,Code
+        FROM paperdetailtest
+        WHERE ParentId=#{id}
+    </select>
 
 </mapper>

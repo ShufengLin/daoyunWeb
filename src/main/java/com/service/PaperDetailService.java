@@ -17,4 +17,6 @@ public interface PaperDetailService {
 
     int deletePaperDetailById(long id);
 
+    Map<String,Object> getChildrenPaperDetail(long id);
+
 }

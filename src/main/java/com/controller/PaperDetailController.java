@@ -61,4 +61,13 @@ public class PaperDetailController {
         return new ServerResponse(0,"删除成功");
     }
 
+    @ResponseBody
+    @PostMapping("/getChildrenPaperDetail/{id}")
+    public Map<String, Object> getChildrenPaperDetail(@PathVariable("id") Long id){
+        Map<String, Object> map= paperDetailService.getChildrenPaperDetail(id);
+        map.put("code",0);
+        map.put("msg","查询子节点成功");
+        return map;
+    }
+
 }

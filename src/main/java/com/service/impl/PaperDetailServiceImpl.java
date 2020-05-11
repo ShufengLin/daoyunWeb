@@ -59,4 +59,12 @@ public class PaperDetailServiceImpl implements PaperDetailService {
         return paperDetailDao.deletePaperDetailById(id);
     }
 
+    @Override
+    public Map<String,Object> getChildrenPaperDetail(long id){
+       List<PaperDetail> paperDetailList = paperDetailDao.isChildrenDetailExist(id);
+       Map<String,Object> map = new HashMap<>();
+       map.put("data",paperDetailList);
+       return map;
+    }
+
 }
