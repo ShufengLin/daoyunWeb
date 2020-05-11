@@ -1,8 +1,11 @@
 package com.utils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.utils.json.PaperDetailDeserializer;
+import com.utils.json.PaperDetailSerializer;
 
+@JsonSerialize(using = PaperDetailSerializer.class)
 @JsonDeserialize(using = PaperDetailDeserializer.class)
 
 public class PaperDetail {
@@ -12,6 +15,7 @@ public class PaperDetail {
     private String itemValue;
     private int isDefault;
     private String code;
+    private long parentId;
 
     public long getId() { return id; }
 
@@ -56,5 +60,9 @@ public class PaperDetail {
     public void setCode(String code) {
         this.code = code;
     }
+
+    public long getParentId() { return parentId; }
+
+    public void setParentId(long parentId) { this.parentId = parentId; }
 
 }
