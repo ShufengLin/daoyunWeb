@@ -20,4 +20,6 @@ public interface UserDao {
     int getStudentCount(PaperPage paperPage);
 
     int updateUser(User user);
+
+    int addUser(User user);
 }

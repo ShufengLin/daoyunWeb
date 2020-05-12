@@ -72,4 +72,8 @@
         SET UserName = #{userName}, PhoneNumber = #{phoneNumber}, Password = #{password}, School = #{school}, Academy = #{academy}, Major = #{major}
         where UserId = #{userId}
     </update>
+
+    <insert id="addUser" parameterType="User">
+        INSERT INTO User(UserName,PhoneNumber,Password,School,Academy,Major) VALUE (#{userName}, #{phoneNumber}, #{password}, #{school}, #{academy},#{major})
+    </insert>
 </mapper>

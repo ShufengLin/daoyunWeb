@@ -16,4 +16,24 @@ public interface UserService {
     int getTeacherCount(PaperPage paperPage);
 
     int getStudentCount(PaperPage paperPage);
+
+    /**
+     * 修改用户包括老师和学生两个角色
+     * @param user
+     * @return
+     */
+    int updateUser(User user);
+    /**
+     * 添加老师
+     * @param user
+     * @return
+     */
+    int addTeacher(User user);
+
+    /**
+     * 添加学生
+     * @param user
+     * @return
+     */
+    int addStudent(User user);
 }

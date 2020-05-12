@@ -1,9 +1,9 @@
 package com.controller;
 
-import com.service.CourseService;
 import com.service.UserService;
 import com.utils.PaperPage;
 import com.utils.ServerResponse;
+import com.utils.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +33,19 @@ public class TeacherController {
     public ServerResponse getTeacherCount(@RequestBody PaperPage paperPage){
         int teacherCount= userService.getTeacherCount(paperPage);
         return new ServerResponse(0, teacherCount,"返回老师数量成功");
+    }
+    @ResponseBody
+    @PostMapping("/updateTeacherJson")
+    public ServerResponse updateTeacherJson(@RequestBody User user) {
+        userService.updateUser(user);
+        return new ServerResponse(0,"修改成功");
+    }
+
+    @ResponseBody
+    @PostMapping("/addTeacherJson")
+    public ServerResponse addTeacherJson(@RequestBody User user) {
+        userService.addTeacher(user);
+        return new ServerResponse(0,"新增成功");
     }
 
 }

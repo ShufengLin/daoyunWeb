@@ -1,10 +1,12 @@
 package com.service.impl;
 
 import com.dao.UserDao;
+import com.dao.UserRoleDao;
 import com.exception.CustomizedException;
 import com.service.UserService;
 import com.utils.PaperPage;
 import com.utils.User;
+import com.utils.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,12 @@ import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     @Autowired
     private UserDao userServiceDao;
+
+    @Autowired
+    private UserRoleDao userRoleDao;
 
     @Override
     public User checkUser (User loginUser){
@@ -92,6 +98,25 @@ public class UserServiceImpl implements UserService {
             paperPage.setUserName(null);
         }
         return userServiceDao.getStudentCount(paperPage);
+    }
+
+    @Override
+    public int updateUser(User user) {
+        return userServiceDao.updateUser(user);
+    }
+
+    @Override
+    public int addTeacher(User user){
+        userServiceDao.addUser(user);
+        userRoleDao.addTeacherRole();
+        return 0;
+    }
+
+    @Override
+    public int addStudent(User user){
+        userServiceDao.addUser(user);
+        userRoleDao.addStudentRole();
+        return 0;
     }
 
 }
