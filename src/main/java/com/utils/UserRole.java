@@ -5,7 +5,9 @@ public class UserRole {
 
   private long id;
   private long userId;
+  private String userName;
   private long roleId;
+  private String RoleName;
 
 
   public long getId() {
@@ -32,6 +34,22 @@ public class UserRole {
 
   public void setRoleId(long roleId) {
     this.roleId = roleId;
+  }
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+  public String getRoleName() {
+    return RoleName;
+  }
+
+  public void setRoleName(String roleName) {
+    RoleName = roleName;
   }
 
 }
