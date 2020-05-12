@@ -5,8 +5,37 @@
     <resultMap type="com.utils.UserRole" id="UserRoleMap">
         <result property="id" column="Id"/>
         <result property="userId" column="UserId"/>
+        <result property="userName" column="UserName"/>
         <result property="roleId" column="RoleId"/>
+        <result property="RoleName" column="RoleName"/>
     </resultMap>
+
+    <select id="getUserRoleByPage" resultMap="UserRoleMap" parameterType="PaperPage">
+        SELECT ur.Id, ur.UserId, u.UserName, ur.RoleId, r.RoleName
+        from user as u, user_role as ur, role as r
+        <if test="userName == null">
+            where ur.UserId=u.UserId and ur.RoleId=r.RoleId
+        </if>
+        <if test="userName!=null">
+            where ur.UserId=u.UserId and ur.RoleId=r.RoleId and u.UserName like concat('%',#{userName},'%')
+        </if>
+        ORDER BY Id ASC
+        limit #{beginPage},#{pageSize}
+    </select>
+
+    <select id="getUserRoleCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM user
+        <if test="userName!=null">
+            WHERE UserName=#{userName}
+        </if>
+    </select>
+
+    <update id="updateUserRole" parameterType="UserRole">
+        UPDATE user_role
+        SET  RoleId = (select roleId from role where RoleName = #{roleName})
+        WHERE  Id = #{id}
+    </update>
 
     <insert id="addTeacherRole">
         INSERT INTO user_role(UserId,RoleId) VALUE ((SELECT MAX(UserId) from user), 2)
