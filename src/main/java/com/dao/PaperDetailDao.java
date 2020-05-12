@@ -22,4 +22,6 @@ public interface PaperDetailDao {
     int deletePaperDetailBatchByPaperId(List<Long> paperIdList);
 
     List<PaperDetail> isChildrenDetailExist(long id);
+
+    List<PaperDetail> getAllPaperDetailRoot(long paperId);
 }

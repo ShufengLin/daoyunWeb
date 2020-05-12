@@ -70,4 +70,13 @@ public class PaperDetailController {
         return map;
     }
 
+    @ResponseBody
+    @PostMapping("/getAllPaperDetailRoot/{paperId}")
+    public Map<String, Object> getAllPaperDetailRoot(@PathVariable("paperId") Long paperId) {
+        Map<String, Object> map= paperDetailService.getAllPaperDetailRoot(paperId);
+        map.put("code",0);
+        map.put("msg","查询所有根节点成功");
+        return map;
+    }
+
 }

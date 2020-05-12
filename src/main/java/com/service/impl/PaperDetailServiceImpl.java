@@ -67,4 +67,12 @@ public class PaperDetailServiceImpl implements PaperDetailService {
        return map;
     }
 
+    @Override
+    public Map<String,Object> getAllPaperDetailRoot(long paperId){
+        List<PaperDetail> paperDetailList = paperDetailDao.getAllPaperDetailRoot(paperId);
+        Map<String,Object> map = new HashMap<>();
+        map.put("data",paperDetailList);
+        return map;
+    }
+
 }
