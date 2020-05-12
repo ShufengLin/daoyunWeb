@@ -8,4 +8,12 @@
         <result property="roleId" column="RoleId"/>
     </resultMap>
 
+    <insert id="addTeacherRole">
+        INSERT INTO user_role(UserId,RoleId) VALUE ((SELECT MAX(UserId) from user), 2)
+    </insert>
+
+    <insert id="addStudentRole">
+        INSERT INTO user_role(UserId,RoleId) VALUE ((SELECT MAX(UserId) from user), 3)
+    </insert>
+
 </mapper>
