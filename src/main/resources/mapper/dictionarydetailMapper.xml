@@ -67,7 +67,7 @@
     <select id="isChildrenDetailExist" resultMap="DictionaryDetailMap" parameterType="long">
         SELECT Id,DicId,ItemKey,ItemValue,IsDefault,Code
         FROM dictionarydetail
-        WHERE DicId=#{id}
+        WHERE ParentId=#{id}
     </select>
 
     <select id="getAllDicDetailRoot" resultMap="DictionaryDetailMap" parameterType="long">

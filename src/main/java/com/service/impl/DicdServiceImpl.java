@@ -74,9 +74,9 @@ public class DicdServiceImpl implements DicdService {
 
     @Override
     public Map<String,Object> getChildrenDicDetail(long id){
-        List<DictionaryDetail> paperDetailList = dicdDao.isChildrenDetailExist(id);
+        List<DictionaryDetail> dictionaryDetailList = dicdDao.isChildrenDetailExist(id);
         Map<String,Object> map = new HashMap<>();
-        map.put("data",paperDetailList);
+        map.put("data",dictionaryDetailList);
         return map;
     }
 
