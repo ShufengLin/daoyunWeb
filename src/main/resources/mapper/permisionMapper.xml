@@ -10,4 +10,16 @@
         <result property="parentId" column="ParentId"/>
     </resultMap>
 
+    <select id="getAllPermission" resultMap="permisionMap">
+        SELECT PermissionId,PermissionName
+        FROM  permision
+    </select>
+
+    <select id="getOwnPermissionByRoleId" resultMap="permisionMap" parameterType="Role">
+        SELECT p.PermissionName
+        FROM  permision as p, roledescription as r
+        where  r.RoleId= #{roleId} and p.PermissionId = r.RightId
+    </select>
+
+
 </mapper>

@@ -12,5 +12,7 @@ public interface UserRoleService {
 
     Map<String, Object> getAllRole();
 
-    public int updateUserRole(UserRole userRole);
+    int updateUserRole(UserRole userRole);
+
+    int addUserRole(UserRole userRole);
 }

@@ -42,4 +42,10 @@ public interface UserRoleDao {
      * @return
      */
     int addStudentRole();
+
+    /**
+     * 給账号添加用户角色
+     * @return
+     */
+    int addUserRole(UserRole userRole);
 }

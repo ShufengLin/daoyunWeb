@@ -15,4 +15,31 @@
         SELECT RoleId, RoleName
         FROM  role
     </select>
+
+    <select id="getRoleByPage" resultMap="roleMap" parameterType="PaperPage">
+        SELECT *
+        FROM role
+        <if test="roleName!=null">
+            WHERE Rolename like concat('%',#{roleName},'%')
+        </if>
+        ORDER BY RoleId ASC
+        limit #{beginPage},#{pageSize}
+    </select>
+
+    <select id="getRoleCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM role
+        <if test="roleName!=null">
+            WHERE RoleName=#{roleName}
+        </if>
+    </select>
+
+    <select id="getMaxRoleId" resultType="java.lang.Integer">
+        SELECT max(roleid)
+        FROM role
+    </select>
+
+    <insert id="addRole" parameterType="Role">
+        INSERT INTO role(RoleName, RoleDescription) VALUE (#{roleName}, #{roleDescription})
+    </insert>
 </mapper>
