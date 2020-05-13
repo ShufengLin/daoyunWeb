@@ -4,8 +4,12 @@
 <mapper namespace="com.dao.RoleDescriptionDao">
     <resultMap type="com.utils.Roledescription" id="roledescriptionMap">
         <result property="rolePermisionId" column="RolePermisionId"/>
-        <result property="rleId" column="RoleId"/>
+        <result property="roleId" column="RoleId"/>
         <result property="rightId" column="RightId"/>
     </resultMap>
+
+    <insert id="addRoleDescription" parameterType="Roledescription">
+        INSERT INTO roledescription(RoleId,RightId) VALUE (#{roleId}, #{rightId})
+    </insert>
 
 </mapper>

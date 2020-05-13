@@ -1,11 +1,13 @@
 package com.service.impl;
 
 import com.dao.RoleDao;
+import com.dao.UserDao;
 import com.dao.UserRoleDao;
 import com.exception.CustomizedException;
 import com.service.UserRoleService;
 import com.utils.PaperPage;
 import com.utils.Role;
+import com.utils.User;
 import com.utils.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,9 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Autowired
     private RoleDao roleDao;
+
+    @Autowired
+    private UserDao userDao;
 
     @Override
     public Map<String, Object> getUserRoleByPage(PaperPage paperPage) {
@@ -62,5 +67,14 @@ public class UserRoleServiceImpl implements UserRoleService {
     @Override
     public int updateUserRole(UserRole userRole) {
         return userRoleDao.updateUserRole(userRole);
+    }
+
+    @Override
+    public int addUserRole(UserRole userRole) {
+        User user = new User();
+        user.setUserName(userRole.getUserName());
+        userDao.addUser(user);
+        userRoleDao.addUserRole(userRole);
+        return 0;
     }
 }

@@ -1,6 +1,8 @@
 package com.utils;
 
 
+import java.util.List;
+
 public class Role {
 
   private long roleId;
@@ -9,6 +11,7 @@ public class Role {
   private long isLock;
   private String creator;
   private java.sql.Timestamp creationDate;
+  private List<String> permissionList;
 
 
   public long getRoleId() {
@@ -62,6 +65,14 @@ public class Role {
 
   public void setCreationDate(java.sql.Timestamp creationDate) {
     this.creationDate = creationDate;
+  }
+
+  public List<String> getPermissionList() {
+    return permissionList;
+  }
+
+  public void setPermissionList(List<String> permissionList) {
+    this.permissionList = permissionList;
   }
 
 }

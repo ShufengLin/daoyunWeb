@@ -45,4 +45,8 @@
         INSERT INTO user_role(UserId,RoleId) VALUE ((SELECT MAX(UserId) from user), 3)
     </insert>
 
+    <insert id="addUserRole" parameterType="UserRole">
+        INSERT INTO user_role(UserId,RoleId) VALUE ((SELECT MAX(UserId) from user), (select roleId from role where RoleName = #{roleName}))
+    </insert>
+
 </mapper>

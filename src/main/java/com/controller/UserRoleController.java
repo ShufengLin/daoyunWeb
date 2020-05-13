@@ -50,4 +50,11 @@ public class UserRoleController {
         userRoleService.updateUserRole(userRole);
         return new ServerResponse(0,"修改成功");
     }
+
+    @ResponseBody
+    @PostMapping("/addUserRoleJson")
+    public ServerResponse addCourseJson(@RequestBody UserRole userRole) {
+        userRoleService.addUserRole(userRole);
+        return new ServerResponse(0,"新增成功");
+    }
 }

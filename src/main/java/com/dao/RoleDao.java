@@ -10,4 +10,12 @@ import java.util.List;
 */
 public interface RoleDao {
     List<Role> getAllRole();
+
+    List<Role> getRoleByPage(PaperPage paperPage);
+
+    int getRoleCount(PaperPage paperPage);
+
+    int addRole(Role role);
+
+    int getMaxRoleId();
 }
