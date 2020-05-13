@@ -21,4 +21,9 @@ public interface DicdService {
     DictionaryDetail queryById(long id);
 
     List<DictionaryDetail> queryAllDicd();
+
+    Map<String,Object> getChildrenDicDetail(long id);
+
+    Map<String,Object> getAllDicDetailRoot(long dicId);
+
 }
