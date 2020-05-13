@@ -16,6 +16,7 @@
         SELECT Id,DicId,ItemKey,ItemValue,IsDefault,Code
         FROM dictionarydetail
         WHERE DicId=#{dicId}
+        AND ParentId=0
         ORDER BY Id DESC
         limit #{beginPage},#{pageSize}
     </select>
@@ -24,7 +25,9 @@
         SELECT count(*)
         FROM dictionarydetail
         WHERE DicId=#{dicId}
+        AND ParentId=0
     </select>
+
 
     <insert id="addDicd" parameterType="DictionaryDetail">
         INSERT INTO dictionarydetail(Id,DicId,ItemKey,ItemValue,IsDefault,Code) VALUE (#{id},#{dicId},#{itemKey}, #{itemValue}, #{isDefault},#{code})
@@ -60,5 +63,18 @@
         SELECT Id,DicId,ItemKey,ItemValue,IsDefault,Code
         FROM dictionarydetail
     </select>
+
+    <select id="isChildrenDetailExist" resultMap="DictionaryDetailMap" parameterType="long">
+        SELECT Id,DicId,ItemKey,ItemValue,IsDefault,Code
+        FROM dictionarydetail
+        WHERE ParentId=#{id}
+    </select>
+
+    <select id="getAllDicDetailRoot" resultMap="DictionaryDetailMap" parameterType="long">
+        SELECT Id,DicId,ItemKey,ItemValue,IsDefault,Code
+        FROM dictionarydetail
+        WHERE ParentId=0 AND DicId=#{dicId}
+    </select>
+
 
 </mapper>

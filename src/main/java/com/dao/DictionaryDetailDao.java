@@ -2,6 +2,7 @@ package com.dao;
 
 import com.utils.DicPage;
 import com.utils.DictionaryDetail;
+import com.utils.PaperDetail;
 
 
 import java.util.List;
@@ -27,4 +28,8 @@ public interface DictionaryDetailDao {
     DictionaryDetail queryById(long id);
 
     List<DictionaryDetail> queryAllDicd();
+
+    List<DictionaryDetail> isChildrenDetailExist(long id);
+
+    List<DictionaryDetail> getAllDicDetailRoot(long dicId);
 }

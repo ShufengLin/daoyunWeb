@@ -96,6 +96,25 @@ public class DicdController {
         return "redirect:/DictionaryDetail/allDicd";
     }
 
+    @ResponseBody
+    @PostMapping("/getChildrenDicDetail/{id}")
+    public Map<String, Object> getChildrenDicDetail(@PathVariable("id") Long id){
+        Map<String, Object> map= dicdService.getChildrenDicDetail(id);
+        map.put("code",0);
+        map.put("msg","查询子节点成功");
+        return map;
+    }
+
+    @ResponseBody
+    @PostMapping("/getAllDicDetailRoot/{dicId}")
+    public Map<String, Object> getAllDicDetailRoot(@PathVariable("dicId") Long dicId) {
+        Map<String, Object> map= dicdService.getAllDicDetailRoot(dicId);
+        map.put("code",0);
+        map.put("msg","查询所有根节点成功");
+        return map;
+    }
+
+
     @RequestMapping("/test2")
     public String test2(){
         return "test/test2";

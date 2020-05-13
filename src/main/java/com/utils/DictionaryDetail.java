@@ -1,8 +1,12 @@
 package com.utils;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.utils.json.DictionaryDetailDeserializer;
+import com.utils.json.DictionaryDetailSerializer;
+import com.utils.json.PaperDetailSerializer;
 
+@JsonSerialize(using = DictionaryDetailSerializer.class)
 @JsonDeserialize(using = DictionaryDetailDeserializer.class)
 public class DictionaryDetail {
 
@@ -12,6 +16,7 @@ public class DictionaryDetail {
   private String itemValue;
   private long isDefault;
   private String code;
+  private long parentId;
 
 
   public long getId() {
@@ -67,4 +72,11 @@ public class DictionaryDetail {
     this.code = code;
   }
 
+  public long getParentId() {
+    return parentId;
+  }
+
+  public void setParentId(long parentId) {
+    this.parentId = parentId;
+  }
 }

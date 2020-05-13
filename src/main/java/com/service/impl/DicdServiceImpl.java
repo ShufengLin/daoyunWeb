@@ -72,4 +72,20 @@ public class DicdServiceImpl implements DicdService {
         return dicdDao.queryAllDicd();
     }
 
+    @Override
+    public Map<String,Object> getChildrenDicDetail(long id){
+        List<DictionaryDetail> dictionaryDetailList = dicdDao.isChildrenDetailExist(id);
+        Map<String,Object> map = new HashMap<>();
+        map.put("data",dictionaryDetailList);
+        return map;
+    }
+
+    @Override
+    public Map<String,Object> getAllDicDetailRoot(long dicId){
+        List<DictionaryDetail> dictionaryDetailList = dicdDao.getAllDicDetailRoot(dicId);
+        Map<String,Object> map = new HashMap<>();
+        map.put("data",dictionaryDetailList);
+        return map;
+    }
+
 }
