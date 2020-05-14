@@ -33,6 +33,12 @@ public class PaperDetailDeserializer extends JsonDeserializer<PaperDetail> {
         if (node.get("code") != null) {
             detail.setCode(node.get("code").asText());
         }
+        if (node.get("parentId")!=null) {
+            detail.setParentId((Integer) node.get("parentId").numberValue());
+        }
+        else{
+            detail.setParentId(0);
+        }
         return detail;
     }
 }
