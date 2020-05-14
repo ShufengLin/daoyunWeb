@@ -13,7 +13,7 @@
     </resultMap>
 
     <select id="getPaperDetailByPage" resultMap="paperDetailResultMap" parameterType="PaperPage">
-        SELECT Id,PaperId,ItemKey,ItemValue,IsDefault,Code
+        SELECT Id,PaperId,ItemKey,ItemValue,IsDefault,Code,ParentId
         FROM paperdetailtest
         WHERE PaperId=#{paperId}
         AND ParentId=0
@@ -54,13 +54,13 @@
     </delete>
 
     <select id="isChildrenDetailExist" resultMap="paperDetailResultMap" parameterType="long">
-        SELECT Id,PaperId,ItemKey,ItemValue,IsDefault,Code
+        SELECT Id,PaperId,ItemKey,ItemValue,IsDefault,Code,ParentId
         FROM paperdetailtest
         WHERE ParentId=#{id}
     </select>
 
     <select id="getAllPaperDetailRoot" resultMap="paperDetailResultMap" parameterType="long">
-        SELECT Id,PaperId,ItemKey,ItemValue,IsDefault,Code
+        SELECT Id,PaperId,ItemKey,ItemValue,IsDefault,Code,ParentId
         FROM paperdetailtest
         WHERE ParentId=0 AND PaperId=#{paperId}
     </select>
