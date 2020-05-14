@@ -15,7 +15,7 @@
         FROM  permision
     </select>
 
-    <select id="getOwnPermissionByRoleId" resultMap="permisionMap" parameterType="Role">
+    <select id="getOwnPermissionByRoleId" resultType="java.lang.String" parameterType="Role">
         SELECT p.PermissionName
         FROM  permision as p, roledescription as r
         where  r.RoleId= #{roleId} and p.PermissionId = r.RightId

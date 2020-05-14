@@ -12,5 +12,5 @@ public interface PermisionDao {
 
     List<Permision> getAllPermission();
 
-    List<Permision> getOwnPermissionByRoleId(Role role);
+    List<String> getOwnPermissionByRoleId(Role role);
 }
