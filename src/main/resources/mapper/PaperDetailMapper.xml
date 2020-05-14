@@ -29,7 +29,7 @@
     </select>
 
     <insert id="addPaperDetail" parameterType="PaperDetail">
-        INSERT INTO paperdetailtest(Id,PaperId,ItemKey,ItemValue,IsDefault,Code) VALUE (#{id},#{paperId}, #{itemKey}, #{itemValue},#{isDefault},#{code})
+        INSERT INTO paperdetailtest(Id,PaperId,ItemKey,ItemValue,IsDefault,Code,ParentId) VALUE (#{id},#{paperId}, #{itemKey}, #{itemValue},#{isDefault},#{code},#{parentId})
     </insert>
 
     <update id="updateDetailPaper" parameterType="PaperDetail">

@@ -23,6 +23,7 @@ public class PaperDetailSerializer extends JsonSerializer<PaperDetail> {
         jsonGenerator.writeStringField("itemValue",paperDetail.getItemValue());
         jsonGenerator.writeNumberField("isDefault",paperDetail.getIsDefault());
         jsonGenerator.writeStringField("code",paperDetail.getCode());
+        jsonGenerator.writeNumberField("parentId",paperDetail.getParentId());
         List<PaperDetail> paperDetailChildrenList = paperDetailDao.isChildrenDetailExist(paperDetail.getId());
         if(paperDetailChildrenList.size() != 0){
             jsonGenerator.writeBooleanField("hasChildren",true);
