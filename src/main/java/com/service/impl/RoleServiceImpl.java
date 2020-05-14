@@ -93,7 +93,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Map<String, Object> getOwnPermissionByRoleId(Role role){
-        List<Permision> permissionList = permisionDao.getOwnPermissionByRoleId(role);
+        List<String> permissionList = permisionDao.getOwnPermissionByRoleId(role);
         Map<String, Object> map = new HashMap<>();
         map.put("data", permissionList);
         return map;
