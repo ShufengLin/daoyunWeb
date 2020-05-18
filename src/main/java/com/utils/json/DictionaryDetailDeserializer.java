@@ -33,6 +33,12 @@ public class DictionaryDetailDeserializer extends JsonDeserializer<DictionaryDet
         if (node.get("code") != null) {
             detail.setCode(node.get("code").asText());
         }
+        if (node.get("parentId")!=null){
+            detail.setParentId((Integer) node.get("parentId").numberValue());
+        }
+        else {
+            detail.setParentId(0);
+        }
         return detail;
     }
 }
