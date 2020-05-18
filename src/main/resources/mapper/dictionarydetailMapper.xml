@@ -37,6 +37,13 @@
         DELETE FROM dictionarydetail WHERE Id=#{id}
     </delete>
 
+    <delete id="deleteDicdBatchById" parameterType="java.util.List">
+        DELETE FROM dictionarydetail WHERE Id IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
     <delete id="deleteDicdByDicId" parameterType="long">
         DELETE FROM dictionarydetail WHERE DicId=#{dicId}
     </delete>
@@ -62,6 +69,12 @@
     <select id="queryAllDicd" resultMap="DictionaryDetailMap">
         SELECT Id,DicId,ItemKey,ItemValue,IsDefault,Code
         FROM dictionarydetail
+    </select>
+
+    <select id="getIds" resultMap="DictionaryDetailMap">
+        SELECT Id,DicId,ItemKey,ItemValue,IsDefault,Code
+        FROM dictionarydetail
+        WHERE ParentId=#{id}
     </select>
 
     <select id="isChildrenDetailExist" resultMap="DictionaryDetailMap" parameterType="long">
