@@ -57,7 +57,7 @@
 
     <update id="updateDicd" parameterType="DictionaryDetail">
         UPDATE dictionarydetail
-        SET ItemKey = #{itemKey},ItemValue = #{itemValue},IsDefault = #{isDefault},Code = #{code}
+        SET ItemKey = #{itemKey},ItemValue = #{itemValue},IsDefault = #{isDefault},Code = #{code},ParentId = #{parentId}
         WHERE  Id = #{id}
     </update>
 
