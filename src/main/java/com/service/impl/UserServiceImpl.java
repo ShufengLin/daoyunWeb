@@ -43,6 +43,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void checkUserOldPassword (User loginUser){
+        if(loginUser.getUserName() == null || loginUser.getUserName().equals(""))
+        {
+            throw new CustomizedException("用户名信息不完整");
+        }
+        if(loginUser.getPassword() == null || loginUser.getPassword().equals(""))
+        {
+            throw new CustomizedException("旧密码不能为空");
+        }
+        if(loginUser.getNewPassword() == null || loginUser.getNewPassword().equals("")){
+            throw new CustomizedException("新密码不能为空");
+        }
+        User userDetail = userServiceDao.checkUser(loginUser);
+        if(userDetail == null)
+        {
+            throw new CustomizedException("输入的旧密码错误");
+        }
+        userServiceDao.updateUserPassword(loginUser);
+    }
+
+    @Override
      public Map<String, Object> getTeacherByPage(PaperPage paperPage){
         if(paperPage.getUserName().equals("")) {
             paperPage.setUserName(null);
