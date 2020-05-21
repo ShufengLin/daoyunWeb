@@ -13,7 +13,7 @@
     </resultMap>
 
     <select id="getDicdByPage" resultMap="DictionaryDetailMap" parameterType="DicPage">
-        SELECT Id,DicId,ItemKey,ItemValue,IsDefault,Code
+        SELECT Id,DicId,ItemKey,ItemValue,IsDefault,Code,ParentId
         FROM dictionarydetail
         WHERE DicId=#{dicId}
         AND ParentId=0
@@ -30,11 +30,18 @@
 
 
     <insert id="addDicd" parameterType="DictionaryDetail">
-        INSERT INTO dictionarydetail(Id,DicId,ItemKey,ItemValue,IsDefault,Code) VALUE (#{id},#{dicId},#{itemKey}, #{itemValue}, #{isDefault},#{code})
+        INSERT INTO dictionarydetail(Id,DicId,ItemKey,ItemValue,IsDefault,Code,ParentId) VALUE (#{id},#{dicId},#{itemKey}, #{itemValue}, #{isDefault},#{code},#{parentId})
     </insert>
 
     <delete id="deleteDicdById" parameterType="long">
         DELETE FROM dictionarydetail WHERE Id=#{id}
+    </delete>
+
+    <delete id="deleteDicdBatchById" parameterType="java.util.List">
+        DELETE FROM dictionarydetail WHERE Id IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
     </delete>
 
     <delete id="deleteDicdByDicId" parameterType="long">
@@ -50,7 +57,7 @@
 
     <update id="updateDicd" parameterType="DictionaryDetail">
         UPDATE dictionarydetail
-        SET ItemKey = #{itemKey},ItemValue = #{itemValue},IsDefault = #{isDefault},Code = #{code}
+        SET ItemKey = #{itemKey},ItemValue = #{itemValue},IsDefault = #{isDefault},Code = #{code},ParentId = #{parentId}
         WHERE  Id = #{id}
     </update>
 
@@ -64,14 +71,20 @@
         FROM dictionarydetail
     </select>
 
-    <select id="isChildrenDetailExist" resultMap="DictionaryDetailMap" parameterType="long">
+    <select id="getIds" resultMap="DictionaryDetailMap">
         SELECT Id,DicId,ItemKey,ItemValue,IsDefault,Code
         FROM dictionarydetail
         WHERE ParentId=#{id}
     </select>
 
+    <select id="isChildrenDetailExist" resultMap="DictionaryDetailMap" parameterType="long">
+        SELECT Id,DicId,ItemKey,ItemValue,IsDefault,Code,ParentId
+        FROM dictionarydetail
+        WHERE ParentId=#{id}
+    </select>
+
     <select id="getAllDicDetailRoot" resultMap="DictionaryDetailMap" parameterType="long">
-        SELECT Id,DicId,ItemKey,ItemValue,IsDefault,Code
+        SELECT Id,DicId,ItemKey,ItemValue,IsDefault,Code,ParentId
         FROM dictionarydetail
         WHERE ParentId=0 AND DicId=#{dicId}
     </select>

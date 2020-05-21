@@ -11,6 +11,8 @@ import com.utils.User;
 public interface UserDao {
     User checkUser(User loginUser);
 
+    void updateUserPassword(User loginUser);
+
     List<User> getTeacherByPage(PaperPage paperPage);
 
     List<User> getStudentByPage(PaperPage paperPage);

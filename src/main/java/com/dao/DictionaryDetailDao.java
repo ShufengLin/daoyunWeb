@@ -23,6 +23,8 @@ public interface DictionaryDetailDao {
 
     int deleteDicdBatchByDicId(List<Long> dicIdList);
 
+    int deleteDicdBatchById(List<Long> IdList);
+
     int updateDicd(DictionaryDetail dicd);
 
     DictionaryDetail queryById(long id);
@@ -32,4 +34,6 @@ public interface DictionaryDetailDao {
     List<DictionaryDetail> isChildrenDetailExist(long id);
 
     List<DictionaryDetail> getAllDicDetailRoot(long dicId);
+
+    List<DictionaryDetail> getIds(long id);
 }

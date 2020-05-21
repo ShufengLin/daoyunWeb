@@ -37,4 +37,13 @@ public class LoginController {
         }
         return new ServerResponse(0, userDetail, token,"登录成功");
     }
+
+    @ResponseBody
+    @PostMapping("/changePassword")
+    public ServerResponse changePassword(@RequestBody User loginUser)
+    {
+        userService.checkUserOldPassword(loginUser);
+        return new ServerResponse(0, "修改密码成功");
+    }
+
 }

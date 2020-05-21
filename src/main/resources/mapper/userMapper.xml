@@ -19,6 +19,12 @@
             WHERE UserName=#{userName} and Password=#{password}
     </select>
 
+    <update id="updateUserPassword" parameterType="User">
+        UPDATE user
+        SET Password = #{newPassword}
+        where UserName=#{userName}
+    </update>
+
     <select id="getTeacherByPage" resultMap="UserMap" parameterType="PaperPage">
         SELECT u.UserId,UserName,PhoneNumber,Password,School,Academy,Major
         FROM user as u, user_role as ur

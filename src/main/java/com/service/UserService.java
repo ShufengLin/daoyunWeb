@@ -9,6 +9,12 @@ import java.util.Map;
 public interface UserService {
     User checkUser(User loginUser);
 
+    /**
+     * 检测修改密码参数合法性并且修改密码
+     * @param loginUser
+     */
+    void checkUserOldPassword(User loginUser);
+
     Map<String, Object> getTeacherByPage(PaperPage paperPage);
 
     Map<String, Object> getStudentByPage(PaperPage paperPage);

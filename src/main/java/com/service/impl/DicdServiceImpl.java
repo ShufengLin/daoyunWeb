@@ -9,6 +9,7 @@ import com.utils.PaperDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +55,26 @@ public class DicdServiceImpl implements DicdService {
 
     @Override
     public int deleteDicdById(long id) {
-        return dicdDao.deleteDicdById(id);
+
+        ArrayList<Long> ids = new ArrayList<>();
+        ids.add(id);
+        this.getIds(ids,id);
+        return dicdDao.deleteDicdBatchById(ids);
+    }
+
+    //递归方法
+    private void getIds(ArrayList<Long> ids, long id) {
+        //查询二级分类的对象
+
+        List<DictionaryDetail> Subjects=dicdDao.getIds(id);
+
+        //遍历二级分类的对象，把二级分类的id加入到要删除的集合中
+        for (DictionaryDetail Subject : Subjects) {
+            long id1 = Subject.getId();
+            ids.add(id1);
+            //把二级分类的每一个ID，查询它下面的子节点
+            this.getIds(ids,id1);
+        }
     }
 
     @Override

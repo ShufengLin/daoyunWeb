@@ -30,6 +30,8 @@ public class User implements Serializable {
 
     private String major;
 
+    private String newPassword; //用于修改密码
+
 
     public void setUserId(long userId){this.userId = userId;}
 
@@ -62,5 +64,9 @@ public class User implements Serializable {
     public void setMajor(String major){this.major = major;}
 
     public String getMajor(){return this.major;}
+
+    public void setNewPassword(String newPassword){this.newPassword = newPassword;}
+
+    public String getNewPassword(){return this.newPassword;}
    
 }

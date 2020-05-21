@@ -23,6 +23,7 @@ public class DictionaryDetailSerializer extends JsonSerializer<DictionaryDetail>
         jsonGenerator.writeStringField("itemValue",dictionaryDetail.getItemValue());
         jsonGenerator.writeNumberField("isDefault",dictionaryDetail.getIsDefault());
         jsonGenerator.writeStringField("code",dictionaryDetail.getCode());
+        jsonGenerator.writeNumberField("parentId",dictionaryDetail.getParentId());
         List<DictionaryDetail> paperDetailChildrenList = dictionaryDetailDao.isChildrenDetailExist(dictionaryDetail.getId());
         if(paperDetailChildrenList.size() != 0){
             jsonGenerator.writeBooleanField("hasChildren",true);
