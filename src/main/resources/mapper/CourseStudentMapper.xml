@@ -2,10 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.CourseStudentDao">
-    <resultMap type="com.utils.CourseStudent" id="CourseStudentMap">
+    <resultMap type="com.utils.CourseStudent" id="courseStudentMap">
         <result property="id" column="Id"/>
         <result property="courseId" column="CourseId"/>
         <result property="studentId" column="StudentId"/>
-        <result property="studentEXP" column="StudentEXP"/>
+        <result property="studentName" column="UserName"/>
+        <result property="studentExp" column="StudentEXP"/>
     </resultMap>
+    <select id="getCourseStudentByPage" resultMap="courseStudentMap" parameterType="PaperPage">
+        SELECT cs.StudentId, u.UserName, cs.StudentEXP
+        FROM course_student as cs, user as u
+        <if test="userName == null">
+            WHERE cs.StudentId=u.UserId and CourseId=#{courseId}
+        </if>
+        <if test="userName!=null">
+            WHERE u.UserName like concat('%',#{userName},'%') and cs.StudentId=u.UserId and CourseId=#{courseId}
+        </if>
+        ORDER BY StudentEXP ASC
+        limit #{beginPage},#{pageSize}
+    </select>
+
+    <select id="getCourseStudentCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM course_student as cs, user as u
+        <if test="userName == null">
+            WHERE cs.StudentId=u.UserId and CourseId=#{courseId}
+        </if>
+        <if test="userName!=null">
+            WHERE u.UserName like concat('%',#{userName},'%') and cs.StudentId=u.UserId and CourseId=#{courseId}
+        </if>
+    </select>
 </mapper>
