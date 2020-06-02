@@ -30,7 +30,7 @@ public class LoginController {
         User userDetail = userService.checkUser(loginUser);
         try{
             token = JWTUtils.createToken(userDetail);
-            JedisUtils.setToken(String.valueOf(userDetail.getUserId()),token,7);
+            JedisUtils.setToken(String.valueOf(userDetail.getUserId()),token,30);
         }
         catch(Exception e){
             throw new CustomizedException("生成令牌失败");
