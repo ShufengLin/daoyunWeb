@@ -6,6 +6,7 @@ public class CourseStudent {
   private long id;
   private long courseId;
   private long studentId;
+  private String studentName;
   private long studentExp;
 
 
@@ -42,6 +43,14 @@ public class CourseStudent {
 
   public void setStudentExp(long studentExp) {
     this.studentExp = studentExp;
+  }
+
+  public String getStudentName() {
+    return studentName;
+  }
+
+  public void setStudentName(String studentName) {
+    this.studentName = studentName;
   }
 
 }
