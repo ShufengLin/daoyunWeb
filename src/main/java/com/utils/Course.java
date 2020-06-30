@@ -1,6 +1,8 @@
 package com.utils;
 
 
+import java.util.Date;
+
 public class Course {
 
   private long courseId;
@@ -8,7 +10,7 @@ public class Course {
   private long courseHour;
   private long teachId;
   private String userName;
-  private String startTime;
+  private Date startTime;
   private String coursePlace;
 
 
@@ -55,11 +57,11 @@ public class Course {
     this.userName = userName;
   }
 
-  public String getStartTime() {
+  public Date getStartTime() {
     return startTime;
   }
 
-  public void setStartTime(String startTime) {
+  public void setStartTime(Date startTime) {
     this.startTime = startTime;
   }
 
