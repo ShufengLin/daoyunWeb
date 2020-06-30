@@ -75,4 +75,12 @@
         SELECT CourseId,CourseName,CourseHour,TeachId,CoursePlace
         FROM course
     </select>
+
+    <select id="getOwnCourseByPage" resultMap="courseResultMap" parameterType="PaperPage">
+        SELECT CourseId,CourseName,CourseHour,TeachId,startTime,CoursePlace
+        FROM course
+            WHERE TeachId=#{userId}
+        ORDER BY CourseId ASC
+        limit #{beginPage},#{pageSize}
+    </select>
 </mapper>
