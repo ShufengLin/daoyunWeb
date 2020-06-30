@@ -48,4 +48,14 @@ public class CourseController {
         courseService.addCourse(course);
         return new ServerResponse(0,"新增成功");
     }
+
+    @ResponseBody
+    @PostMapping("/getOwnCourseByPage")
+    public Map<String, Object> getOwnCourseByPage(@RequestBody PaperPage paperPage){
+        Map<String, Object> map= courseService.getOwnCourseByPage(paperPage);
+        map.put("code",0);
+        map.put("msg","分页查询成功");
+        return map;
+    }
+
 }
