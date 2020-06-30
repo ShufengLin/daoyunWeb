@@ -10,9 +10,12 @@
         <result property="startTime" column="StartTime"/>
         <result property="userName" column="UserName"/>
         <result property="coursePlace" column="CoursePlace"/>
+        <result property="defaultDistance" column="DefaultDistance"/>
+        <result property="isSign" column="IsSign"/>
+        <result property="defaultExp" column="DefaultExp"/>
     </resultMap>
     <select id="getCourseByPage" resultMap="courseResultMap" parameterType="PaperPage">
-        SELECT c.CourseId,c.CourseName,c.CourseHour,c.TeachId,c.startTime,u.UserName,c.CoursePlace
+        SELECT c.CourseId,c.CourseName,c.CourseHour,c.TeachId,c.startTime,u.UserName,c.CoursePlace, c.DefaultDistance, c.IsSign , c.DefaultExp
         FROM course as c,user as u
         <if test="courseName == null">
             WHERE c.TeachId=u.UserId
@@ -30,9 +33,14 @@
             WHERE CourseName=#{courseName}
         </if>
     </select>
+    <select id="getCourseByCourseId" resultMap="courseResultMap" parameterType="long">
+        SELECT *
+        FROM course
+        WHERE CourseId=#{courseId}
+    </select>
 
     <insert id="addCourse" parameterType="Course">
-        INSERT INTO course(CourseName,CourseHour,TeachId,StartTime,CoursePlace) VALUE (#{courseName}, #{courseHour}, (select UserId from user where UserName =#{userName}), #{startTime}, #{coursePlace})
+        INSERT INTO course(CourseName,CourseHour,TeachId,StartTime,CoursePlace,DefaultDistance,IsSign,DefaultExp) VALUE (#{courseName}, #{courseHour}, (select UserId from user where UserName =#{userName}), #{startTime}, #{coursePlace},100,0,2)
     </insert>
 
     <delete id="deleteCourseById" parameterType="long">
@@ -49,6 +57,12 @@
     <update id="updateCourse" parameterType="Course">
         UPDATE course
         SET CourseName = #{courseName}, StartTime = #{startTime}, CourseHour = #{courseHour},TeachId = (select UserId from user where UserName= #{userName}), CoursePlace = #{coursePlace}
+        WHERE  CourseId = #{courseId}
+    </update>
+
+    <update id="updateCoursePara" parameterType="Course">
+        UPDATE course
+        SET DefaultDistance = #{defaultDistance}, DefaultExp= #{defaultExp}
         WHERE  CourseId = #{courseId}
     </update>
 

@@ -19,6 +19,12 @@ public interface CourseService {
 //    int deletePaperById(long id);
 //
     int updateCourse(Course course);
+
+    //更新系统参数
+    int updateCoursePara(Course course);
+
+    //通过id获取课程信息
+    Course getCourseByCourseId(long id);
 //
 //    Paper queryById(long id);
 //

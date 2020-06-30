@@ -20,7 +20,11 @@ public interface CourseDao {
 
     int updateCourse(Course course);
 
-    Course queryById(long id);
+    //更新课程参数，距离和经验值
+    int updateCoursePara(Course course);
+
+    //通过id获取课程信息
+    Course getCourseByCourseId(long id);
 
     List<Course> queryAllCourse();
 }

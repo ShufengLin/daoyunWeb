@@ -1,6 +1,8 @@
 package com.utils;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Course {
@@ -10,8 +12,12 @@ public class Course {
   private long courseHour;
   private long teachId;
   private String userName;
+  @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
   private Date startTime;
   private String coursePlace;
+  private int defaultDistance;
+  private int isSign;
+  private int defaultExp;
 
 
   public long getCourseId() {
@@ -71,6 +77,30 @@ public class Course {
 
   public void setCoursePlace(String coursePlace) {
     this.coursePlace = coursePlace;
+  }
+
+  public int getDefaultDistance() {
+    return defaultDistance;
+  }
+
+  public void setDefaultDistance(int defaultDistance) {
+    this.defaultDistance = defaultDistance;
+  }
+
+  public int getIsSign() {
+    return isSign;
+  }
+
+  public void setIsSign(int isSign) {
+    this.isSign = isSign;
+  }
+
+  public int getDefaultExp() {
+    return defaultExp;
+  }
+
+  public void setDefaultExp(int defaultExp) {
+    this.defaultExp = defaultExp;
   }
 
 }

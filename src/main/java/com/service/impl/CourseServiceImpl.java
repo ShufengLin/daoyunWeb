@@ -51,8 +51,17 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public Course getCourseByCourseId(long id){
+        return courseDao.getCourseByCourseId(id);
+    }
+    @Override
     public int updateCourse(Course course) {
         return courseDao.updateCourse(course);
+    }
+
+    @Override
+    public int updateCoursePara(Course course) {
+        return courseDao.updateCoursePara(course);
     }
 
     @Override
