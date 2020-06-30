@@ -23,4 +23,6 @@ public interface CourseService {
 //    Paper queryById(long id);
 //
 //    List<Paper> queryAllPaper();
+
+    Map<String, Object> getOwnCourseByPage(PaperPage paperPage);
 }

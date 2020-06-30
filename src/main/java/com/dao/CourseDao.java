@@ -9,7 +9,9 @@ import java.util.List;
 *  @author author
 */
 public interface CourseDao {
+
     List<Course> getCourseByPage(PaperPage paperPage);
+
     int getCourseCount(PaperPage paperPage);
 
     int deleteCourseBatchById(List<Long> courseIdList);
@@ -23,4 +25,6 @@ public interface CourseDao {
     Course queryById(long id);
 
     List<Course> queryAllCourse();
+
+    List<Course> getOwnCourseByPage(PaperPage paperPage);
 }
