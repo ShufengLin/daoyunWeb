@@ -79,8 +79,24 @@
     <select id="getOwnCourseByPage" resultMap="courseResultMap" parameterType="PaperPage">
         SELECT CourseId,CourseName,CourseHour,TeachId,startTime,CoursePlace
         FROM course
+        <if test="courseName == null">
             WHERE TeachId=#{userId}
+        </if>
+        <if test="courseName!=null">
+            WHERE CourseName like concat('%',#{courseName},'%') and TeachId=#{userId}
+        </if>
         ORDER BY CourseId ASC
         limit #{beginPage},#{pageSize}
+    </select>
+
+    <select id="getOwnCourseCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM course
+        <if test="courseName == null">
+            WHERE TeachId=#{userId}
+        </if>
+        <if test="courseName!=null">
+            WHERE CourseName like concat('%',#{courseName},'%') and TeachId=#{userId}
+        </if>
     </select>
 </mapper>

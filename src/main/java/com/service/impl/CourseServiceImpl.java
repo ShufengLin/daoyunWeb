@@ -86,4 +86,8 @@ public class CourseServiceImpl implements CourseService {
         return map;
     }
 
+    @Override
+    public int getOwnCourseCount(PaperPage paperPage) {
+        return courseDao.getOwnCourseCount(paperPage);
+    }
 }
