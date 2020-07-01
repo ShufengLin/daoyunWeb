@@ -36,9 +36,26 @@ public class CourseController {
     }
 
     @ResponseBody
+    @PostMapping("/getCourseById")
+    public ServerResponse getCourseById(@RequestBody Course course){
+        Course cour= courseService.getCourseByCourseId(course.getCourseId());
+        System.out.println("------------------------------");
+        System.out.println(cour.getCourseName());
+        System.out.println("------------------------------");
+        return new ServerResponse(0, cour,"");
+    }
+
+    @ResponseBody
     @PostMapping("/updateCourseJson")
     public ServerResponse updateCourseJson(@RequestBody Course course) {
         courseService.updateCourse(course);
+        return new ServerResponse(0,"修改成功");
+    }
+
+    @ResponseBody
+    @PostMapping("/updateCourseParaJson")
+    public ServerResponse updateCourseParaJson(@RequestBody Course course) {
+        courseService.updateCoursePara(course);
         return new ServerResponse(0,"修改成功");
     }
 
