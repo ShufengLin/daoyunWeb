@@ -18,7 +18,7 @@
         <if test="userName!=null">
             WHERE u.UserName like concat('%',#{userName},'%') and cs.StudentId=u.UserId and CourseId=#{courseId}
         </if>
-        ORDER BY StudentEXP ASC
+        ORDER BY StudentEXP DESC
         limit #{beginPage},#{pageSize}
     </select>
 

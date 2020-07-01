@@ -58,4 +58,11 @@ public class CourseController {
         return map;
     }
 
+    @ResponseBody
+    @PostMapping("/getOwnCourseCount")
+    public ServerResponse getOwnCourseCount(@RequestBody PaperPage paperPage){
+        int courseCount= courseService.getOwnCourseCount(paperPage);
+        return new ServerResponse(0, courseCount,"返回课程数量成功");
+    }
+
 }

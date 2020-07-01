@@ -25,4 +25,6 @@ public interface CourseService {
 //    List<Paper> queryAllPaper();
 
     Map<String, Object> getOwnCourseByPage(PaperPage paperPage);
+
+    int getOwnCourseCount(PaperPage paperPage);
 }
