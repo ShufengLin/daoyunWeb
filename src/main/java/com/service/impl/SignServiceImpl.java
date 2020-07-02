@@ -7,6 +7,7 @@ import com.dao.CourseSignTimeDao;
 import com.dao.CourseStudentDao;
 import com.service.SignService;
 import com.utils.Course;
+import com.utils.CourseSign;
 import com.utils.CourseStudent;
 import com.utils.token.DistanceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,35 +46,37 @@ public class SignServiceImpl implements SignService {
         return cour.getIsSign();
     }
 
-    //学生签到
+    //学生签到,返回0代表签到距离测试没通过，1代表签到成功，2代表重复签到
     @Override
     public int Sign(Course course) {
-        Course cour1 = courseDao.getLoLa(course);
-        //老师的经纬度
-        double lo1 = cour1.getLongitude().doubleValue();
-        double la1 = cour1.getLatitude().doubleValue();
-        //学生的经纬度
-        double lo2 = course.getLongitude().doubleValue();
-        double la2 = course.getLatitude().doubleValue();
-        //计算两个经纬度距离
-        DistanceUtils dis = new DistanceUtils();
-        double distance = dis.getDistance(la1, lo1, la2, lo2);
-//        System.out.println("------------------------------------");
-//        System.out.println(distance);
-//        System.out.println(cour1.getDefaultDistance());
-//        System.out.println(cour1.getDefaultExp());
-//        System.out.println("------------------------------------");
-        //小于默认距离签到成功，返回标识1，记录到数据库，大于就失败，返回标识0；
-        if(distance > cour1.getDefaultDistance()){
-            return 0;
-        }else{
-            //记录学生签到记录
-            courseSignDao.insertCourseSign(course);
-            //修改学生对应课程总经验
-            cour1.setCourseId(course.getCourseId());
-            cour1.setStudentId(course.getStudentId());
-            courseStudentDao.updateCourseStudent(cour1);
-            return 1;
+        //获取学生签到信息用于判断学生是否已经签到了
+        List<CourseSign> courseSign = courseSignDao.getCourseSign(course);
+        if( courseSign != null) {
+            return 2;
+        }
+        else{
+            Course cour1 = courseDao.getLoLa(course);
+            //老师的经纬度
+            double lo1 = cour1.getLongitude().doubleValue();
+            double la1 = cour1.getLatitude().doubleValue();
+            //学生的经纬度
+            double lo2 = course.getLongitude().doubleValue();
+            double la2 = course.getLatitude().doubleValue();
+            //计算两个经纬度距离
+            DistanceUtils dis = new DistanceUtils();
+            double distance = dis.getDistance(la1, lo1, la2, lo2);
+            //小于默认距离签到成功，返回标识1，记录到数据库，大于就失败，返回标识0；
+            if (distance > cour1.getDefaultDistance()) {
+                return 0;
+            } else {
+                //记录学生签到记录
+                courseSignDao.insertCourseSign(course);
+                //修改学生对应课程总经验
+                cour1.setCourseId(course.getCourseId());
+                cour1.setStudentId(course.getStudentId());
+                courseStudentDao.updateCourseStudent(cour1);
+                return 1;
+            }
         }
     }
 
