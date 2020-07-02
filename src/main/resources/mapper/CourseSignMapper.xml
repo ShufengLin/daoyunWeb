@@ -12,6 +12,12 @@
         <result property="courseSignId" column="CourseSignId"/>
     </resultMap>
 
+    <!-- 用于获取学生签到信息来判断学生是否已经签到-->
+    <select id="getCourseSign" resultMap="CourseSignMap" parameterType="Course">
+        SELECT SignId
+        From course_sign
+        where CourseId = #{courseId} and StudentId = #{studentId} and CourseSignId = (select max(CourseSignId) from coursesigntime)
+    </select>
     <!-- 学生签到时插入签到数据   -->
     <insert id="insertCourseSign" parameterType="Course">
         INSERT INTO course_sign(CourseId, StudentId, CourseSignId, SignTime, signStatus) VALUE (#{courseId}, #{studentId}, (select max(CourseSignId) from coursesigntime), (select sysdate()), 0)
