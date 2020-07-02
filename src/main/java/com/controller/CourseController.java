@@ -82,4 +82,11 @@ public class CourseController {
         return new ServerResponse(0, courseCount,"返回课程数量成功");
     }
 
+    @ResponseBody
+    @PostMapping("/getCourseInfoById")
+    public ServerResponse getCourseInfoById(@RequestBody Course course){
+        Course info= courseService.getCourseInfoByCourseId(course.getCourseId());
+        return new ServerResponse(0, info,"");
+    }
+
 }
