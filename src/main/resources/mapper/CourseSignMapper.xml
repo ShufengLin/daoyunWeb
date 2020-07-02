@@ -9,6 +9,16 @@
         <result property="signPlace" column="SignPlace"/>
         <result property="signTime" column="SignTime"/>
         <result property="signStatus" column="SignStatus"/>
+        <result property="courseSignId" column="CourseSignId"/>
     </resultMap>
 
+    <!-- 学生签到时插入签到数据   -->
+    <insert id="insertCourseSign" parameterType="Course">
+        INSERT INTO course_sign(CourseId, StudentId, CourseSignId, SignTime, signStatus) VALUE (#{courseId}, #{studentId}, (select max(CourseSignId) from coursesigntime), (select sysdate()), 0)
+    </insert>
+
+    <!-- 老师结束签到时候时将未签到学生记录   -->
+    <insert id="insertNoSign" parameterType="Course">
+        INSERT INTO course_sign(CourseId, StudentId, CourseSignId, SignTime, signStatus) VALUE (#{courseId}, #{studentId}, (select max(CourseSignId) from coursesigntime), (select sysdate()), 1)
+    </insert>
 </mapper>

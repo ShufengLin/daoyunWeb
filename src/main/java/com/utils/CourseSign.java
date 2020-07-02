@@ -1,13 +1,17 @@
 package com.utils;
 
+import java.util.Date;
+
 public class CourseSign {
 
   private long signId;
   private long courseId;
   private long studentId;
   private String signPlace;
-  private java.sql.Timestamp signTime;
+  private Date signTime;
   private long signStatus;
+  //这个是代表是某门课的某次签到，外键，依据coursesigntime表的courseSignId
+  private long courseSignId;
 
 
   public long getSignId() {
@@ -46,11 +50,11 @@ public class CourseSign {
   }
 
 
-  public java.sql.Timestamp getSignTime() {
+  public Date getSignTime() {
     return signTime;
   }
 
-  public void setSignTime(java.sql.Timestamp signTime) {
+  public void setSignTime(Date signTime) {
     this.signTime = signTime;
   }
 
@@ -61,6 +65,14 @@ public class CourseSign {
 
   public void setSignStatus(long signStatus) {
     this.signStatus = signStatus;
+  }
+
+  public long getCourseSignId() {
+    return courseSignId;
+  }
+
+  public void setCourseSignId(long courseSignId) {
+    this.courseSignId = courseSignId;
   }
 
 }
