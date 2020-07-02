@@ -53,4 +53,10 @@
     <insert id="attendCourse" parameterType="CourseStudent">
         INSERT INTO course_student(CourseId,StudentId,StudentEXP) VALUE (#{courseId},#{studentId},#{studentExp})
     </insert>
+
+    <select id="getStudentCourseByTwoId" resultMap="courseStudentMap" parameterType="PaperPage">
+        SELECT CourseId,StudentId,StudentEXP
+        FROM course_student
+            WHERE StudentId=#{studentId} and CourseId=#{courseId}
+    </select>
 </mapper>

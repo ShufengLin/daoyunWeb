@@ -22,4 +22,6 @@ public interface CourseStudentDao {
     List<CourseStudent> getNoSignStudent(Course course);
 
     int attendCourse(CourseStudent courseStudent);
+
+    CourseStudent getStudentCourseByTwoId(PaperPage paperPage);
 }

@@ -44,4 +44,14 @@ public class CourseStudentController {
         courseStudentService.attendCourse(courseStudent);
         return new ServerResponse(0,"选课成功");
     }
+
+    /**
+     *  用于判断指定学生是否参加指定课程，获取指定课程中指定学生的经验值
+     */
+    @ResponseBody
+    @PostMapping("/getStudentCourseByTwoId")
+    public ServerResponse getStudentCourseByTwoId(@RequestBody PaperPage paperPage){
+        CourseStudent courseStudent = courseStudentService.getStudentCourseByTwoId(paperPage);
+        return new ServerResponse(0, courseStudent,"返回课程数量成功");
+    }
 }
