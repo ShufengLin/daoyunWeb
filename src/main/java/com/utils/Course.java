@@ -26,6 +26,13 @@ public class Course {
   //这个属性不在表中，用于签到时接收学生id用
   private long studentId;
 
+  //////////////
+  //课程对应教师的个人信息
+  private String phoneNumber;
+  private String school;
+  private String academy;
+  private String major;
+
   public long getStudentId() {
     return studentId;
   }
@@ -134,5 +141,21 @@ public class Course {
   }
 
 
+
+  public void setSchool(String school){this.school = school;}
+
+  public String getSchool(){return this.school;}
+
+  public void setAcademy(String academy){this.academy = academy;}
+
+  public String getAcademy(){return this.academy;}
+
+  public void setMajor(String major){this.major = major;}
+
+  public String getMajor(){return this.major;}
+
+  public void setPhoneNumber(String phoneNumber){this.phoneNumber = phoneNumber;}
+
+  public String getPhoneNumber(){return this.phoneNumber;}
 
 }

@@ -20,4 +20,6 @@ public interface CourseStudentDao {
 
     //结束签到使用，根据courseId获取对应课程所有未签到的学生id
     List<CourseStudent> getNoSignStudent(Course course);
+
+    int attendCourse(CourseStudent courseStudent);
 }

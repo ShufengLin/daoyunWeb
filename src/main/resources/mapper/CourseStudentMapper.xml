@@ -49,4 +49,8 @@
     </update>
 
 
+
+    <insert id="attendCourse" parameterType="CourseStudent">
+        INSERT INTO course_student(CourseId,StudentId,StudentEXP) VALUE (#{courseId},#{studentId},#{studentExp})
+    </insert>
 </mapper>

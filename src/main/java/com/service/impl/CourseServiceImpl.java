@@ -90,4 +90,9 @@ public class CourseServiceImpl implements CourseService {
     public int getOwnCourseCount(PaperPage paperPage) {
         return courseDao.getOwnCourseCount(paperPage);
     }
+
+    @Override
+    public Course getCourseInfoByCourseId(long id){
+        return courseDao.getCourseInfoByCourseId(id);
+    }
 }

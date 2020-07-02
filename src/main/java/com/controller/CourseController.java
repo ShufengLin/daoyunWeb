@@ -121,4 +121,11 @@ public class CourseController {
         int isSign = signService.getIsSign(course);
         return new ServerResponse(0, isSign,"");
     }
+    @ResponseBody
+    @PostMapping("/getCourseInfoById")
+    public ServerResponse getCourseInfoById(@RequestBody Course course){
+        Course info= courseService.getCourseInfoByCourseId(course.getCourseId());
+        return new ServerResponse(0, info,"");
+    }
+
 }
