@@ -13,4 +13,6 @@ public interface CourseStudentDao {
     List<CourseStudent> getCourseStudentByPage(PaperPage paperPage);
 
     int getCourseStudentCount(PaperPage paperPage);
+
+    int attendCourse(CourseStudent courseStudent);
 }

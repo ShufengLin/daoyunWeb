@@ -47,4 +47,9 @@ public class CourseStudentServiceImpl implements CourseStudentService {
         }
         return courseStudentDao.getCourseStudentCount(paperPage);
     }
+
+    @Override
+    public int attendCourse(CourseStudent courseStudent) {
+        return courseStudentDao.attendCourse(courseStudent);
+    }
 }
