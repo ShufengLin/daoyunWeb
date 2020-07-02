@@ -65,17 +65,47 @@
         WHERE  CourseId = #{courseId}
     </update>
 
+    <!--  更新课程系统参数，如默认距离和经验值   -->
     <update id="updateCoursePara" parameterType="Course">
         UPDATE course
         SET DefaultDistance = #{defaultDistance}, DefaultExp= #{defaultExp}
         WHERE  CourseId = #{courseId}
     </update>
 
+    <!--  发起签到，更新签到信息，如老师的经纬度和签到标记 -->
+    <update id="updateSignPara" parameterType="Course">
+        UPDATE course
+        SET IsSign = 1, Longitude = #{longitude}, Latitude= #{latitude}
+        WHERE  CourseId = #{courseId}
+    </update>
+
+    <!-- 结束签到，更新对应课程isSign值为0 -->
+    <update id="updateEndSign" parameterType="Course">
+        UPDATE course
+        SET IsSign = 0
+        WHERE  CourseId = #{courseId}
+    </update>
+
+    <!-- 根据courseId获取IsSign，即是否开启签到   -->
+    <select id="getIsSign" resultMap="courseResultMap" parameterType="Course">
+        SELECT IsSign
+        FROM course
+        WHERE CourseId = #{courseId}
+    </select>
+
+    <!-- 根据courseId获取默认距离，默认经验，经纬度   -->
+    <select id="getLoLa" resultMap="courseResultMap" parameterType="Course">
+        SELECT DefaultDistance, DefaultExp, Longitude , Latitude
+        FROM course
+        WHERE CourseId = #{courseId}
+    </select>
+
     <select id="queryById" resultMap="courseResultMap" parameterType="long">
         SELECT CourseId,CourseName,CourseHour,TeachId,CoursePlace
         FROM course
         WHERE CourseId=#{courseId}
     </select>
+
     <select id="queryAllPaper" resultMap="courseResultMap">
         SELECT CourseId,CourseName,CourseHour,TeachId,CoursePlace
         FROM course

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.CourseSignTimeDao">
+    <resultMap type="CourseSignTime" id="courseSignTimeMap">
+        <result property="courseSignId" column="CourseSignId"/>
+        <result property="courseId" column="CourseId"/>
+        <result property="beginTime" column="BeginTime"/>
+    </resultMap>
+
+    <!--  发起签到，更新签到信息，即某门课在什么时候开启了第几次签到 -->
+    <insert id="addCourseSign" parameterType="Course">
+        INSERT INTO coursesigntime(CourseId,BeginTime) VALUE (#{courseId} ,(select sysdate()))
+    </insert>
+</mapper>

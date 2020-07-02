@@ -9,6 +9,7 @@
         <result property="studentName" column="UserName"/>
         <result property="studentExp" column="StudentEXP"/>
     </resultMap>
+
     <select id="getCourseStudentByPage" resultMap="courseStudentMap" parameterType="PaperPage">
         SELECT cs.StudentId, u.UserName, cs.StudentEXP
         FROM course_student as cs, user as u
@@ -32,6 +33,22 @@
             WHERE u.UserName like concat('%',#{userName},'%') and cs.StudentId=u.UserId and CourseId=#{courseId}
         </if>
     </select>
+
+    <!--结束签到使用，获取对应课程所有未签到的学生id-->
+    <select id="getNoSignStudent" resultMap="courseStudentMap" parameterType="Course">
+        SELECT StudentId
+        FROM course_student
+            WHERE  CourseId= #{courseId} and StudentId != (select StudentId from course_sign where CourseId = #{courseId})
+    </select>
+
+    <!-- 更新学生总经验-->
+    <update id="updateCourseStudent" parameterType="Course">
+        UPDATE course_student
+        SET StudentEXP = StudentEXP + #{defaultExp}
+        WHERE  CourseId = #{courseId} and StudentId = #{studentId}
+    </update>
+
+
 
     <insert id="attendCourse" parameterType="CourseStudent">
         INSERT INTO course_student(CourseId,StudentId,StudentEXP) VALUE (#{courseId},#{studentId},#{studentExp})
