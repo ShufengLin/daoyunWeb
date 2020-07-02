@@ -83,10 +83,25 @@ public class CourseController {
     }
 
     @ResponseBody
-    @PostMapping("/getCourseInfoById")
-    public ServerResponse getCourseInfoById(@RequestBody Course course){
-        Course info= courseService.getCourseInfoByCourseId(course.getCourseId());
-        return new ServerResponse(0, info,"");
+    @PostMapping("/beginSign")
+    public ServerResponse beginSign(@RequestBody Course course){
+        //开始签到，需要三个值，一个课程id，另外两个是经纬度（两个课程表都有），作用是修改IsSign为1和保存老师经纬度
+        return new ServerResponse(0,"");
+    }
+
+    @ResponseBody
+    @PostMapping("/closeSign")
+    public ServerResponse closeSign(@RequestBody Course course){
+        //开始签到，需要一个值，一个课程id，作用结束签到，即修改IsSign为0
+        return new ServerResponse(0,"");
+    }
+
+    @ResponseBody
+    @PostMapping("/sign")
+    public ServerResponse sign(@RequestBody Course course){
+        //签到，需要四个值，一个课程id，一个学生id，学生的经纬度信息，根据id取出老师经纬度，默认距离，经验。
+        // 老师经纬度和学生的计算，小于默认距离签到成功，返回标识1，记录到数据库，大于就失败，返回标识0；
+        return new ServerResponse(0,"");
     }
 
 }
