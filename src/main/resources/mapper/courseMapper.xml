@@ -13,6 +13,11 @@
         <result property="defaultDistance" column="DefaultDistance"/>
         <result property="isSign" column="IsSign"/>
         <result property="defaultExp" column="DefaultExp"/>
+
+        <result property="phoneNumber" column="PhoneNumber"/>
+        <result property="school" column="School"/>
+        <result property="academy" column="Academy"/>
+        <result property="major" column="Major"/>
     </resultMap>
     <select id="getCourseByPage" resultMap="courseResultMap" parameterType="PaperPage">
         SELECT c.CourseId,c.CourseName,c.CourseHour,c.TeachId,c.startTime,u.UserName,c.CoursePlace, c.DefaultDistance, c.IsSign , c.DefaultExp
@@ -98,5 +103,11 @@
         <if test="courseName!=null">
             WHERE CourseName like concat('%',#{courseName},'%') and TeachId=#{userId}
         </if>
+    </select>
+
+    <select id="getCourseInfoByCourseId" resultMap="courseResultMap" parameterType="long">
+        SELECT c.CourseName,c.CourseHour,c.TeachId,c.startTime,c.CoursePlace,u.UserName,u.PhoneNumber,u.School,u.Academy,u.Major
+        FROM course as c,user as u
+        WHERE CourseId=#{courseId} and c.TeachId = u.UserId
     </select>
 </mapper>
