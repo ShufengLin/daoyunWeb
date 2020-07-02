@@ -57,4 +57,11 @@ public class UserRoleController {
         userRoleService.addUserRole(userRole);
         return new ServerResponse(0,"新增成功");
     }
+
+    @ResponseBody
+    @PostMapping("/getUserRoleByUserId")
+    public ServerResponse getUserRoleByUserId(@RequestBody UserRole userRole) {
+        UserRole role = userRoleService.getUserRoleByUserId(userRole.getUserId());
+        return new ServerResponse(0,role,"获取用户权限成功");
+    }
 }

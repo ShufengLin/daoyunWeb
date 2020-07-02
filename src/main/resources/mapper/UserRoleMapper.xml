@@ -49,4 +49,10 @@
         INSERT INTO user_role(UserId,RoleId) VALUE ((SELECT MAX(UserId) from user), (select roleId from role where RoleName = #{roleName}))
     </insert>
 
+    <select id="getUserRoleByUserId" resultMap="UserRoleMap" parameterType="long">
+        SELECT ur.UserId, u.UserName, ur.RoleId, r.RoleName
+        from user as u, user_role as ur, role as r
+            where ur.UserId=u.UserId and ur.RoleId=r.RoleId and ur.UserId=#{userId}
+    </select>
+
 </mapper>

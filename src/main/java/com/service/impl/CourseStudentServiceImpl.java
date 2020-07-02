@@ -52,4 +52,9 @@ public class CourseStudentServiceImpl implements CourseStudentService {
     public int attendCourse(CourseStudent courseStudent) {
         return courseStudentDao.attendCourse(courseStudent);
     }
+
+    @Override
+    public CourseStudent getStudentCourseByTwoId(PaperPage paperPage){
+        return courseStudentDao.getStudentCourseByTwoId(paperPage);
+    }
 }

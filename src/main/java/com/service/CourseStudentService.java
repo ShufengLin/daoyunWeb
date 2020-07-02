@@ -12,4 +12,6 @@ public interface CourseStudentService {
     int getCourseStudentCount(PaperPage paperPage);
 
     int attendCourse(CourseStudent courseStudent);
+
+    CourseStudent getStudentCourseByTwoId(PaperPage paperPage);
 }
