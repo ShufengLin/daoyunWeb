@@ -108,7 +108,7 @@ public class CourseController {
     @PostMapping("/getCourseInfoById")
     public ServerResponse getCourseInfoById(@RequestBody Course course){
         Course info= courseService.getCourseInfoByCourseId(course.getCourseId());
-        return new ServerResponse(0, info,"");
+        return new ServerResponse(0, info,"获取课程详情成功");
     }
 
 }

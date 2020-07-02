@@ -77,4 +77,9 @@ public class UserRoleServiceImpl implements UserRoleService {
         userRoleDao.addUserRole(userRole);
         return 0;
     }
+
+    @Override
+    public UserRole getUserRoleByUserId(long userId) {
+        return userRoleDao.getUserRoleByUserId(userId);
+    }
 }

@@ -48,4 +48,6 @@ public interface UserRoleDao {
      * @return
      */
     int addUserRole(UserRole userRole);
+
+    UserRole getUserRoleByUserId(long userId);
 }

@@ -15,4 +15,6 @@ public interface UserRoleService {
     int updateUserRole(UserRole userRole);
 
     int addUserRole(UserRole userRole);
+
+    UserRole getUserRoleByUserId(long userId);
 }
