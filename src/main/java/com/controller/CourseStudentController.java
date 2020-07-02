@@ -52,6 +52,6 @@ public class CourseStudentController {
     @PostMapping("/getStudentCourseByTwoId")
     public ServerResponse getStudentCourseByTwoId(@RequestBody PaperPage paperPage){
         CourseStudent courseStudent = courseStudentService.getStudentCourseByTwoId(paperPage);
-        return new ServerResponse(0, courseStudent,"返回课程数量成功");
+        return new ServerResponse(0, courseStudent,"返回学生参加对应课程的信息");
     }
 }

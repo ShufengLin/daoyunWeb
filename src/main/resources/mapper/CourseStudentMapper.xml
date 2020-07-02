@@ -57,6 +57,6 @@
     <select id="getStudentCourseByTwoId" resultMap="courseStudentMap" parameterType="PaperPage">
         SELECT CourseId,StudentId,StudentEXP
         FROM course_student
-            WHERE StudentId=#{studentId} and CourseId=#{courseId}
+            WHERE StudentId=#{userId} and CourseId=#{courseId}
     </select>
 </mapper>
