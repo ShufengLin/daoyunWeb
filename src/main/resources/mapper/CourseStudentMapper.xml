@@ -32,4 +32,8 @@
             WHERE u.UserName like concat('%',#{userName},'%') and cs.StudentId=u.UserId and CourseId=#{courseId}
         </if>
     </select>
+
+    <insert id="attendCourse" parameterType="CourseStudent">
+        INSERT INTO course_student(CourseId,StudentId,StudentEXP) VALUE (#{courseId},#{studentId},#{studentExp})
+    </insert>
 </mapper>

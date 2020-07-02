@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.service.CourseStudentService;
+import com.utils.CourseStudent;
 import com.utils.PaperPage;
 import com.utils.ServerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,12 @@ public class CourseStudentController {
     public ServerResponse getCourseStudentCount(@RequestBody PaperPage paperPage){
         int courseStudentCount= courseStudentService.getCourseStudentCount(paperPage);
         return new ServerResponse(0, courseStudentCount,"返回课程数量成功");
+    }
+
+    @ResponseBody
+    @PostMapping("/attendCourse")
+    public ServerResponse attendCourse(@RequestBody CourseStudent courseStudent){
+        courseStudentService.attendCourse(courseStudent);
+        return new ServerResponse(0,"选课成功");
     }
 }
