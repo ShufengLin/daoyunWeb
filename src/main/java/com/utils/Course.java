@@ -3,6 +3,7 @@ package com.utils;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class Course {
@@ -15,10 +16,23 @@ public class Course {
   @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
   private Date startTime;
   private String coursePlace;
-  private int defaultDistance;
+  private double defaultDistance;
   private int isSign;
-  private int defaultExp;
+  private long defaultExp;
+  //老师发起签到时的经度
+  private BigDecimal longitude;
+  //老师发起签到时的纬度
+  private BigDecimal latitude;
+  //这个属性不在表中，用于签到时接收学生id用
+  private long studentId;
 
+  public long getStudentId() {
+    return studentId;
+  }
+
+  public void setStudentId(long studentId) {
+    this.studentId = studentId;
+  }
 
   public long getCourseId() {
     return courseId;
@@ -79,11 +93,11 @@ public class Course {
     this.coursePlace = coursePlace;
   }
 
-  public int getDefaultDistance() {
+  public double getDefaultDistance() {
     return defaultDistance;
   }
 
-  public void setDefaultDistance(int defaultDistance) {
+  public void setDefaultDistance(double defaultDistance) {
     this.defaultDistance = defaultDistance;
   }
 
@@ -95,12 +109,30 @@ public class Course {
     this.isSign = isSign;
   }
 
-  public int getDefaultExp() {
+  public long getDefaultExp() {
     return defaultExp;
   }
 
-  public void setDefaultExp(int defaultExp) {
+  public void setDefaultExp(long defaultExp) {
     this.defaultExp = defaultExp;
   }
+
+  public BigDecimal getLongitude() {
+    return longitude;
+  }
+
+  public void setLongitude(BigDecimal longitude) {
+    this.longitude = longitude;
+  }
+
+  public BigDecimal getLatitude() {
+    return latitude;
+  }
+
+  public void setLatitude(BigDecimal latitude) {
+    this.latitude = latitude;
+  }
+
+
 
 }
