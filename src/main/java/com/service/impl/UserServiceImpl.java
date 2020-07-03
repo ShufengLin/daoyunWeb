@@ -140,4 +140,10 @@ public class UserServiceImpl implements UserService {
         return 0;
     }
 
+    @Override
+    public User getUserInfoById (User user){
+        User result = userServiceDao.getUserInfoById(user);
+        return result;
+    }
+
 }

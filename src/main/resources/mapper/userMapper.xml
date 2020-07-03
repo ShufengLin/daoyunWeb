@@ -82,4 +82,10 @@
     <insert id="addUser" parameterType="User">
         INSERT INTO User(UserName,PhoneNumber,Password,School,Academy,Major) VALUE (#{userName}, #{phoneNumber}, #{password}, #{school}, #{academy},#{major})
     </insert>
+
+    <select id="getUserInfoById" resultMap="UserMap" parameterType="User">
+        SELECT *
+        FROM user
+            WHERE UserId=#{userId}
+    </select>
 </mapper>
