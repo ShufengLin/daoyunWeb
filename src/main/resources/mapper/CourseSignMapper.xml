@@ -14,7 +14,7 @@
 
     <!-- 用于获取学生签到信息来判断学生是否已经签到-->
     <select id="getCourseSign" resultMap="CourseSignMap" parameterType="Course">
-        SELECT SignId
+        SELECT *
         From course_sign
         where CourseId = #{courseId} and StudentId = #{studentId} and CourseSignId = (select max(CourseSignId) from coursesigntime)
     </select>

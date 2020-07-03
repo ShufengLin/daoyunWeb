@@ -38,6 +38,9 @@ public class CourseStudentController {
         return new ServerResponse(0, courseStudentCount,"返回课程数量成功");
     }
 
+    /**
+     *  实际传参studentId和courseId
+     */
     @ResponseBody
     @PostMapping("/attendCourse")
     public ServerResponse attendCourse(@RequestBody CourseStudent courseStudent){
