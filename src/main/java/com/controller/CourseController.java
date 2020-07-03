@@ -86,6 +86,22 @@ public class CourseController {
         return new ServerResponse(0, courseCount,"返回课程数量成功");
     }
 
+    @ResponseBody
+    @PostMapping("/getStudentOwnCourseByPage")
+    public Map<String, Object> getStudentOwnCourseByPage(@RequestBody PaperPage paperPage){
+        Map<String, Object> map= courseService.getStudentOwnCourseByPage(paperPage);
+        map.put("code",0);
+        map.put("msg","分页查询成功");
+        return map;
+    }
+
+    @ResponseBody
+    @PostMapping("/getStudentOwnCourseCount")
+    public ServerResponse getStudentOwnCourseCount(@RequestBody PaperPage paperPage){
+        int courseCount= courseService.getStudentOwnCourseCount(paperPage);
+        return new ServerResponse(0, courseCount,"返回课程数量成功");
+    }
+
     //开始签到，需要3个值，一个课程id，另外两个是经纬度，作用是修改IsSign为1和保存老师经纬度
     @ResponseBody
     @PostMapping("/beginSign")

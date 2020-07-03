@@ -13,7 +13,8 @@
         <result property="defaultDistance" column="DefaultDistance"/>
         <result property="isSign" column="IsSign"/>
         <result property="defaultExp" column="DefaultExp"/>
-
+        <result property="studentId" column="StudentId"/>
+        <result property="studentExp" column="StudentEXP"/>
         <result property="phoneNumber" column="PhoneNumber"/>
         <result property="school" column="School"/>
         <result property="academy" column="Academy"/>
@@ -124,6 +125,19 @@
         limit #{beginPage},#{pageSize}
     </select>
 
+    <select id="getStudentOwnCourseByPage" resultMap="courseResultMap" parameterType="PaperPage">
+        SELECT c.CourseId,c.CourseName,c.CourseHour,c.TeachId,c.startTime,c.CoursePlace,cs.CourseId,cs.StudentId,cs.StudentEXP
+        FROM course as c,course_student as cs
+        <if test="courseName == null">
+            WHERE c.CourseId=cs.CourseId and cs.StudentId=#{userId}
+        </if>
+        <if test="courseName!=null">
+            WHERE CourseName like concat('%',#{courseName},'%') and c.CourseId=cs.CourseId and cs.StudentId=#{userId}
+        </if>
+        ORDER BY c.CourseId ASC
+        limit #{beginPage},#{pageSize}
+    </select>
+
     <select id="getOwnCourseCount" resultType="java.lang.Integer">
         SELECT count(*)
         FROM course
@@ -132,6 +146,17 @@
         </if>
         <if test="courseName!=null">
             WHERE CourseName like concat('%',#{courseName},'%') and TeachId=#{userId}
+        </if>
+    </select>
+
+    <select id="getStudentOwnCourseCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM course as c,course_student as cs
+        <if test="courseName == null">
+            WHERE c.CourseId=cs.CourseId and cs.StudentId=#{userId}
+        </if>
+        <if test="courseName!=null">
+            WHERE CourseName like concat('%',#{courseName},'%') and c.CourseId=cs.CourseId and cs.StudentId=#{userId}
         </if>
     </select>
 

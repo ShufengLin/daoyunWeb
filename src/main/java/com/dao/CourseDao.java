@@ -44,7 +44,11 @@ public interface CourseDao {
 
     List<Course> getOwnCourseByPage(PaperPage paperPage);
 
+    List<Course> getStudentOwnCourseByPage(PaperPage paperPage);
+
     int getOwnCourseCount(PaperPage paperPage);
+
+    int getStudentOwnCourseCount(PaperPage paperPage);
 
     Course getCourseInfoByCourseId(long id);
 }

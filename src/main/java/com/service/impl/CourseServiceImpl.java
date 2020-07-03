@@ -65,6 +65,28 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public Map<String, Object> getStudentOwnCourseByPage(PaperPage paperPage) {
+        int pageSize = paperPage.getPageSize();
+        if (pageSize == 0) {
+            pageSize = 10;
+        }
+        int beginPage = (paperPage.getPage() - 1) * pageSize;
+        if (beginPage < 0) {
+            throw new CustomizedException("页码不符合规范");
+        }
+        paperPage.setBeginPage(beginPage);
+        List<Course> courseList = courseDao.getStudentOwnCourseByPage(paperPage);
+        Map<String, Object> map = new HashMap<>();
+        map.put("data", courseList);
+        return map;
+    }
+
+    @Override
+    public int getStudentOwnCourseCount(PaperPage paperPage) {
+        return courseDao.getStudentOwnCourseCount(paperPage);
+    }
+
+    @Override
     public int addCourse(Course course) {
         return courseDao.addCourse(course);
     }

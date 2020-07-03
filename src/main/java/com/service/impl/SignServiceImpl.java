@@ -51,7 +51,7 @@ public class SignServiceImpl implements SignService {
     public int Sign(Course course) {
         //获取学生签到信息用于判断学生是否已经签到了
         List<CourseSign> courseSign = courseSignDao.getCourseSign(course);
-        if( courseSign != null) {
+        if( courseSign.size() != 0) {
             return 2;
         }
         else{
