@@ -26,6 +26,10 @@ public class Course {
   //这个属性不在表中，用于签到时接收学生id用
   private long studentId;
 
+  private int studentExp;
+
+
+
   //////////////
   //课程对应教师的个人信息
   private String phoneNumber;
@@ -157,5 +161,11 @@ public class Course {
   public void setPhoneNumber(String phoneNumber){this.phoneNumber = phoneNumber;}
 
   public String getPhoneNumber(){return this.phoneNumber;}
+  public int getStudentExp() {
+    return studentExp;
+  }
 
+  public void setStudentExp(int studentExp) {
+    this.studentExp = studentExp;
+  }
 }

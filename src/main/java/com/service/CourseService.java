@@ -32,7 +32,11 @@ public interface CourseService {
 
     Map<String, Object> getOwnCourseByPage(PaperPage paperPage);
 
+    Map<String, Object> getStudentOwnCourseByPage(PaperPage paperPage);
+
     Course getCourseInfoByCourseId(long id);
 
     int getOwnCourseCount(PaperPage paperPage);
+
+    int getStudentOwnCourseCount(PaperPage paperPage);
 }
