@@ -146,4 +146,12 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    @Override
+    public void register(User registerUser){
+        userServiceDao.addUser(registerUser);
+        UserRole userRole = new UserRole();
+        userRole.setRoleName(registerUser.getRoleName());
+        userRoleDao.addUserRole(userRole);
+    }
+
 }

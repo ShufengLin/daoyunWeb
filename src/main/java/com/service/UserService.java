@@ -44,4 +44,6 @@ public interface UserService {
     int addStudent(User user);
 
     User getUserInfoById(User user);
+
+    void register(User registerUser);
 }
