@@ -80,6 +80,13 @@ public class CourseController {
     }
 
     @ResponseBody
+    @PostMapping("/getOwnCourseCount")
+    public ServerResponse getOwnCourseCount(@RequestBody PaperPage paperPage){
+        int courseCount= courseService.getOwnCourseCount(paperPage);
+        return new ServerResponse(0, courseCount,"返回课程数量成功");
+    }
+
+    @ResponseBody
     @PostMapping("/getStudentOwnCourseByPage")
     public Map<String, Object> getStudentOwnCourseByPage(@RequestBody PaperPage paperPage){
         Map<String, Object> map= courseService.getStudentOwnCourseByPage(paperPage);
