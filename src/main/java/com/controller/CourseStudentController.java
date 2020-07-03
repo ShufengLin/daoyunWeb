@@ -38,10 +38,23 @@ public class CourseStudentController {
         return new ServerResponse(0, courseStudentCount,"返回课程数量成功");
     }
 
+    /**
+     *  实际传参studentId和courseId
+     */
     @ResponseBody
     @PostMapping("/attendCourse")
     public ServerResponse attendCourse(@RequestBody CourseStudent courseStudent){
         courseStudentService.attendCourse(courseStudent);
         return new ServerResponse(0,"选课成功");
+    }
+
+    /**
+     *  用于判断指定学生是否参加指定课程，获取指定课程中指定学生的经验值
+     */
+    @ResponseBody
+    @PostMapping("/getStudentCourseByTwoId")
+    public ServerResponse getStudentCourseByTwoId(@RequestBody PaperPage paperPage){
+        CourseStudent courseStudent = courseStudentService.getStudentCourseByTwoId(paperPage);
+        return new ServerResponse(0, courseStudent,"返回学生参加对应课程的信息");
     }
 }
