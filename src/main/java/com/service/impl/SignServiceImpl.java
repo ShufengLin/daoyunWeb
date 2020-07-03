@@ -51,7 +51,7 @@ public class SignServiceImpl implements SignService {
     public int Sign(Course course) {
         //获取学生签到信息用于判断学生是否已经签到了
         List<CourseSign> courseSign = courseSignDao.getCourseSign(course);
-        if( courseSign.size() != 0) {
+        if( courseSign.size() != 0 && courseSign.get(courseSign.size()-1).getSignStatus() == 1) {//如果之前有签到过且签到有成功过
             return 2;
         }
         else{
@@ -66,7 +66,7 @@ public class SignServiceImpl implements SignService {
             DistanceUtils dis = new DistanceUtils();
             double distance = dis.getDistance(la1, lo1, la2, lo2);
             //小于默认距离签到成功，返回标识1，记录到数据库，大于就失败，返回标识0；
-            if (distance > cour1.getDefaultDistance()) {
+            if (distance < cour1.getDefaultDistance()) {
                 return 0;
             } else {
                 //记录学生签到记录
