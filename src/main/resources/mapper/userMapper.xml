@@ -88,4 +88,10 @@
         FROM user
             WHERE UserId=#{userId}
     </select>
+
+    <select id="getUserByName" resultMap="UserMap" parameterType="User">
+        SELECT *
+        FROM user
+            WHERE UserName=#{userName}
+    </select>
 </mapper>
