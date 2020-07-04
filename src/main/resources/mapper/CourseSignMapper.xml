@@ -42,4 +42,10 @@
         FROM course_sign
             WHERE CourseSignId=#{courseSignId}
     </select>
+
+    <select id="getStudentSignInfo" resultMap="CourseSignMap" parameterType="CourseSign">
+        SELECT *
+        FROM course_sign
+            WHERE CourseId=#{courseId} and StudentId=#{studentId}
+    </select>
 </mapper>

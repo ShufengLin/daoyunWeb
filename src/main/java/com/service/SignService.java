@@ -2,6 +2,7 @@ package com.service;
 
 
 import com.utils.Course;
+import com.utils.CourseSign;
 import com.utils.DictionaryDetail;
 import com.utils.PaperPage;
 
@@ -28,4 +29,6 @@ public interface SignService {
     Map<String, Object> getCourseSignByCourseSignId(PaperPage paperPage);
 
     int getCourseSignCount(PaperPage paperPage);
+
+    Map<String, Object> getStudentSignInfo(CourseSign courseSign);
 }

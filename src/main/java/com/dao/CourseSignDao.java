@@ -25,4 +25,6 @@ public interface CourseSignDao {
 
     int getCourseSignCount(PaperPage paperPage);
 
+    List<CourseSign> getStudentSignInfo(CourseSign courseSign);
+
 }

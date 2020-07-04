@@ -142,4 +142,12 @@ public class SignServiceImpl implements SignService {
     public int getCourseSignCount(PaperPage paperPage){
         return courseSignDao.getCourseSignCount(paperPage);
     }
+
+    @Override
+    public Map<String, Object> getStudentSignInfo(CourseSign courseSign) {
+        List<CourseSign> courseSignList = courseSignDao.getStudentSignInfo(courseSign);
+        Map<String, Object> map = new HashMap<>();
+        map.put("data", courseSignList);
+        return map;
+    }
 }
