@@ -32,6 +32,8 @@ public class User implements Serializable {
 
     private String newPassword; //用于修改密码
 
+    private String roleName;//用于注册时填写角色
+
 
     public void setUserId(long userId){this.userId = userId;}
 
@@ -68,5 +70,9 @@ public class User implements Serializable {
     public void setNewPassword(String newPassword){this.newPassword = newPassword;}
 
     public String getNewPassword(){return this.newPassword;}
+
+    public void setRoleName(String roleName){this.roleName = roleName;}
+
+    public String getRoleName(){return this.roleName;}
    
 }

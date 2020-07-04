@@ -140,4 +140,23 @@ public class UserServiceImpl implements UserService {
         return 0;
     }
 
+    @Override
+    public User getUserInfoById (User user){
+        User result = userServiceDao.getUserInfoById(user);
+        return result;
+    }
+
+    @Override
+    public void register(User registerUser){
+        User checkExist = userServiceDao.getUserByName(registerUser);
+        if(checkExist!=null){//说明已经存在用户名一样的账号
+            throw new CustomizedException("已经存在相同的用户名！");
+        }else{
+            userServiceDao.addUser(registerUser);
+            UserRole userRole = new UserRole();
+            userRole.setRoleName(registerUser.getRoleName());
+            userRoleDao.addUserRole(userRole);
+        }
+    }
+
 }

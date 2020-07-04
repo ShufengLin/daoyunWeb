@@ -46,4 +46,20 @@ public class LoginController {
         return new ServerResponse(0, "修改密码成功");
     }
 
+    @ResponseBody
+    @PostMapping("/getUserInfoById")
+    public ServerResponse getUserInfoById(@RequestBody User user)
+    {
+        User result = userService.getUserInfoById(user);
+        return new ServerResponse(0,result, "获取个人信息成功");
+    }
+
+    @ResponseBody
+    @PostMapping("/register")
+    public ServerResponse register(@RequestBody User registerUser)
+    {
+        userService.register(registerUser);
+        return new ServerResponse(0, "注册用户成功");
+    }
+
 }

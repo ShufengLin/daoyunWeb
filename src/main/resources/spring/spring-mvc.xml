@@ -39,10 +39,11 @@
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/Login/checkLogin"/>
-            <mvc:exclude-mapping path="/Dictionary/**"/>
-            <mvc:exclude-mapping path="/testExample/**"/>
-            <mvc:exclude-mapping path="/testDetailExample/**"/>
-            <mvc:exclude-mapping path="/DictionaryDetail/**"/>
+            <mvc:exclude-mapping path="/Login/register"/>
+<!--            <mvc:exclude-mapping path="/Dictionary/**"/>-->
+<!--            <mvc:exclude-mapping path="/testExample/**"/>-->
+<!--            <mvc:exclude-mapping path="/testDetailExample/**"/>-->
+<!--            <mvc:exclude-mapping path="/DictionaryDetail/**"/>-->
             <bean class="com.config.JWTInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>

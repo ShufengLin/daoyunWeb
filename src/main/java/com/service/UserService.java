@@ -42,4 +42,8 @@ public interface UserService {
      * @return
      */
     int addStudent(User user);
+
+    User getUserInfoById(User user);
+
+    void register(User registerUser);
 }
