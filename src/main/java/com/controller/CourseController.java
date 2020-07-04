@@ -146,4 +146,20 @@ public class CourseController {
         return new ServerResponse(0, info,"获取课程详情成功");
     }
 
+    @ResponseBody
+    @PostMapping("/getCourseSignTimeByCourseId")
+    public Map<String, Object> getCourseSignTimeByCourseId(@RequestBody PaperPage paperPage){
+        Map<String, Object> map= signService.getCourseSignTimeByCourseId(paperPage);
+        map.put("code",0);
+        map.put("msg","分页查询成功");
+        return map;
+    }
+
+    @ResponseBody
+    @PostMapping("/getCourseSignTimeCount")
+    public ServerResponse getCourseSignTimeCount(@RequestBody PaperPage paperPage){
+        int courseSignTimeCount = signService.getCourseSignTimeCount(paperPage);
+        return new ServerResponse(0, courseSignTimeCount,"返回课程签到总数成功");
+    }
+
 }
