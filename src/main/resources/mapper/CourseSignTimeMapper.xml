@@ -12,4 +12,18 @@
     <insert id="addCourseSign" parameterType="Course">
         INSERT INTO coursesigntime(CourseId,BeginTime) VALUE (#{courseId} ,(select sysdate()))
     </insert>
+
+    <select id="getCourseSignTimeByCourseId" resultMap="courseSignTimeMap" parameterType="PaperPage">
+        SELECT *
+        FROM coursesigntime
+            WHERE CourseId=#{courseId}
+        ORDER BY CourseSignId DESC
+        limit #{beginPage},#{pageSize}
+    </select>
+
+    <select id="getCourseSignTimeCount" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM coursesigntime
+            WHERE CourseId=#{courseId}
+    </select>
 </mapper>

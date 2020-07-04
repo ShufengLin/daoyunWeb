@@ -5,15 +5,16 @@ import com.dao.CourseDao;
 import com.dao.CourseSignDao;
 import com.dao.CourseSignTimeDao;
 import com.dao.CourseStudentDao;
+import com.exception.CustomizedException;
 import com.service.SignService;
-import com.utils.Course;
-import com.utils.CourseSign;
-import com.utils.CourseStudent;
+import com.utils.*;
 import com.utils.token.DistanceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -96,5 +97,57 @@ public class SignServiceImpl implements SignService {
             courseSignDao.insertNoSign(course);
         }
         return 0;
+    }
+
+    @Override
+    public Map<String, Object> getCourseSignTimeByCourseId(PaperPage paperPage) {
+        int pageSize = paperPage.getPageSize();
+        if (pageSize == 0) {
+            pageSize = 10;
+        }
+        int beginPage = (paperPage.getPage() - 1) * pageSize;
+        if (beginPage < 0) {
+            throw new CustomizedException("页码不符合规范");
+        }
+        paperPage.setBeginPage(beginPage);
+        List<CourseSignTime> courseSignList = courseSignTimeDao.getCourseSignTimeByCourseId(paperPage);
+        Map<String, Object> map = new HashMap<>();
+        map.put("data", courseSignList);
+        return map;
+    }
+
+    @Override
+    public int getCourseSignTimeCount(PaperPage paperPage){
+        return courseSignTimeDao.getCourseSignTimeCount(paperPage);
+    }
+
+    @Override
+    public Map<String, Object> getCourseSignByCourseSignId(PaperPage paperPage) {
+        int pageSize = paperPage.getPageSize();
+        if (pageSize == 0) {
+            pageSize = 10;
+        }
+        int beginPage = (paperPage.getPage() - 1) * pageSize;
+        if (beginPage < 0) {
+            throw new CustomizedException("页码不符合规范");
+        }
+        paperPage.setBeginPage(beginPage);
+        List<CourseSign> courseSignList = courseSignDao.getCourseSignByCourseSignId(paperPage);
+        Map<String, Object> map = new HashMap<>();
+        map.put("data", courseSignList);
+        return map;
+    }
+
+    @Override
+    public int getCourseSignCount(PaperPage paperPage){
+        return courseSignDao.getCourseSignCount(paperPage);
+    }
+
+    @Override
+    public Map<String, Object> getStudentSignInfo(CourseSign courseSign) {
+        List<CourseSign> courseSignList = courseSignDao.getStudentSignInfo(courseSign);
+        Map<String, Object> map = new HashMap<>();
+        map.put("data", courseSignList);
+        return map;
     }
 }

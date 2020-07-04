@@ -3,6 +3,7 @@ package com.controller;
 import com.service.CourseService;
 import com.service.SignService;
 import com.utils.Course;
+import com.utils.CourseSign;
 import com.utils.PaperPage;
 import com.utils.ServerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -144,6 +145,47 @@ public class CourseController {
     public ServerResponse getCourseInfoById(@RequestBody Course course){
         Course info= courseService.getCourseInfoByCourseId(course.getCourseId());
         return new ServerResponse(0, info,"获取课程详情成功");
+    }
+
+    @ResponseBody
+    @PostMapping("/getCourseSignTimeByCourseId")
+    public Map<String, Object> getCourseSignTimeByCourseId(@RequestBody PaperPage paperPage){//获取对应课程的发起签到次数
+        Map<String, Object> map= signService.getCourseSignTimeByCourseId(paperPage);
+        map.put("code",0);
+        map.put("msg","分页查询成功");
+        return map;
+    }
+
+    @ResponseBody
+    @PostMapping("/getCourseSignTimeCount")
+    public ServerResponse getCourseSignTimeCount(@RequestBody PaperPage paperPage){
+        int courseSignTimeCount = signService.getCourseSignTimeCount(paperPage);
+        return new ServerResponse(0, courseSignTimeCount,"返回课程签到总数成功");
+    }
+
+    @ResponseBody
+    @PostMapping("/getCourseSignByCourseSignId")
+    public Map<String, Object> getCourseSignByCourseSignId(@RequestBody PaperPage paperPage){//获取对应课程对应单次签到的学生签到情况
+        Map<String, Object> map= signService.getCourseSignByCourseSignId(paperPage);
+        map.put("code",0);
+        map.put("msg","分页查询成功");
+        return map;
+    }
+
+    @ResponseBody
+    @PostMapping("/getCourseSignCount")
+    public ServerResponse getCourseSignCount(@RequestBody PaperPage paperPage){
+        int courseSignCount = signService.getCourseSignCount(paperPage);
+        return new ServerResponse(0, courseSignCount,"返回学生签到情况总数成功");
+    }
+
+    @ResponseBody
+    @PostMapping("/getStudentSignInfo")
+    public Map<String, Object> getStudentSignInfo(@RequestBody CourseSign courseSign){//获取对应课程对应学生参加课程以来的签到情况
+        Map<String, Object> map= signService.getStudentSignInfo(courseSign);
+        map.put("code",0);
+        map.put("msg","查询签到情况成功");
+        return map;
     }
 
 }

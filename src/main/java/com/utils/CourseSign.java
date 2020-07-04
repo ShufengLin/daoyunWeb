@@ -12,6 +12,7 @@ public class CourseSign {
   private long signStatus;
   //这个是代表是某门课的某次签到，外键，依据coursesigntime表的courseSignId
   private long courseSignId;
+  private String userName;
 
 
   public long getSignId() {
@@ -73,6 +74,14 @@ public class CourseSign {
 
   public void setCourseSignId(long courseSignId) {
     this.courseSignId = courseSignId;
+  }
+
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
 }

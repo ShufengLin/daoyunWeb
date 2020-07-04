@@ -2,7 +2,11 @@ package com.service;
 
 
 import com.utils.Course;
+import com.utils.CourseSign;
 import com.utils.DictionaryDetail;
+import com.utils.PaperPage;
+
+import java.util.Map;
 
 public interface SignService {
 
@@ -17,4 +21,14 @@ public interface SignService {
 
     //结束签到
     int endSign(Course course);
+
+    Map<String, Object> getCourseSignTimeByCourseId(PaperPage paperPage);
+
+    int getCourseSignTimeCount(PaperPage paperPage);
+
+    Map<String, Object> getCourseSignByCourseSignId(PaperPage paperPage);
+
+    int getCourseSignCount(PaperPage paperPage);
+
+    Map<String, Object> getStudentSignInfo(CourseSign courseSign);
 }
