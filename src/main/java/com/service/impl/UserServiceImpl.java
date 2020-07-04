@@ -122,6 +122,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getAllTeacher(){ return userServiceDao.getAllTeacher(); }
+
+    @Override
     public int updateUser(User user) {
         return userServiceDao.updateUser(user);
     }

@@ -73,6 +73,13 @@
         </if>
     </select>
 
+    <select id="getAllTeacher" resultMap="UserMap">
+        SELECT u.UserId,UserName,PhoneNumber,Password,School,Academy,Major
+        FROM user as u, user_role as ur
+        WHERE ur.RoleId=2 and u.UserId=ur.UserId
+        ORDER BY UserId ASC
+    </select>
+
     <update id="updateUser" parameterType="User">
         UPDATE user
         SET UserName = #{userName}, PhoneNumber = #{phoneNumber}, Password = #{password}, School = #{school}, Academy = #{academy}, Major = #{major}

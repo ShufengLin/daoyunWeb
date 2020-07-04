@@ -23,6 +23,8 @@ public interface UserService {
 
     int getStudentCount(PaperPage paperPage);
 
+    List<User> getAllTeacher();
+
     /**
      * 修改用户包括老师和学生两个角色
      * @param user
