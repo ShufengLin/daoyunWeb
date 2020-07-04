@@ -62,7 +62,7 @@
     <select id="getAllPaperDetailRoot" resultMap="paperDetailResultMap" parameterType="long">
         SELECT Id,PaperId,ItemKey,ItemValue,IsDefault,Code,ParentId
         FROM paperdetailtest
-        WHERE ParentId=0 AND PaperId=#{paperId}
+        WHERE ParentId=0
     </select>
 
 </mapper>
