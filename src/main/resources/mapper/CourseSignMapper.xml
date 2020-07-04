@@ -16,7 +16,7 @@
     <select id="getCourseSign" resultMap="CourseSignMap" parameterType="Course">
         SELECT *
         From course_sign
-        where CourseId = #{courseId} and StudentId = #{studentId} and CourseSignId = (select max(CourseSignId) from coursesigntime)
+        where CourseId = #{courseId} and StudentId = #{studentId} and CourseSignId = (select max(CourseSignId) from coursesigntime where CourseId = #{courseId})
     </select>
     <!-- 学生签到时插入签到数据   -->
     <insert id="insertCourseSign" parameterType="Course">
