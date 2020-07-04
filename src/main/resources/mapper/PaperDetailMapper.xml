@@ -10,14 +10,14 @@
         <result property="itemValue" column="ItemValue"/>
         <result property="isDefault" column="IsDefault"/>
         <result property="code" column="Code"/>
+        <result property="parentId" column="ParentId"/>
     </resultMap>
 
     <select id="getPaperDetailByPage" resultMap="paperDetailResultMap" parameterType="PaperPage">
         SELECT Id,PaperId,ItemKey,ItemValue,IsDefault,Code,ParentId
         FROM paperdetailtest
-        WHERE PaperId=#{paperId}
-        AND ParentId=0
-        ORDER BY Id DESC
+        WHERE ParentId=0
+        ORDER BY Id ASC
         limit #{beginPage},#{pageSize}
     </select>
 
@@ -62,7 +62,7 @@
     <select id="getAllPaperDetailRoot" resultMap="paperDetailResultMap" parameterType="long">
         SELECT Id,PaperId,ItemKey,ItemValue,IsDefault,Code,ParentId
         FROM paperdetailtest
-        WHERE ParentId=0 AND PaperId=#{paperId}
+        WHERE ParentId=0
     </select>
 
 </mapper>
