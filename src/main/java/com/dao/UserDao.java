@@ -21,6 +21,8 @@ public interface UserDao {
 
     int getStudentCount(PaperPage paperPage);
 
+    List<User> getAllTeacher();
+
     int updateUser(User user);
 
     int addUser(User user);

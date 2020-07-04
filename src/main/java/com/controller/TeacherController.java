@@ -6,11 +6,9 @@ import com.utils.ServerResponse;
 import com.utils.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -34,6 +32,7 @@ public class TeacherController {
         int teacherCount= userService.getTeacherCount(paperPage);
         return new ServerResponse(0, teacherCount,"返回老师数量成功");
     }
+
     @ResponseBody
     @PostMapping("/updateTeacherJson")
     public ServerResponse updateTeacherJson(@RequestBody User user) {
@@ -48,4 +47,10 @@ public class TeacherController {
         return new ServerResponse(0,"新增成功");
     }
 
+    @ResponseBody
+    @PostMapping("/getAllTeacher")
+    public ServerResponse getAllTeacher(){
+        List<User> teacherList = userService.getAllTeacher();
+        return new ServerResponse(0, teacherList,"返回所有老师成功");
+    }
 }
