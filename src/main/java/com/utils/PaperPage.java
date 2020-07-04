@@ -22,6 +22,8 @@ public class PaperPage {
     private long roleId;
     private String roleName;
 
+    private long courseSignId;
+
     public PaperPage(){
 
     }
@@ -109,5 +111,13 @@ public class PaperPage {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public long getCourseSignId() {
+        return courseSignId;
+    }
+
+    public void setCourseSignId(long courseSignId) {
+        this.courseSignId = courseSignId;
     }
 }

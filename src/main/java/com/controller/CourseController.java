@@ -148,7 +148,7 @@ public class CourseController {
 
     @ResponseBody
     @PostMapping("/getCourseSignTimeByCourseId")
-    public Map<String, Object> getCourseSignTimeByCourseId(@RequestBody PaperPage paperPage){
+    public Map<String, Object> getCourseSignTimeByCourseId(@RequestBody PaperPage paperPage){//获取对应课程的发起签到次数
         Map<String, Object> map= signService.getCourseSignTimeByCourseId(paperPage);
         map.put("code",0);
         map.put("msg","分页查询成功");
@@ -160,6 +160,22 @@ public class CourseController {
     public ServerResponse getCourseSignTimeCount(@RequestBody PaperPage paperPage){
         int courseSignTimeCount = signService.getCourseSignTimeCount(paperPage);
         return new ServerResponse(0, courseSignTimeCount,"返回课程签到总数成功");
+    }
+
+    @ResponseBody
+    @PostMapping("/getCourseSignByCourseSignId")
+    public Map<String, Object> getCourseSignByCourseSignId(@RequestBody PaperPage paperPage){//获取对应课程对应单次签到的学生签到情况
+        Map<String, Object> map= signService.getCourseSignByCourseSignId(paperPage);
+        map.put("code",0);
+        map.put("msg","分页查询成功");
+        return map;
+    }
+
+    @ResponseBody
+    @PostMapping("/getCourseSignCount")
+    public ServerResponse getCourseSignCount(@RequestBody PaperPage paperPage){
+        int courseSignCount = signService.getCourseSignCount(paperPage);
+        return new ServerResponse(0, courseSignCount,"返回学生签到情况总数成功");
     }
 
 }

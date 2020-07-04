@@ -120,4 +120,26 @@ public class SignServiceImpl implements SignService {
     public int getCourseSignTimeCount(PaperPage paperPage){
         return courseSignTimeDao.getCourseSignTimeCount(paperPage);
     }
+
+    @Override
+    public Map<String, Object> getCourseSignByCourseSignId(PaperPage paperPage) {
+        int pageSize = paperPage.getPageSize();
+        if (pageSize == 0) {
+            pageSize = 10;
+        }
+        int beginPage = (paperPage.getPage() - 1) * pageSize;
+        if (beginPage < 0) {
+            throw new CustomizedException("页码不符合规范");
+        }
+        paperPage.setBeginPage(beginPage);
+        List<CourseSign> courseSignList = courseSignDao.getCourseSignByCourseSignId(paperPage);
+        Map<String, Object> map = new HashMap<>();
+        map.put("data", courseSignList);
+        return map;
+    }
+
+    @Override
+    public int getCourseSignCount(PaperPage paperPage){
+        return courseSignDao.getCourseSignCount(paperPage);
+    }
 }

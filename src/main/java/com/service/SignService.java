@@ -24,4 +24,8 @@ public interface SignService {
     Map<String, Object> getCourseSignTimeByCourseId(PaperPage paperPage);
 
     int getCourseSignTimeCount(PaperPage paperPage);
+
+    Map<String, Object> getCourseSignByCourseSignId(PaperPage paperPage);
+
+    int getCourseSignCount(PaperPage paperPage);
 }
