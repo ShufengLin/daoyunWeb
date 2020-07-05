@@ -176,7 +176,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>first</finalName>
+        <finalName>daoyunWeb</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
