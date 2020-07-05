@@ -10,4 +10,6 @@ public interface RoleDescriptionDao {
 
     int addRoleDescription(Roledescription rd);
 
+    int deleteRightByRoleId(long id);
+
 }

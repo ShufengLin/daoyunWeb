@@ -18,4 +18,6 @@ public interface RoleDao {
     int addRole(Role role);
 
     int getMaxRoleId();
+
+    int getRoleIdByRoleName(Role role);
 }

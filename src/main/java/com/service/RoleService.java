@@ -15,4 +15,6 @@ public interface RoleService {
     int addRole(Role role);
 
     Map<String, Object> getOwnPermissionByRoleId(Role role);
+
+    int updateRole(Role role);
 }

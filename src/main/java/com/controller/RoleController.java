@@ -61,4 +61,13 @@ public class RoleController {
         map.put("msg","查询成功");
         return map;
     }
+
+    //重新分配角色权限
+    @ResponseBody
+    @PostMapping("/updateRole")
+    public ServerResponse updateRole(@RequestBody Role role) {
+        roleService.updateRole(role);
+        return new ServerResponse(0,"新增成功");
+    }
+
 }

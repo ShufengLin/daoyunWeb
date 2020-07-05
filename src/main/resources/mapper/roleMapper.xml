@@ -39,6 +39,12 @@
         FROM role
     </select>
 
+    <select id="getRoleIdByRoleName" resultType="java.lang.Integer">
+        SELECT RoleId
+        FROM role
+        where RoleName = #{roleName} limit 1;
+    </select>
+
     <insert id="addRole" parameterType="Role">
         INSERT INTO role(RoleName, RoleDescription) VALUE (#{roleName}, #{roleDescription})
     </insert>

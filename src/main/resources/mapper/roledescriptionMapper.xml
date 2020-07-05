@@ -8,8 +8,11 @@
         <result property="rightId" column="RightId"/>
     </resultMap>
 
-    <insert id="addRoleDescription" parameterType="Roledescription">
+    <insert id="addRoleDescription" parameterType="roledescription">
         INSERT INTO roledescription(RoleId,RightId) VALUE (#{roleId}, #{rightId})
     </insert>
 
+    <delete id="deleteRightByRoleId" parameterType="long">
+        DELETE FROM roledescription WHERE RoleId= #{roleId}
+    </delete>
 </mapper>

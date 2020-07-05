@@ -21,5 +21,11 @@
         where  r.RoleId= #{roleId} and p.PermissionId = r.RightId
     </select>
 
+    <select id="getPermissionIdByPermissionName" resultType="Long" parameterType="String">
+        SELECT PermissionId
+        FROM  permision
+        where PermissionName = #{PermissionName} limit 1
+    </select>
+
 
 </mapper>

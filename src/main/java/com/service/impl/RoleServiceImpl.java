@@ -98,4 +98,26 @@ public class RoleServiceImpl implements RoleService {
         map.put("data", permissionList);
         return map;
     }
+
+    @Override
+    public int updateRole(Role role) {
+        Roledescription roledescription = new Roledescription();
+        //获取角色id
+        long roleId = roleDao.getRoleIdByRoleName(role);
+        role.setRoleId(roleId);
+        roledescription.setRoleId(roleId);
+        //删除该角色的所有权限
+        roleDescriptionDao.deleteRightByRoleId(roleId);
+
+        //获取要获取的权限
+        List<String> pList = role.getPermissionList();
+        Permision permision = new Permision();
+        //给该角色赋予权限
+        for (int i=0; i< pList.size(); i++){
+           long rightId = permisionDao.getPermissionIdByPermissionName(pList.get(i));
+           roledescription.setRightId(rightId);
+           roleDescriptionDao.addRoleDescription(roledescription);
+        }
+        return 0;
+    }
 }
